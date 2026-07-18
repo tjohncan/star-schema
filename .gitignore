@@ -1,3 +1,7 @@
+.idea/
+
+### Below this point: GitHub standard/default .gitignore for "Python", as at 2026-07-18
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

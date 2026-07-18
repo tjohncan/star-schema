@@ -1,0 +1,6 @@
+star_schema:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: './dev.duckdb'

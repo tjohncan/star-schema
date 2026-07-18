@@ -1,0 +1,22 @@
+
+name: 'star_schema'
+version: '1.0.0'
+
+profile: 'star_schema'
+
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+model-paths: ["models"]
+seed-paths: ["seeds"]
+snapshot-paths: ["snapshots"]
+test-paths: ["tests"]
+
+clean-targets:  # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+models:
+  star_schema:
+    space:
+      +schema: space
+      +materialized: ephemeral

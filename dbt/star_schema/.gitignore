@@ -1,0 +1,9 @@
+dev.duckdb
+.user.yml
+
+.dbtignore
+
+target/
+dbt_packages/
+logs/
+.env
