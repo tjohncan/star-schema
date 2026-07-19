@@ -1,0 +1,30 @@
+
+version: 2
+
+seeds:
+  - name: greek_alphabet
+    description: >
+      The 24 Greek letters with the 3-character abbreviations the Yale
+      Bright Star Catalogue uses in Bayer designations.
+    config:
+      column_types:
+        greek_seq: integer
+    columns:
+      - name: greek_seq
+        data_tests:
+          - unique
+          - not_null
+      - name: abbr
+        description: "BSC-style abbreviation (Alp, Bet, ..., Ome)."
+        data_tests:
+          - unique
+          - not_null
+      - name: name
+        data_tests:
+          - unique
+          - not_null
+      - name: letter
+        description: "Lowercase Greek letter, for rendering Bayer names (α UMi)."
+        data_tests:
+          - unique
+          - not_null

@@ -19,6 +19,8 @@ seeds:
   star_schema:
     almagest:
       +schema: ptolemy
+    appendix:
+      +schema: lookup
 
 models:
   star_schema:
