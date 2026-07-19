@@ -17,7 +17,7 @@ sources:
           Thin Baily-to-HIP crosswalk from Verbunt & van Gent (2012),
           A&A 544, A31 — the identifications are their scholarly contribution.
           Ptolemy's magnitudes are ancient facts they transcribed.
-          The ledger's one tier-3 exception (see SOURCES.md).
+          The deepest cut in the ledger, carried thin (see SOURCES.md).
         columns:
           - name: baily
             data_tests:
@@ -37,6 +37,33 @@ sources:
             description: "Ptolemy's magnitude class 1–6; V&vG special values: 7 faint, 9 nebulous."
           - name: mag_qualifier
             description: "Ptolemy's qualifier: b somewhat brighter, f somewhat fainter."
+
+      - name: hipparcos_almagest
+        description: >
+          Thin Hipparcos slice (ESA 1997, CDS I/239): only the 1,021 stars in
+          the V&vG crosswalk's HIP set — the other 117,197 are not carried.
+          Positions are ICRS at epoch J1991.25; models propagate to J2000.
+          The HD column is the bridge onward to the Yale HR keys.
+        columns:
+          - name: hip
+            data_tests:
+              - unique
+              - not_null
+          - name: hd
+            description: "HD number — the HIP → HD → HR bridge to yale_bright_star."
+            data_tests:
+              - not_null
+
+      - name: wgsn_star_name
+        description: >
+          IAU WGSN Catalog of Star Names — official proper names with
+          etymology (origin), designations, and HIP/Bayer identifiers.
+          Carried with attribution; terms and stance in SOURCES.md.
+        columns:
+          - name: proper_name
+            data_tests:
+              - unique
+              - not_null
 
       - name: yale_bright_star
         description: >

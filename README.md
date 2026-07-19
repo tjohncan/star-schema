@@ -74,10 +74,3 @@ from third-party scientific sources and retains each upstream's terms.
 Every source — URL, retrieval date, terms, citation — is recorded in
 [SOURCES.md](SOURCES.md), along with the carry-or-fetch policy behind it.
 What we carry, we cite; what isn't carried may be fetched.
-
-## Where this stands
-
-Early days! The warehouse scaffold is up and building;
-the Almagest museum pair and its seed-builder land next,
-then the modern reference layer (constellations, bright stars,
-official star names?).
