@@ -1,0 +1,122 @@
+
+version: 2
+
+seeds:
+  - name: almagest_stars
+    description: >
+      Ptolemy's 1,028 stars (verbatim copy of the museum artifact).
+      One row per catalogue entry in book order;
+      three real stars appear twice under two Baily numbers
+       (shared between constellations),
+      so `baily` keys the constellation-member entry, not the physical star.
+    config:
+      column_types:
+        baily: integer
+        seq: integer
+    columns:
+      - name: baily
+        description: "Baily number, the scholarly standard numbering 1–1028."
+        data_tests:
+          - unique
+          - not_null
+      - name: constellation
+        description: "Modern 3-letter code of Ptolemy's constellation (Arg = Argo Navis)."
+        data_tests:
+          - not_null
+      - name: member_type
+        description: "Part of the figure, or one of Ptolemy's unformed neighbours."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['figure', 'unformed']
+      - name: seq
+        description: "Sequence within (constellation, member_type), restarting at 1."
+        data_tests:
+          - not_null
+      - name: latin
+        description: "Trapezuntius (1528) Latin as printed by Peters & Knobel (1915)."
+        data_tests:
+          - not_null
+      - name: english
+        description: "Our original English translation (CC0)."
+        data_tests:
+          - not_null
+
+  - name: almagest_constellations
+    description: >
+      One row per Ptolemaic constellation, generated from the museum TOML —
+      names, declared member counts, and the figure description prose.
+    config:
+      column_types:
+        stars_figure: integer
+        stars_unformed: integer
+    columns:
+      - name: constellation
+        data_tests:
+          - unique
+          - not_null
+      - name: name_latin
+        data_tests:
+          - not_null
+      - name: name_english
+        data_tests:
+          - not_null
+      - name: stars_figure
+        data_tests:
+          - not_null
+      - name: stars_unformed
+        data_tests:
+          - not_null
+      - name: description
+        data_tests:
+          - not_null
+
+  - name: almagest_strokes
+    description: >
+      Named figure strokes (polylines), generated from the museum TOML.
+      Comments state Anatomy (the text dictates the connection) or License
+      (our drawing choice).
+    config:
+      column_types:
+        stroke_seq: integer
+    columns:
+      - name: constellation
+        data_tests:
+          - not_null
+      - name: stroke_seq
+        description: "Stroke order within the constellation, 1..N in TOML (book-flavored) order."
+        data_tests:
+          - not_null
+      - name: stroke
+        description: "Stroke name, unique within its constellation."
+        data_tests:
+          - not_null
+      - name: comment
+        data_tests:
+          - not_null
+
+  - name: almagest_stroke_points
+    description: >
+      Ordered points of each stroke,
+      referencing figure-star seq within the constellation.
+      A repeated first point closes a polygon;
+      unformed stars never appear here.
+    config:
+      column_types:
+        stroke_seq: integer
+        point_order: integer
+        seq: integer
+    columns:
+      - name: constellation
+        data_tests:
+          - not_null
+      - name: stroke_seq
+        data_tests:
+          - not_null
+      - name: point_order
+        data_tests:
+          - not_null
+      - name: seq
+        data_tests:
+          - not_null
