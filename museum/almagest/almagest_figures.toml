@@ -1,0 +1,2415 @@
+# almagest_figures.toml
+# Figure edge sets for Ptolemy's 48 constellations, after the anatomy of the
+# Almagest star descriptions (Peters & Knobel 1915). Strokes are polylines
+# through FIGURE-star sequence numbers (see almagest_stars.csv; unformed stars
+# never appear in strokes). A repeated first number closes a polygon.
+# Where Ptolemy's anatomy dictates a connection, the comment says so; where it
+# is silent, the stroke is our artistic license and says that instead.
+
+[[constellation]]
+code = "UMi"
+name_latin = "Ursa Minor"
+name_english = "The Little Bear"
+stars_figure = 7
+stars_unformed = 1
+description = """
+Seven stars, and not one wasted: a long tail rising to the pole, ending in the
+quadrilateral of the body. Star 1 — the tip of the tail — is Polaris, which in
+Ptolemy's day was NOT the pole star; it sat a full 12 degrees off the pole, an
+unremarkable tail-tip that precession has since promoted to the axis of the
+world. The anatomy alone reproduces the modern Little Dipper exactly: handle
+and bowl, drawn from a 2nd-century text with zero degrees of freedom."""
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: tail tip (Polaris) back to the tail's root, joining the body."
+stars = [1, 2, 3, 4]
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: the figura quadrilatera — preceding side 4-5, following side 6-7."
+stars = [4, 5, 7, 6, 4]
+
+[[constellation]]
+code = "UMa"
+name_latin = "Ursa Major"
+name_english = "The Great Bear"
+stars_figure = 27
+stars_unformed = 8
+description = """
+The whole animal, not just the Dipper: a muzzle, paired eyes and brow, an ear,
+neck, chest, four legs with feet, and the famous hindquarters. Ptolemy's
+figura quadrilatera — back (Dubhe), flank (Merak), tail-root (Megrez), left
+hind thigh (Phecda) — IS the Big Dipper's bowl, and 'the three placed in the
+tail' (Alioth, Mizar, Alkaid) are its handle. A bear with a long tail is bad
+zoology and perfect astronomy. The eight unformed stars drift south and west
+toward Leo and Gemini; centuries later Hevelius quarried that empty margin for
+Lynx and Leo Minor — you can watch the raw material waiting in this data."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: muzzle-tip through the eye pair to the brow pair, ear as spur."
+stars = [1, 2, 3, 5, 4]
+
+[[constellation.stroke]]
+name = "ear-spur"
+comment = "Anatomy: the preceding ear's tip, hung from the brow."
+stars = [5, 6]
+
+[[constellation.stroke]]
+name = "neck-and-chest"
+comment = "Anatomy: neck pair into the chest pair. License: joined at the brow."
+stars = [4, 7, 8, 9, 10]
+
+[[constellation.stroke]]
+name = "left-foreleg"
+comment = "Anatomy: chest to left knee to the forefoot pair."
+stars = [10, 11, 12, 13]
+
+[[constellation.stroke]]
+name = "right-foreleg"
+comment = "Anatomy: above and below the right knee. License: hung from the chest."
+stars = [9, 14, 15]
+
+[[constellation.stroke]]
+name = "spine"
+comment = "License: neck to Dubhe, joining head to hindquarters."
+stars = [8, 16]
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: the figura quadrilatera — the Dipper's bowl (Dubhe, Merak, Phecda, Megrez)."
+stars = [16, 17, 19, 18, 16]
+
+[[constellation.stroke]]
+name = "left-hindleg"
+comment = "Anatomy: thigh to hock to hind-foot pair."
+stars = [19, 22, 20, 21]
+
+[[constellation.stroke]]
+name = "right-hindleg"
+comment = "Anatomy: right hind-foot pair. License: hung from the flank."
+stars = [17, 23, 24]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: 'the three placed in the tail' — the Dipper's handle."
+stars = [18, 25, 26, 27]
+
+[[constellation]]
+code = "Dra"
+name_latin = "Draco"
+name_english = "The Dragon"
+stars_figure = 31
+stars_unformed = 0
+description = """
+Thirty-one stars and the longest sentence in the northern sky: a dragon coiled
+between the two Bears. The anatomy reads like driving directions — tongue,
+mouth, jaw, eye, crown; a straight-line trio at the first bend of the neck; a
+quadrilateral coil; then TWO triangles, a pair of small stars off the western
+one, straight-line trios and pairs unwinding westward until the tail's bend
+and its final tip. Ptolemy narrates each curve of the serpent in order, so the
+figure is nearly self-drawing: one long spine that loops through every group.
+No unformed stars — the Dragon used everything it had."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: tongue leads to mouth; jaw, eye and crown close the head lozenge."
+stars = [1, 2, 4, 3, 5, 2]
+
+[[constellation.stroke]]
+name = "neck"
+comment = "Anatomy: crown into the straight-line trio at the first bend (N, mid, S), then the eastward follower."
+stars = [5, 6, 8, 7, 9]
+
+[[constellation.stroke]]
+name = "first-coil"
+comment = "Anatomy: the quadrilateral at the following bend; entered from the neck, exited south."
+stars = [9, 11, 10, 13, 12, 11]
+
+[[constellation.stroke]]
+name = "second-coil-triangles"
+comment = "Anatomy: two triangles back-to-back; the following (eastern) then the preceding (western)."
+stars = [13, 14, 15, 16, 14]
+
+[[constellation.stroke]]
+name = "western-triangle"
+comment = "Anatomy: the preceding triangle, with its two small outliers to the west."
+stars = [16, 17, 18, 19, 17]
+
+[[constellation.stroke]]
+name = "small-pair"
+comment = "Anatomy: the two small stars at the western part of the triangle."
+stars = [19, 20, 21]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: straight-line trio, westward pair, the tail's bend, a distant pair, then tip. One unwinding stroke."
+stars = [21, 24, 23, 22, 25, 26, 27, 28, 29, 30, 31]
+
+[[constellation]]
+code = "Cep"
+name_latin = "Cepheus"
+name_english = "Cepheus, the King"
+stars_figure = 11
+stars_unformed = 2
+description = """
+The king of Aethiopia stands near the pole wearing a tiara — the pointed
+Persian royal cap — which gets three stars of its own while his head gets
+none: Cepheus is drawn crown-first. Feet, belt, shoulders, a chest and a left
+arm sketch the standing figure; the modern 'house' asterism lives in the same
+stars. His two unformed stars bracket the tiara, one preceding and one
+following, like attendants who missed the portrait."""
+
+[[constellation.stroke]]
+name = "tiara"
+comment = "Anatomy: the three in the tiara, south to north."
+stars = [9, 10, 11]
+
+[[constellation.stroke]]
+name = "shoulders-and-crown"
+comment = "License: right shoulder up into the tiara; the king wears his hat."
+stars = [4, 9]
+
+[[constellation.stroke]]
+name = "right-arm"
+comment = "Anatomy: shoulder, elbow-above, elbow-below — three touching stars."
+stars = [4, 5, 6]
+
+[[constellation.stroke]]
+name = "torso"
+comment = "Anatomy: right foot to belt to right shoulder; chest hangs between; left arm from the chest."
+stars = [1, 3, 4, 7, 8]
+
+[[constellation.stroke]]
+name = "left-side"
+comment = "License: chest down to the left foot, closing the standing frame."
+stars = [7, 2]
+
+[[constellation]]
+code = "Boo"
+name_latin = "Bootes"
+name_english = "The Herdsman"
+stars_figure = 22
+stars_unformed = 1
+description = """
+The Herdsman strides after the Bears carrying a collorobus — a shepherd's
+crook — in his right hand and a club below the shoulder. Left hand, elbow,
+shoulders and head give the upper body; belt, legs, heel and a left-shin trio
+plant him on the sky. And then the astonishment: Arcturus, fourth-brightest
+star in the heavens, is UNFORMED — 'between the thighs, called Arcturus,
+reddish' — catalogued beside the figure but not part of it. The brightest
+thing the Herdsman owns is not attached to him. It floats at his knees,
+edgeless by ancient decree, and this dataset keeps it that way."""
+
+[[constellation.stroke]]
+name = "left-arm"
+comment = "Anatomy: the left-hand trio, then elbow and shoulder."
+stars = [1, 2, 3, 4, 5]
+
+[[constellation.stroke]]
+name = "head-and-shoulders"
+comment = "Anatomy: left shoulder, head, right shoulder."
+stars = [5, 6, 7]
+
+[[constellation.stroke]]
+name = "crook"
+comment = "Anatomy: from the right shoulder up the collorobus to its tip; the handle-end star closes it below."
+stars = [7, 8, 9]
+
+[[constellation.stroke]]
+name = "crook-handle"
+comment = "Anatomy: the end of the crook's handle, back toward the hand."
+stars = [8, 15]
+
+[[constellation.stroke]]
+name = "club"
+comment = "Anatomy: the pair in the club below the shoulder."
+stars = [7, 10, 11]
+
+[[constellation.stroke]]
+name = "right-hand"
+comment = "Anatomy: hand-tip and the palm pair. License: hung from the right shoulder."
+stars = [7, 12, 13, 14]
+
+[[constellation.stroke]]
+name = "torso-and-belt"
+comment = "Anatomy: belt pair with the leg star beside it; head-to-belt line is license."
+stars = [6, 17, 18, 16]
+
+[[constellation.stroke]]
+name = "right-leg"
+comment = "Anatomy: belt-side leg star down to the right heel."
+stars = [16, 19]
+
+[[constellation.stroke]]
+name = "left-leg"
+comment = "Anatomy: the left-shin trio, north to south. License: hung from the belt pair."
+stars = [18, 20, 21, 22]
+
+[[constellation]]
+code = "CrB"
+name_latin = "Corona Borealis"
+name_english = "The Northern Crown"
+stars_figure = 8
+stars_unformed = 0
+description = """
+Ariadne's wedding crown, flung into the sky: eight stars in a small, perfect
+arc, described almost entirely by their order in the curve — 'the one
+preceding them all', then follower after follower to 'the last of all those in
+the crown'. Star 1 is the Brilliant One (Fulgens), today's Alphecca or Gemma,
+the jewel set in the ring. Ptolemy's sequence walks the arc itself; one bent
+stroke draws the whole diadem, with one small northern companion riding just
+above the band."""
+
+[[constellation.stroke]]
+name = "diadem"
+comment = "Anatomy: the arc in catalogue order — leader, jewel, then the southern followers to the last."
+stars = [2, 3, 1, 5, 6, 7, 8]
+
+[[constellation.stroke]]
+name = "northern-gem"
+comment = "Anatomy: star 4 rides north of the band, following 3."
+stars = [3, 4]
+
+[[constellation]]
+code = "Her"
+name_latin = "Hercules"
+name_english = "Hercules, the Kneeler"
+stars_figure = 29
+stars_unformed = 1
+description = """
+Ptolemy never calls him Hercules — the constellation is simply 'the Kneeler',
+a man down on one knee, drawn head-downward so that his head nearly touches
+the head of Ophiuchus. Arms spread from both shoulders, one hand open with a
+three-star palm; the torso hangs from two side stars, and both legs fold
+beneath him in long chains of thigh, knee, and foot. His right foot is 'the
+very same star as the tip of the crook' — one point of light doing double
+duty as the Kneeler's toe and the end of Boötes' shepherd's staff."""
+
+[[constellation.stroke]]
+name = "head-and-shoulders"
+comment = "Anatomy: head set between the two shoulders."
+stars = [2, 1, 5]
+
+[[constellation.stroke]]
+name = "right-arm"
+comment = "Anatomy: shoulder, arm, elbow."
+stars = [2, 3, 4]
+
+[[constellation.stroke]]
+name = "left-arm"
+comment = "Anatomy: shoulder, arm, elbow, into the hand."
+stars = [5, 6, 7, 8]
+
+[[constellation.stroke]]
+name = "left-palm"
+comment = "Anatomy: the three in the palm, fanned from the follower."
+stars = [9, 8, 10]
+
+[[constellation.stroke]]
+name = "torso"
+comment = "Anatomy: the two side stars. License: hung from the shoulders."
+stars = [2, 11, 12, 5]
+
+[[constellation.stroke]]
+name = "left-leg"
+comment = "Anatomy: hip joint, head of thigh, the thigh trio, knee, calf."
+stars = [12, 13, 14, 15, 16, 17, 18, 19]
+
+[[constellation.stroke]]
+name = "left-foot"
+comment = "Anatomy: the three at the tip of the left foot."
+stars = [19, 20, 21, 22]
+
+[[constellation.stroke]]
+name = "right-leg"
+comment = "Anatomy: hip joint, thigh, knee, shin, foot-tip (the shared crook star)."
+stars = [11, 23, 24, 25, 28, 29]
+
+[[constellation.stroke]]
+name = "right-knee-pair"
+comment = "Anatomy: the two stars in the right knee, beside it."
+stars = [25, 26, 27]
+
+[[constellation]]
+code = "Lyr"
+name_latin = "Lyra"
+name_english = "The Lyre"
+stars_figure = 10
+stars_unformed = 0
+description = """
+The tortoise-shell lyre of Hermes, passed to Orpheus: a sounding shell, two
+rising horns, and the yoke joining them — a real instrument, described part by
+part. The Brilliant One on the shell is Vega; the close pair beside it is the
+modern epsilon Lyrae, the Double-Double. Four yoke stars make the small
+parallelogram that still defines the constellation's shape, hanging beneath
+Vega like the frame the strings were stretched on."""
+
+[[constellation.stroke]]
+name = "shell"
+comment = "Anatomy: Vega with its two adjoining stars."
+stars = [2, 1, 3]
+
+[[constellation.stroke]]
+name = "horn-spring"
+comment = "Anatomy: the star midway between the springing of the horns."
+stars = [1, 4]
+
+[[constellation.stroke]]
+name = "east-shell"
+comment = "Anatomy: the close-set pair at the eastern part of the shell."
+stars = [4, 5, 6]
+
+[[constellation.stroke]]
+name = "yoke"
+comment = "Anatomy: preceding pair and following pair — the parallelogram."
+stars = [7, 9, 10, 8, 7]
+
+[[constellation.stroke]]
+name = "neck"
+comment = "License: horn-spring down to the yoke."
+stars = [4, 7]
+
+[[constellation]]
+code = "Cyg"
+name_latin = "Cygnus"
+name_english = "The Bird"
+stars_figure = 17
+stars_unformed = 2
+description = """
+Ptolemy's Bird — the swan of the Zeus-and-Leda story — flies south along the
+Milky Way with its neck at full stretch: beak, head, mid-neck, breast, and the
+brilliant tail star, which is Deneb. Each wing opens from an elbow into a
+feather-edge, the 'comb' of flight feathers, giving the long crossbeam that
+makes the modern Northern Cross. The beak star is Albireo; the right knee is
+'like a little cloud', a star the catalogue itself admits is barely there."""
+
+[[constellation.stroke]]
+name = "neck-and-body"
+comment = "Anatomy: beak, head, mid-neck, breast, and Deneb in the tail."
+stars = [1, 2, 3, 4, 5]
+
+[[constellation.stroke]]
+name = "right-wing"
+comment = "Anatomy: from the breast through the elbow to the feather-edge trio."
+stars = [4, 6, 7, 8, 9]
+
+[[constellation.stroke]]
+name = "left-wing"
+comment = "Anatomy: elbow, mid-wing, feather-tip."
+stars = [4, 10, 11, 12]
+
+[[constellation.stroke]]
+name = "left-leg"
+comment = "Anatomy: knee then foot, tucked beneath. License: hung from the breast."
+stars = [4, 14, 13]
+
+[[constellation.stroke]]
+name = "right-leg"
+comment = "Anatomy: the cloud-like knee, then the foot pair."
+stars = [4, 17, 15, 16]
+
+[[constellation]]
+code = "Cas"
+name_latin = "Cassiopeia"
+name_english = "Cassiopeia, the Enthroned Queen"
+stars_figure = 13
+stars_unformed = 0
+description = """
+The boastful queen of the Aethiopian royal family — wife of Cepheus, mother of
+Andromeda — seated on the throne to which the myth chained her. Ptolemy draws
+her from crown to toe down one long line: head, breast, girdle, thighs, knees,
+shin, foot; her arms reach from the breast, and the throne gets stars of its
+own — its foot, its middle, its edge. The zigzag that skywatchers know as the
+W is her body and chair folded together, circling the pole forever, sometimes
+upright, sometimes upside down."""
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: head to breast to girdle, then thighs, knees, shin, foot-tip."
+stars = [1, 2, 3, 4, 5, 6, 7]
+
+[[constellation.stroke]]
+name = "left-arm"
+comment = "Anatomy: arm from the breast, elbow star beneath."
+stars = [2, 8, 9]
+
+[[constellation.stroke]]
+name = "right-arm"
+comment = "Anatomy: the right arm from the breast."
+stars = [2, 10]
+
+[[constellation.stroke]]
+name = "throne"
+comment = "Anatomy: seat-foot, mid-seat, seat-edge. License: joined beneath the thighs."
+stars = [4, 12, 11]
+
+[[constellation.stroke]]
+name = "seat-edge"
+comment = "Anatomy: the star at the edge of the seat."
+stars = [12, 13]
+
+[[constellation]]
+code = "Per"
+name_latin = "Perseus"
+name_english = "Perseus, Bearer of the Gorgon's Head"
+stars_figure = 26
+stars_unformed = 3
+description = """
+The hero strides mid-rescue, sword-hand raised, Medusa's severed head swinging
+from his left fist. The raised right hand is 'nebulous' — that misty star is
+the Double Cluster, two entire star-swarms recorded as one smudge. The
+Brilliant One in his right side is Mirfak, and the Brilliant One in the
+Gorgon's head is Algol, whose clockwork winking would later earn it the name
+of demon. Below the belt-line his legs stride wide, each with knee, calf, and
+heel — a runner's pose caught in twenty-six stars."""
+
+[[constellation.stroke]]
+name = "sword-arm"
+comment = "Anatomy: the nebulous hand (the Double Cluster), elbow, right shoulder."
+stars = [1, 2, 3]
+
+[[constellation.stroke]]
+name = "head-and-shoulders"
+comment = "Anatomy: head between the shoulders."
+stars = [3, 5, 4]
+
+[[constellation.stroke]]
+name = "occiput"
+comment = "Anatomy: the star at the back of the head."
+stars = [5, 6]
+
+[[constellation.stroke]]
+name = "torso"
+comment = "Anatomy: right shoulder down to Mirfak, then the trio after the side."
+stars = [3, 7, 8, 9, 10]
+
+[[constellation.stroke]]
+name = "gorgon-arm"
+comment = "Anatomy: left shoulder to elbow, into the Gorgon's head."
+stars = [4, 11, 12]
+
+[[constellation.stroke]]
+name = "gorgon-head"
+comment = "Anatomy: Algol with its follower and two preceders — Medusa's face."
+stars = [13, 12, 14, 15]
+
+[[constellation.stroke]]
+name = "right-leg"
+comment = "Anatomy: from the side-trio: above-knee, knee, calf, ankle."
+stars = [10, 17, 16, 20, 21]
+
+[[constellation.stroke]]
+name = "right-knee-hollow"
+comment = "Anatomy: the pair above the hollow of the knee."
+stars = [16, 19, 18]
+
+[[constellation.stroke]]
+name = "left-leg"
+comment = "Anatomy: thigh, knee, shin, heel, foot-tip. License: hung from Mirfak."
+stars = [7, 22, 23, 24, 25, 26]
+
+[[constellation]]
+code = "Aur"
+name_latin = "Auriga"
+name_english = "The Charioteer"
+stars_figure = 14
+stars_unformed = 0
+description = """
+A charioteer without a chariot: he stands in the Milky Way holding the reins,
+a she-goat slung over his left shoulder and two kids cradled at his left
+wrist. The goat is Capella, named in the catalogue itself; the Kids keep their
+name (the Haedi) to this day. His right ankle is 'shared with the horn of the
+Bull' — one star serving as both the Charioteer's foot and the tip of Taurus'
+northern horn, a seam in the sky that modern astronomy finally had to rip,
+giving the star to the Bull."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: the head star and the one above it, set between the shoulders."
+stars = [4, 1, 2, 3]
+
+[[constellation.stroke]]
+name = "frame"
+comment = "License: shoulders to ankles, the pentagon-like hoop of the figure."
+stars = [3, 4, 11, 10, 3]
+
+[[constellation.stroke]]
+name = "right-arm"
+comment = "Anatomy: shoulder, elbow, palm — the rein hand."
+stars = [4, 5, 6]
+
+[[constellation.stroke]]
+name = "kids"
+comment = "Anatomy: left elbow, then the two Kids in the palm."
+stars = [3, 7, 9, 8]
+
+[[constellation.stroke]]
+name = "foot-line"
+comment = "Anatomy: from the shared horn-star northward: foot-tip, then the joint."
+stars = [11, 12, 13]
+
+[[constellation.stroke]]
+name = "left-foot-spur"
+comment = "Anatomy: the small star above the left foot."
+stars = [10, 14]
+
+[[constellation]]
+code = "Oph"
+name_latin = "Ophiuchus"
+name_english = "The Serpent-Bearer"
+stars_figure = 24
+stars_unformed = 5
+description = """
+A giant grips a living serpent in both fists — left hand near the snake's
+head, right hand far down its tail — while the coils cross his body. His own
+head star stands close against the head of kneeling Hercules, crown to crown.
+Both shoulders are close pairs; each arm runs to an elbow and a two-star fist,
+and the serpent's stars thread between them (see Serpens, whose catalogue
+entries name his hands and thigh as landmarks). His right foot gets four stars
+and a heel-toucher, planted just above the Scorpion."""
+
+[[constellation.stroke]]
+name = "head-and-shoulders"
+comment = "Anatomy: head set between the inner shoulder stars; each shoulder a pair."
+stars = [2, 1, 4]
+
+[[constellation.stroke]]
+name = "right-shoulder-pair"
+comment = "Anatomy: preceding and following of the right shoulder."
+stars = [2, 3]
+
+[[constellation.stroke]]
+name = "left-shoulder-pair"
+comment = "Anatomy: preceding and following of the left shoulder."
+stars = [4, 5]
+
+[[constellation.stroke]]
+name = "left-arm"
+comment = "Anatomy: elbow, then the two-star fist gripping the serpent's neck."
+stars = [5, 6, 7, 8]
+
+[[constellation.stroke]]
+name = "right-arm"
+comment = "Anatomy: elbow, then the two-star fist on the serpent's tail."
+stars = [3, 9, 10, 11]
+
+[[constellation.stroke]]
+name = "right-leg"
+comment = "Anatomy: knee and shin. License: hung from the right shoulder."
+stars = [2, 12, 13]
+
+[[constellation.stroke]]
+name = "right-foot"
+comment = "Anatomy: the four in the foot, then the heel-toucher."
+stars = [13, 14, 15, 16, 17, 18]
+
+[[constellation.stroke]]
+name = "left-leg"
+comment = "Anatomy: knee, the straight-line shin trio, heel, sole-toucher."
+stars = [4, 19, 20, 21, 22, 23, 24]
+
+[[constellation]]
+code = "Ser"
+name_latin = "Serpens"
+name_english = "The Serpent"
+stars_figure = 18
+stars_unformed = 0
+description = """
+The serpent held by Ophiuchus, and the reason he has a job. Its head is a
+quadrilateral — jaw, nostrils, temple, neck-root — with a fifth star set
+inside it at the open mouth and a sixth floating free to the north. From the
+first bend of the neck the body runs star by star through the Bearer's grip:
+past his left hand, behind his right thigh, beyond his right hand into the
+bend of the tail, and out to the tail's tip. The catalogue plots the snake by
+where it crosses the man — the two constellations are written into each
+other."""
+
+[[constellation.stroke]]
+name = "head-quadrilateral"
+comment = "Anatomy: jaw-tip, nostrils, neck-root, temple — the head's four corners."
+stars = [1, 2, 4, 3, 1]
+
+[[constellation.stroke]]
+name = "mouth"
+comment = "Anatomy: the middle of the quadrilateral, in the open mouth."
+stars = [1, 5]
+
+[[constellation.stroke]]
+name = "north-spur"
+comment = "Anatomy: the outsider north of the head."
+stars = [3, 6]
+
+[[constellation.stroke]]
+name = "neck"
+comment = "Anatomy: the first bend, then the following trio north to south."
+stars = [4, 7, 8, 9, 10]
+
+[[constellation.stroke]]
+name = "through-the-grip"
+comment = "Anatomy: past Ophiuchus' left hand, behind his right thigh."
+stars = [10, 11, 12, 13]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: the pair beyond the thigh, the bend past his right hand, tip."
+stars = [13, 14, 15, 16, 17, 18]
+
+[[constellation]]
+code = "Sge"
+name_latin = "Sagitta"
+name_english = "The Arrow"
+stars_figure = 5
+stars_unformed = 0
+description = """
+The smallest constellation in the catalogue: an arrow in flight, complete in
+five stars. One solitary star for the iron head, three along the reed shaft,
+and one at the notch — the γλυφίς, the nock where the string sat. Whose arrow
+it is, the sky never says: Cupid's, Apollo's, or the one Hercules loosed at
+the eagle, take your pick. It flies between the Eagle and the Bird, a single
+drawn line."""
+
+[[constellation.stroke]]
+name = "shaft"
+comment = "Anatomy: iron head, the three in the reed, the notch — one line, whole."
+stars = [1, 2, 3, 4, 5]
+
+[[constellation]]
+code = "Aql"
+name_latin = "Aquila"
+name_english = "The Eagle"
+stars_figure = 9
+stars_unformed = 6
+description = """
+The eagle of Zeus stoops through the Milky Way, wings half-folded in the
+dive. The Brilliant One at the back of its head is named in the catalogue as
+Aquila itself — the bird condensed into its brightest point, our Altair —
+with the head star before it and a close companion to the north. Each
+shoulder is a two-star wing-joint, and one remote star trails far below the
+tail, touching the Milky Way's edge. The six unformed stars south of the head
+were later gathered into Antinous, the drowned favourite of the emperor
+Hadrian, grafted onto the Eagle's talons."""
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: head, neck, and Altair at the back of the head."
+stars = [1, 2, 3]
+
+[[constellation.stroke]]
+name = "north-companion"
+comment = "Anatomy: the near star north of Altair."
+stars = [3, 4]
+
+[[constellation.stroke]]
+name = "left-wing"
+comment = "Anatomy: the left shoulder pair. License: opened from the neck."
+stars = [2, 5, 6]
+
+[[constellation.stroke]]
+name = "right-wing"
+comment = "Anatomy: the right shoulder pair. License: opened from the neck."
+stars = [2, 7, 8]
+
+[[constellation.stroke]]
+name = "tail-trail"
+comment = "Anatomy: the remote star below the tail, at the Milky Way. License: one long feather-line."
+stars = [3, 9]
+
+[[constellation]]
+code = "Del"
+name_latin = "Delphinus"
+name_english = "The Dolphin"
+stars_figure = 10
+stars_unformed = 0
+description = """
+A dolphin caught mid-leap in ten faint stars: a tail of three, a body of
+three, and — the part everyone remembers — a tight rhombus of four for the
+head, the little kite-shape that skywatchers would much later nickname Job's
+Coffin. The catalogue calls it plainly what it is: a quadrilateral rhomboid,
+preceding side and following side. This is the dolphin that carried the
+singer Arion safely to shore, paid for the rescue with a place in the sky."""
+
+[[constellation.stroke]]
+name = "rhombus"
+comment = "Anatomy: the rhomboid quadrilateral — preceding side, following side."
+stars = [4, 5, 7, 6, 4]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: the tail trio, fanned from its preceding star."
+stars = [2, 1, 3]
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: the trio between tail and rhombus — southern star under the northern pair."
+stars = [9, 8, 10]
+
+[[constellation.stroke]]
+name = "leap"
+comment = "License: tail through the body pair into the rhombus."
+stars = [1, 9, 10, 4]
+
+[[constellation]]
+code = "Equ"
+name_latin = "Equuleus"
+name_english = "The Little Horse"
+stars_figure = 4
+stars_unformed = 0
+description = """
+Four dim stars and no more: a foal's head, floating beside Pegasus — two
+stars for the head, two for the mouth, and the rest of the animal never
+drawn. It is the sky's least-committed constellation, a sketch abandoned
+after the muzzle, and the smallest figure in the catalogue after the Arrow.
+Tradition makes it Celeris, brother or foal of Pegasus, given by Hermes to
+the horseman Castor."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: the pair in the head."
+stars = [1, 2]
+
+[[constellation.stroke]]
+name = "muzzle"
+comment = "Anatomy: the pair in the mouth. License: joined to the head."
+stars = [2, 3, 4]
+
+[[constellation]]
+code = "Peg"
+name_latin = "Pegasus"
+name_english = "The Winged Horse"
+stars_figure = 20
+stars_unformed = 0
+description = """
+Half a horse, upside down: head, neck, mane, chest, forelegs and wings —
+and nothing at all behind the navel, where the figure simply stops. That
+navel star is 'shared with the head of Andromeda': one star finishing the
+horse and starting the princess. With the loins, the shoulder, and the
+wing-shoulder it frames the Great Square, the huge empty box of autumn
+skies; from the chest the neck stretches out through close-set pairs —
+neck, mane, head — to the single star in the muzzle. The wings get their
+tips, the forelegs their knees and ankles, and the rest is left to flight."""
+
+[[constellation.stroke]]
+name = "great-square"
+comment = "Anatomy: navel (shared with Andromeda), loins, shoulder, wing-shoulder. License: drawn as the ring."
+stars = [1, 2, 3, 4, 1]
+
+[[constellation.stroke]]
+name = "chest"
+comment = "Anatomy: the close chest pair. License: hung from the shoulder."
+stars = [3, 9, 10]
+
+[[constellation.stroke]]
+name = "neck-and-head"
+comment = "Anatomy: neck pair, head pair, muzzle — the outstretched neck."
+stars = [10, 11, 12, 15, 16, 17]
+
+[[constellation.stroke]]
+name = "mane"
+comment = "Anatomy: the mane pair, riding above the neck."
+stars = [12, 13, 14]
+
+[[constellation.stroke]]
+name = "under-wing"
+comment = "Anatomy: the body pair beneath the wing."
+stars = [2, 5, 6]
+
+[[constellation.stroke]]
+name = "right-foreleg"
+comment = "Anatomy: from the leg-root shoulder: the knee pair, then the ankle."
+stars = [3, 7, 8, 18]
+
+[[constellation.stroke]]
+name = "left-foreleg"
+comment = "Anatomy: left knee and ankle. License: hung from the wing-shoulder."
+stars = [4, 19, 20]
+
+[[constellation]]
+code = "And"
+name_latin = "Andromeda"
+name_english = "Andromeda, the Chained Princess"
+stars_figure = 23
+stars_unformed = 0
+description = """
+The daughter of Cepheus and Cassiopeia, staked out for the sea-monster and
+saved by Perseus, who stands just east of her. Her head is the star she
+shares with Pegasus; from it hang shoulders, two long arms — each ending in
+a three-star hand, stretched wide where the chains would be — a girdle of
+three, and legs reaching toward Perseus. Her robe gets its own detail: two
+stars in the syrma, the trailing train, sweeping behind her feet. The long
+line from head through girdle to foot is the chain of stars that leads
+skywatchers from the Great Square toward Perseus."""
+
+[[constellation.stroke]]
+name = "head-and-shoulders"
+comment = "Anatomy: back of the head between the shoulders."
+stars = [2, 1, 3]
+
+[[constellation.stroke]]
+name = "right-arm"
+comment = "Anatomy: the arm trio — southern, middle, northern — reaching from the shoulder."
+stars = [2, 4, 6, 5]
+
+[[constellation.stroke]]
+name = "right-hand"
+comment = "Anatomy: the hand trio with its outer, preceding star."
+stars = [5, 23, 7, 8, 9]
+
+[[constellation.stroke]]
+name = "left-arm"
+comment = "Anatomy: arm, then elbow."
+stars = [3, 10, 11]
+
+[[constellation.stroke]]
+name = "girdle"
+comment = "Anatomy: the three above the girdle, south to north."
+stars = [12, 13, 14]
+
+[[constellation.stroke]]
+name = "torso"
+comment = "License: shoulders joined to the girdle's middle."
+stars = [2, 13, 3]
+
+[[constellation.stroke]]
+name = "left-leg"
+comment = "Anatomy: knee-hollow pair, then the star above the left foot."
+stars = [14, 18, 19, 15]
+
+[[constellation.stroke]]
+name = "right-leg"
+comment = "Anatomy: right knee, right foot, and its southern companion."
+stars = [12, 20, 16, 17]
+
+[[constellation.stroke]]
+name = "train"
+comment = "Anatomy: the two in the syrma, the robe's train. License: trailing from the left foot."
+stars = [15, 21, 22]
+
+[[constellation]]
+code = "Tri"
+name_latin = "Triangulum"
+name_english = "The Triangle"
+stars_figure = 4
+stars_unformed = 0
+description = """
+A shape so simple the sky kept it: one star at the apex, three along the
+base. The Greeks called it Deltoton, the letter delta; some saw the Nile's
+delta in it, some the island of Sicily. Four stars, two strokes, done — a
+proof that a constellation needs only geometry to earn its place."""
+
+[[constellation.stroke]]
+name = "sides"
+comment = "Anatomy: base-ends up to the apex."
+stars = [2, 1, 4]
+
+[[constellation.stroke]]
+name = "base"
+comment = "Anatomy: the three in the base."
+stars = [2, 3, 4]
+
+[[constellation]]
+code = "Ari"
+name_latin = "Aries"
+name_english = "The Ram"
+stars_figure = 13
+stars_unformed = 5
+description = """
+The ram of the Golden Fleece, lying down with its head turned back: a horn
+pair and a muzzle pair, one star each for neck and loin, a three-star tail
+and one folded hind leg. The first unformed star carries a rare thing — a
+disagreement, preserved: 'the one above the head, which Hipparchus places in
+the neck.' The catalogue citing its own greatest source, and declining to
+agree with him."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: horn pair into the muzzle pair — the turned-back head."
+stars = [1, 2, 3, 4]
+
+[[constellation.stroke]]
+name = "back"
+comment = "Anatomy: muzzle to neck, along the loin to the tail's root."
+stars = [4, 5, 6, 7]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: the three in the tail."
+stars = [7, 8, 9, 10]
+
+[[constellation.stroke]]
+name = "hind-leg"
+comment = "Anatomy: leg, knee-hollow, foot-tip. License: hung from the loin."
+stars = [6, 11, 12, 13]
+
+[[constellation]]
+code = "Tau"
+name_latin = "Taurus"
+name_english = "The Bull"
+stars_figure = 33
+stars_unformed = 11
+description = """
+Half a bull, like Pegasus is half a horse: the figure begins at the
+abscissio, the cut-off — four stars marking where the body simply ends — and
+charges west from there, head lowered. The face is the Hyades, named in the
+catalogue itself ('for so are called those in the face'), a V of five stars
+with the bright reddish one, Aldebaran, in the southern eye. The long horns
+reach north and south; the northern tip is the star shared with Auriga's
+right foot. And riding above the shoulder, the Pleiades — the Seven Sisters
+compressed to four catalogue entries, a tiny figure with named ends, granted
+its own geometry inside the Bull. The disguise Zeus wore for Europa, drawn
+mid-charge."""
+
+[[constellation.stroke]]
+name = "cut-off"
+comment = "Anatomy: the four at the abscissio, the line where the half-figure ends."
+stars = [1, 2, 3, 4]
+
+[[constellation.stroke]]
+name = "shoulder-and-chest"
+comment = "Anatomy: shoulder-blade and chest, joining the cut to the body."
+stars = [3, 5, 6]
+
+[[constellation.stroke]]
+name = "right-foreleg"
+comment = "Anatomy: chest to right knee to ankle."
+stars = [6, 7, 8]
+
+[[constellation.stroke]]
+name = "left-foreleg"
+comment = "Anatomy: shoulder to left elbow to left knee."
+stars = [5, 10, 9]
+
+[[constellation.stroke]]
+name = "hyades-face"
+comment = "Anatomy: the V of the face — northern eye, cheek, nostrils, cheek, Aldebaran in the southern eye."
+stars = [15, 12, 11, 13, 14]
+
+[[constellation.stroke]]
+name = "southern-horn"
+comment = "Anatomy: from the southern eye through the ear-root and horn pair to the tip."
+stars = [14, 16, 17, 18, 19]
+
+[[constellation.stroke]]
+name = "northern-horn"
+comment = "Anatomy: from the northern eye to the horn root and out to the shared tip (Auriga's foot)."
+stars = [15, 20, 21]
+
+[[constellation.stroke]]
+name = "northern-ear"
+comment = "Anatomy: the close pair in the northern ear."
+stars = [20, 22, 23]
+
+[[constellation.stroke]]
+name = "neck-pair"
+comment = "Anatomy: the two small stars in the neck."
+stars = [24, 25]
+
+[[constellation.stroke]]
+name = "neck-quadrilateral"
+comment = "Anatomy: the quadrilateral in the neck — preceding and following sides."
+stars = [26, 27, 29, 28, 26]
+
+[[constellation.stroke]]
+name = "pleiades"
+comment = "Anatomy: preceding side ends, the narrow following end — the Sisters' triangle."
+stars = [30, 31, 32, 30]
+
+[[constellation.stroke]]
+name = "pleiades-outlier"
+comment = "Anatomy: the small outer Pleiad to the north."
+stars = [30, 33]
+
+[[constellation]]
+code = "Gem"
+name_latin = "Gemini"
+name_english = "The Twins"
+stars_figure = 18
+stars_unformed = 7
+description = """
+Two figures standing together, named by their stars: the head of the
+preceding Twin is Castor; the head of the following Twin — 'reddish' — is
+Pollux. The catalogue tells them apart limb by limb, this Twin's elbow,
+that Twin's knee, down to four separate foot-tips. The brothers of Helen,
+one mortal and one divine, sharing the sky on alternating days. Their
+inner arms reach toward one another; how tightly they embrace is the
+drawer's choice, and these strokes keep them side by side, lightly
+touching."""
+
+[[constellation.stroke]]
+name = "preceding-twin-arm"
+comment = "Anatomy: Castor's head to left elbow and arm."
+stars = [1, 3, 4]
+
+[[constellation.stroke]]
+name = "preceding-twin-body"
+comment = "Anatomy: head, back of head, right side, left knee. License: one standing line."
+stars = [1, 5, 8, 10]
+
+[[constellation.stroke]]
+name = "preceding-twin-feet"
+comment = "Anatomy: the far-foot pair and the right foot-tip."
+stars = [10, 14, 15, 16]
+
+[[constellation.stroke]]
+name = "embrace"
+comment = "License: the shoulder stars of the two, joined — the brothers touch."
+stars = [6, 7]
+
+[[constellation.stroke]]
+name = "following-twin-body"
+comment = "Anatomy: Pollux's head, following shoulder, armpit, left side, below-knee. License: one standing line."
+stars = [2, 7, 12, 9, 11]
+
+[[constellation.stroke]]
+name = "following-twin-feet"
+comment = "Anatomy: knee-hollow star, then left and right foot-tips."
+stars = [13, 11, 17, 18]
+
+[[constellation.stroke]]
+name = "castor-shoulder"
+comment = "Anatomy: the right-shoulder star of the preceding Twin, from his head."
+stars = [1, 6]
+
+[[constellation]]
+code = "Cnc"
+name_latin = "Cancer"
+name_english = "The Crab"
+stars_figure = 9
+stars_unformed = 4
+description = """
+The faintest zodiac figure, and the one with the best furniture: at its
+centre sits 'the cloud-like convolution in the chest, called the Manger' —
+the Beehive cluster, entered in the catalogue as a single star — and the
+two stars flanking it are named the Asses, the donkeys feeding at the
+trough. Around this scene a quadrilateral of body, two claws reaching
+sideways, and two hind feet. This is the crab that pinched Heracles' heel
+during the fight with the Hydra and was crushed for its trouble — rewarded
+with stars, all of them dim."""
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: the quadrilateral around the nebula — preceding pair, then the Asses."
+stars = [2, 4, 5, 3, 2]
+
+[[constellation.stroke]]
+name = "manger"
+comment = "Anatomy: the Manger itself, held inside the body. License: tied to the northern Ass."
+stars = [4, 1]
+
+[[constellation.stroke]]
+name = "northern-claw"
+comment = "Anatomy: claw from the northern following corner."
+stars = [4, 7]
+
+[[constellation.stroke]]
+name = "southern-claw"
+comment = "Anatomy: claw from the southern following corner."
+stars = [5, 6]
+
+[[constellation.stroke]]
+name = "northern-foot"
+comment = "Anatomy: hind foot from the northern preceding corner."
+stars = [2, 8]
+
+[[constellation.stroke]]
+name = "southern-foot"
+comment = "Anatomy: hind foot from the southern preceding corner."
+stars = [3, 9]
+
+[[constellation]]
+code = "Leo"
+name_latin = "Leo"
+name_english = "The Lion"
+stars_figure = 27
+stars_unformed = 8
+description = """
+The Nemean lion in profile, walking west: nostrils, open mouth, a two-star
+head and a three-star neck curving down to the heart — where Regulus sits,
+named in the catalogue, the little king at the centre of the beast. That
+head-to-heart curve is the hook modern skywatchers call the Sickle. The
+body runs along belly, loins and rump to the tail's tip star, Denebola,
+with four legs planted beneath. In the unformed margin behind the lion
+floats the 'nebulous convolution called Berenice's Hair' — the queen's
+sacrificed locks, catalogued here as Leo's leftovers three centuries
+before anyone drew them as their own constellation."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: nostrils, mouth, then the head pair."
+stars = [1, 2, 4, 3]
+
+[[constellation.stroke]]
+name = "neck"
+comment = "Anatomy: the neck trio, curving to the heart — with the head, the Sickle."
+stars = [3, 5, 6, 7]
+
+[[constellation.stroke]]
+name = "heart"
+comment = "Anatomy: neck into Regulus, with the chest star below and the near-heart star ahead."
+stars = [7, 8, 9]
+
+[[constellation.stroke]]
+name = "forward-spur"
+comment = "Anatomy: the star a little ahead of the heart."
+stars = [8, 10]
+
+[[constellation.stroke]]
+name = "right-foreleg"
+comment = "Anatomy: chest to right knee to forward right paw."
+stars = [9, 11, 12]
+
+[[constellation.stroke]]
+name = "left-foreleg"
+comment = "Anatomy: armpit, left knee, forward left paw."
+stars = [15, 14, 13]
+
+[[constellation.stroke]]
+name = "belly"
+comment = "Anatomy: armpit into the belly trio."
+stars = [15, 16, 17, 18]
+
+[[constellation.stroke]]
+name = "back"
+comment = "Anatomy: heart-line along the loins to the rump pair. License: the top line."
+stars = [8, 19, 20, 21]
+
+[[constellation.stroke]]
+name = "rump"
+comment = "Anatomy: the rump pair."
+stars = [21, 22]
+
+[[constellation.stroke]]
+name = "hind-leg"
+comment = "Anatomy: rump down through legs, knee-hollows, shanks, hind paws."
+stars = [22, 23, 24, 25, 26]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: the tail's tip, Denebola, flying from the rump."
+stars = [21, 27]
+
+[[constellation]]
+code = "Vir"
+name_latin = "Virgo"
+name_english = "The Maiden"
+stars_figure = 26
+stars_unformed = 6
+description = """
+A winged maiden — harvest goddess, justice goddess, take your myth —
+gliding along the ecliptic with an ear of wheat in her left hand: Spica,
+named in the catalogue, the sky's cleanest one-star emblem. Two wings
+spread from her shoulders; on the northern one sits Previndemiatrix, 'the
+herald of the vintage', whose dawn rising once told farmers the grapes
+were ready. Head and face are close pairs, the left leg is a proper
+quadrilateral, and her robe trails a three-star train — the syrma again,
+the same trailing hem Andromeda wears. Among her unformed stars the
+catalogue marks one as double: two stars in one entry, seen and said."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: the crown pair into the face pair."
+stars = [1, 2, 3, 4]
+
+[[constellation.stroke]]
+name = "southern-wing"
+comment = "Anatomy: the wing-tip, then the four along the left wing."
+stars = [5, 6, 7, 8, 9]
+
+[[constellation.stroke]]
+name = "wing-root"
+comment = "License: face joined to the southern wing's first feather."
+stars = [4, 6]
+
+[[constellation.stroke]]
+name = "northern-wing"
+comment = "Anatomy: the trio of the right, northern wing, ending at Previndemiatrix."
+stars = [11, 12, 13]
+
+[[constellation.stroke]]
+name = "northern-wing-root"
+comment = "License: face joined to the northern wing."
+stars = [3, 11]
+
+[[constellation.stroke]]
+name = "spica"
+comment = "Anatomy: the tip of the left hand — Spica. License: hung from the wing's last feather."
+stars = [9, 14]
+
+[[constellation.stroke]]
+name = "torso"
+comment = "Anatomy: the two below-girdle stars. License: strung from the face."
+stars = [4, 10, 15]
+
+[[constellation.stroke]]
+name = "left-leg"
+comment = "Anatomy: the quadrilateral in the left leg, entered from the hip."
+stars = [15, 16, 17, 19, 18, 16]
+
+[[constellation.stroke]]
+name = "left-foot"
+comment = "Anatomy: knee, then the southern foot-tip."
+stars = [19, 20, 25]
+
+[[constellation.stroke]]
+name = "right-leg"
+comment = "Anatomy: hind leg to the northern foot-tip."
+stars = [15, 21, 26]
+
+[[constellation.stroke]]
+name = "train"
+comment = "Anatomy: the three in the syrma. License: trailing from the hind leg."
+stars = [21, 23, 22, 24]
+
+[[constellation]]
+code = "Lib"
+name_latin = "Libra"
+name_english = "The Claws"
+stars_figure = 8
+stars_unformed = 9
+description = """
+No scales here: in this catalogue the stars of Libra are still the Claws of
+the Scorpion, reaching west — every description says claw, tip, middle, and
+never balance. Each claw is a short line ending in a bright star, and those
+two tips still carry the memory in their Arabic names, Zubenelgenubi and
+Zubeneschamali: the southern claw and the northern claw. Nine unformed
+stars scatter around the pincers, nearly outnumbering the figure itself."""
+
+[[constellation.stroke]]
+name = "southern-claw"
+comment = "Anatomy: preceder, middle, and the bright tip of the southern claw."
+stars = [6, 5, 1]
+
+[[constellation.stroke]]
+name = "southern-tip"
+comment = "Anatomy: the dimmer companion above the bright tip."
+stars = [1, 2]
+
+[[constellation.stroke]]
+name = "northern-claw"
+comment = "Anatomy: follower, middle, and the bright tip of the northern claw."
+stars = [8, 7, 3]
+
+[[constellation.stroke]]
+name = "northern-tip"
+comment = "Anatomy: the dim star preceding the tip."
+stars = [3, 4]
+
+[[constellation.stroke]]
+name = "hinge"
+comment = "License: the two claw-middles joined, where the pincers meet the Scorpion."
+stars = [5, 7]
+
+[[constellation]]
+code = "Sco"
+name_latin = "Scorpius"
+name_english = "The Scorpion"
+stars_figure = 21
+stars_unformed = 3
+description = """
+The scorpion that killed Orion, drawn whole and in motion: a three-star brow
+with a close pair adhering to its northern end and a spur at the foot; a
+three-star body whose reddish middle is named Antares; and then the tail,
+counted joint by joint — first segment, second, a paired third, on to the
+seventh 'by the sting' — before the two-star sting itself. Past the stinger
+the catalogue notes one more thing: a star 'and it is nebulous' — the
+cluster now called M7, caught glittering just beyond the weapon."""
+
+[[constellation.stroke]]
+name = "brow"
+comment = "Anatomy: the three bright ones in the brow, north to south."
+stars = [1, 2, 3]
+
+[[constellation.stroke]]
+name = "foot-spur"
+comment = "Anatomy: the still-more-southern star in one of the feet."
+stars = [3, 4]
+
+[[constellation.stroke]]
+name = "brow-companions"
+comment = "Anatomy: the close pair adhering to the northernmost bright star."
+stars = [1, 5, 6]
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: the three bright ones in the body — Antares in the middle."
+stars = [2, 7, 8, 9]
+
+[[constellation.stroke]]
+name = "under-foot"
+comment = "Anatomy: the pair below the body stars, at the end of the foot."
+stars = [9, 10, 11]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: seven segments in order, then sting: preceding and following barbs."
+stars = [9, 12, 13, 14, 16, 17, 18, 19, 21, 20]
+
+[[constellation.stroke]]
+name = "third-segment-pair"
+comment = "Anatomy: the southern twin of the third segment's pair."
+stars = [14, 15]
+
+[[constellation]]
+code = "Sgr"
+name_latin = "Sagittarius"
+name_english = "The Archer"
+stars_figure = 31
+stars_unformed = 0
+description = """
+A centaur at full draw, aiming down the Milky Way at the Scorpion's heart:
+arrow-point, grip, and the two arcs of the bow come first, then a
+three-star head with a strange gem beside it — the eye star, 'nebulous and
+double', two faint things wrapped in haze. His human back wears the
+interscapilium, a cloth between the shoulders, catalogued in a northern and
+a southern fold; the horse half stands on named ankles and ends in a neat
+quadrilateral at the root of the tail. The figure is dense and the strokes
+here lean on license — a drawn bow, not a diagram."""
+
+[[constellation.stroke]]
+name = "bow"
+comment = "Anatomy: southern arc, grip, northern arc, out to the bow's tip."
+stars = [3, 2, 4, 5]
+
+[[constellation.stroke]]
+name = "arrow"
+comment = "Anatomy: from the grip along the arrow star to the point."
+stars = [2, 7, 1]
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: the three in the head; the nebulous double eye as spur."
+stars = [9, 10, 11]
+
+[[constellation.stroke]]
+name = "eye"
+comment = "Anatomy: the nebulous, double eye star."
+stars = [10, 8]
+
+[[constellation.stroke]]
+name = "left-shoulder"
+comment = "Anatomy: head to the left shoulder, the bow-arm."
+stars = [11, 6]
+
+[[constellation.stroke]]
+name = "northern-cloth"
+comment = "Anatomy: the three in the northern shoulder-cloth with their dim follower."
+stars = [6, 12, 13, 14, 15]
+
+[[constellation.stroke]]
+name = "southern-cloth"
+comment = "Anatomy: the pair of the southern shoulder-cloth."
+stars = [16, 17]
+
+[[constellation.stroke]]
+name = "right-arm"
+comment = "Anatomy: right shoulder and elbow, the draw-arm."
+stars = [11, 18, 19]
+
+[[constellation.stroke]]
+name = "back"
+comment = "Anatomy: the shoulder-blade trio, near the back of the head."
+stars = [11, 20, 21, 22]
+
+[[constellation.stroke]]
+name = "forelegs"
+comment = "Anatomy: front left ankle and its knee; front right ankle. License: hung from the cloths."
+stars = [16, 24, 23]
+
+[[constellation.stroke]]
+name = "front-right"
+comment = "Anatomy: the front right ankle."
+stars = [17, 25]
+
+[[constellation.stroke]]
+name = "hind-quarters"
+comment = "Anatomy: the left shin, the hind right elbow. License: strung from the back."
+stars = [22, 26, 27]
+
+[[constellation.stroke]]
+name = "tail-root"
+comment = "Anatomy: the quadrilateral of four at the root of the tail."
+stars = [28, 29, 31, 30, 28]
+
+[[constellation.stroke]]
+name = "tail-link"
+comment = "License: hind-quarters joined to the tail quadrilateral."
+stars = [27, 28]
+
+[[constellation]]
+code = "Cap"
+name_latin = "Capricornus"
+name_english = "The Goat-Fish"
+stars_figure = 28
+stars_unformed = 0
+description = """
+Forequarters of a goat, tail of a fish: the old amphibious sign, said to be
+Pan mid-dive into the Nile, changing as he hit the water. The goat end has
+two horns — a trio in the following horn, a lone tip star in the preceding
+one — a three-star muzzle, an eye, a neck, and one folded, 'bent' knee the
+catalogue singles out. Behind the shoulder the animal dissolves: belly,
+mid-body, back and southern spine run in quiet pairs and trios to the tail,
+which flares into a four-star fin. The whole figure swims in faint stars —
+a boundary creature, half graze and half current."""
+
+[[constellation.stroke]]
+name = "following-horn"
+comment = "Anatomy: the trio of the following horn."
+stars = [1, 2, 3]
+
+[[constellation.stroke]]
+name = "preceding-horn"
+comment = "Anatomy: horn-tip down to the muzzle."
+stars = [4, 5]
+
+[[constellation.stroke]]
+name = "muzzle"
+comment = "Anatomy: the three in the muzzle, with the below-eye star following."
+stars = [5, 6, 7, 8]
+
+[[constellation.stroke]]
+name = "horn-join"
+comment = "License: the two horns joined at the head."
+stars = [3, 4]
+
+[[constellation.stroke]]
+name = "neck"
+comment = "Anatomy: the neck pair, from below the eye."
+stars = [8, 9, 10]
+
+[[constellation.stroke]]
+name = "forelegs"
+comment = "Anatomy: shoulder, the bent left knee, and below the right knee."
+stars = [10, 13, 12, 11]
+
+[[constellation.stroke]]
+name = "belly"
+comment = "Anatomy: the close pair below the belly, from the bent knee."
+stars = [12, 14, 15]
+
+[[constellation.stroke]]
+name = "mid-body"
+comment = "Anatomy: the mid-body trio — preceding pair, then the follower."
+stars = [15, 17, 18, 16]
+
+[[constellation.stroke]]
+name = "back"
+comment = "Anatomy: the back pair, from the shoulder."
+stars = [13, 19, 20]
+
+[[constellation.stroke]]
+name = "southern-spine"
+comment = "Anatomy: the southern spine pair."
+stars = [19, 21, 22]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: the pair at the tail."
+stars = [20, 23, 24]
+
+[[constellation.stroke]]
+name = "tail-fin"
+comment = "Anatomy: the four in the northern part of the tail, fanned."
+stars = [24, 25, 26, 27, 28]
+
+[[constellation]]
+code = "Aqr"
+name_latin = "Aquarius"
+name_english = "The Water-Pourer"
+stars_figure = 42
+stars_unformed = 3
+description = """
+The cup-bearer — Ganymede, if you like — stands with a jar tipped from his
+right hand, and what he pours is most of the constellation: twenty of his
+forty-two stars belong to the water itself, tumbling south star by star
+through named bends, pairs, a solitary drop, and three coiling runs, until
+'the last star of the water' lands in the mouth of the Southern Fish — the
+shared star, Fomalhaut, where one constellation ends inside another. The
+man himself is quieter: head, shoulders, a drapery of three at the left
+hand, hips and legs — scaffolding for the pour."""
+
+[[constellation.stroke]]
+name = "head-and-shoulders"
+comment = "Anatomy: right shoulder, head, left shoulder; the dim companion below."
+stars = [2, 1, 4]
+
+[[constellation.stroke]]
+name = "shoulder-companion"
+comment = "Anatomy: the dimmer star below the right shoulder."
+stars = [2, 3]
+
+[[constellation.stroke]]
+name = "drapery"
+comment = "Anatomy: the three in the garment at the left hand, from the shoulder-blade."
+stars = [4, 5, 8, 7, 6]
+
+[[constellation.stroke]]
+name = "right-arm"
+comment = "Anatomy: elbow, then the three at the tip of the right hand — the pouring arm."
+stars = [2, 9, 10, 11, 12]
+
+[[constellation.stroke]]
+name = "torso"
+comment = "Anatomy: hip pair, right buttock; left-buttock pair. License: one falling line."
+stars = [2, 13, 14, 15]
+
+[[constellation.stroke]]
+name = "left-hip"
+comment = "Anatomy: the pair in the left buttock."
+stars = [15, 17, 16]
+
+[[constellation.stroke]]
+name = "right-leg"
+comment = "Anatomy: below the knee-hollow, then the shin."
+stars = [15, 19, 18]
+
+[[constellation.stroke]]
+name = "left-leg"
+comment = "Anatomy: back of the leg, below the knee, the shin."
+stars = [17, 20, 22, 21]
+
+[[constellation.stroke]]
+name = "pour"
+comment = "Anatomy: the stream leaves the hand — first four stars to the bend."
+stars = [12, 23, 24, 25, 26]
+
+[[constellation.stroke]]
+name = "cascade"
+comment = "Anatomy: the southern bend, its pair, the solitary drop, the close pair."
+stars = [26, 27, 28, 29, 30, 31, 32]
+
+[[constellation.stroke]]
+name = "first-coil"
+comment = "Anatomy: the three in the following coil."
+stars = [32, 33, 34, 35]
+
+[[constellation.stroke]]
+name = "second-coil"
+comment = "Anatomy: the three next in order likewise."
+stars = [35, 36, 37, 38]
+
+[[constellation.stroke]]
+name = "last-coil"
+comment = "Anatomy: the three of the remaining coil, then the last star of the water — Fomalhaut, in the Fish's mouth."
+stars = [38, 39, 41, 40, 42]
+
+[[constellation]]
+code = "Psc"
+name_latin = "Pisces"
+name_english = "The Fishes"
+stars_figure = 34
+stars_unformed = 4
+description = """
+Two fish swimming apart, bound tail-to-tail by long cords that meet at a
+single star: 'the one at the knot of the two cords' — the Knot, whose
+modern name Alrescha still means the cord. The preceding fish hangs below
+the Great Square of Pegasus, drawn as mouth, skull, back, belly, tail; from
+its tail one cord runs east through bright trios and a bend to the Knot,
+and the northern cord climbs from there to the following fish, which leaps
+upward toward Andromeda — its southern fin catalogued as 'behind the elbow
+of Andromeda'. Mother and son of the Syrian goddess story, escaped into
+water, tied so they would never be separated."""
+
+[[constellation.stroke]]
+name = "west-fish"
+comment = "Anatomy: mouth, skull, back, tail, belly — the fish drawn round."
+stars = [1, 2, 4, 5, 8, 7, 6, 1]
+
+[[constellation.stroke]]
+name = "west-skull"
+comment = "Anatomy: the northern skull star."
+stars = [2, 3]
+
+[[constellation.stroke]]
+name = "southern-cord"
+comment = "Anatomy: from the tail along the cord — pairs, bright trio, the small bend pair, the after-bend trio, to the Knot."
+stars = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+[[constellation.stroke]]
+name = "northern-cord"
+comment = "Anatomy: from the Knot up the northern cord to the tail-tip of the following fish."
+stars = [19, 20, 21, 22, 23]
+
+[[constellation.stroke]]
+name = "east-fish"
+comment = "Anatomy: tail-fin, belly pair, head trio, mouth pair. License: drawn as one leaping line."
+stars = [23, 34, 33, 32, 28, 27, 26, 24, 25]
+
+[[constellation.stroke]]
+name = "east-fin"
+comment = "Anatomy: the southern fin trio, behind the elbow of Andromeda."
+stars = [26, 29, 30, 31]
+
+[[constellation]]
+code = "Cet"
+name_latin = "Cetus"
+name_english = "The Sea-Monster"
+stars_figure = 22
+stars_unformed = 0
+description = """
+The monster sent for Andromeda, beached along the sky's southern shore
+below the Fishes and the Ram. Its head is all appetite — nostrils, a
+three-star jaw, an eye at the brow, hair and mane behind — and the body is
+carried by two quadrilaterals, one in the chest and one in the tail, joined
+by a slack three-star middle. The tail ends in two separate tips, north and
+south, like a fluke. The river Eridanus, next door, is catalogued as
+touching this creature's chest — even the scenery interlocks down here."""
+
+[[constellation.stroke]]
+name = "jaws"
+comment = "Anatomy: nostril-tip, jaw-end, mid-mouth, chin — the open mouth."
+stars = [1, 2, 3, 4]
+
+[[constellation.stroke]]
+name = "brow"
+comment = "Anatomy: eye, hair, mane, climbing back from the jaw."
+stars = [2, 5, 6, 7]
+
+[[constellation.stroke]]
+name = "neck"
+comment = "License: chin joined to the chest quadrilateral."
+stars = [4, 8]
+
+[[constellation.stroke]]
+name = "chest"
+comment = "Anatomy: the quadrilateral figure in the chest."
+stars = [8, 9, 11, 10, 8]
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: the three in the body, from the chest onward."
+stars = [11, 12, 13, 14]
+
+[[constellation.stroke]]
+name = "before-tail"
+comment = "Anatomy: the pair by the tail."
+stars = [14, 15, 16]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: the quadrilateral figure in the tail."
+stars = [17, 18, 20, 19, 17]
+
+[[constellation.stroke]]
+name = "tail-join"
+comment = "License: the near-tail pair joined to the tail quadrilateral."
+stars = [16, 17]
+
+[[constellation.stroke]]
+name = "flukes"
+comment = "Anatomy: the two tail-end tips, north and south."
+stars = [21, 17, 18, 22]
+
+[[constellation]]
+code = "Ori"
+name_latin = "Orion"
+name_english = "Orion, the Hunter"
+stars_figure = 38
+stars_unformed = 0
+description = """
+The great hunter at full stride, and the catalogue's richest single figure:
+a nebulous head between two named shoulders — the reddish Brilliant One
+(Betelgeuse) and its partner (Bellatrix) — a club raised in the right hand
+above a four-star fist, and over the left arm a pelt or shield of NINE
+stars, counted off with bureaucratic patience: 'second from the
+northernmost, third from the northernmost…' down to the ninth. Across the
+waist, the three-star belt; hanging from it the sword, with a hilt, a
+three-star tip 'joined together', and two more below. The left foot is the
+brilliant Rigel, 'shared with the water' — the river Eridanus rises right
+beside it. Thirty-eight stars, no unformed: like Draco, Orion wasted
+nothing."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: the nebulous head set between the two shoulders."
+stars = [2, 1, 3]
+
+[[constellation.stroke]]
+name = "shoulder-drop"
+comment = "Anatomy: the star following below the left shoulder."
+stars = [3, 4]
+
+[[constellation.stroke]]
+name = "right-arm"
+comment = "Anatomy: shoulder, elbow, arm, into the four-star fist."
+stars = [2, 5, 6]
+
+[[constellation.stroke]]
+name = "fist"
+comment = "Anatomy: the quadrilateral at the tip of the right hand; its following-southern star is double."
+stars = [6, 8, 7, 9, 10, 8]
+
+[[constellation.stroke]]
+name = "club"
+comment = "Anatomy: the two in the club, raised from the fist."
+stars = [10, 11, 12]
+
+[[constellation.stroke]]
+name = "shoulder-blade"
+comment = "Anatomy: the four in the shoulder-blade, almost in a straight line."
+stars = [2, 16, 15, 14, 13]
+
+[[constellation.stroke]]
+name = "pelt"
+comment = "Anatomy: the nine in the pelt of the left hand, counted from the northernmost — the raised shield."
+stars = [17, 18, 19, 20, 21, 22, 23, 24, 25]
+
+[[constellation.stroke]]
+name = "pelt-grip"
+comment = "License: left shoulder to the pelt's northern end."
+stars = [3, 17]
+
+[[constellation.stroke]]
+name = "torso"
+comment = "License: shoulders down to the belt's ends."
+stars = [2, 28]
+
+[[constellation.stroke]]
+name = "torso-west"
+comment = "License: Bellatrix down to the belt's preceding end."
+stars = [3, 26]
+
+[[constellation.stroke]]
+name = "belt"
+comment = "Anatomy: the three in the belt."
+stars = [26, 27, 28]
+
+[[constellation.stroke]]
+name = "sword"
+comment = "Anatomy: hilt below the belt, the three joined at the tip, the two below."
+stars = [27, 29, 30, 31, 32]
+
+[[constellation.stroke]]
+name = "sword-drop"
+comment = "Anatomy: the pair below the sword's tip."
+stars = [32, 33, 34]
+
+[[constellation.stroke]]
+name = "left-leg"
+comment = "Anatomy: from the belt down the shin to Rigel, heel-star outside."
+stars = [26, 36, 35]
+
+[[constellation.stroke]]
+name = "heel"
+comment = "Anatomy: the outer star below the left heel."
+stars = [35, 37]
+
+[[constellation.stroke]]
+name = "right-leg"
+comment = "Anatomy: the star below the right knee. License: hung from the belt."
+stars = [28, 38]
+
+[[constellation]]
+code = "Eri"
+name_latin = "Eridanus"
+name_english = "The River"
+stars_figure = 34
+stars_unformed = 0
+description = """
+A river and nothing but: no body, no face, just thirty-four stars of
+current, rising at Orion's left foot and wandering west and south in pairs
+and trios, 'the next two… the next two again…', each group a meander. At
+its great bend it 'first touches the chest of Cetus'; further on four stars
+'make almost a quadrangle' — a wide pool — before the stream narrows
+through its last reaches to the final star: 'the last of the river, and it
+is brilliant.' The catalogue's only pure landscape, drawn entirely in
+flowing water."""
+
+[[constellation.stroke]]
+name = "headwaters"
+comment = "Anatomy: from beside Orion's foot, the first meanders. Pairs zigzag; the line follows the stream."
+stars = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+[[constellation.stroke]]
+name = "middle-course"
+comment = "Anatomy: the two four-star reaches, a little apart."
+stars = [9, 10, 11, 12, 13, 14, 15, 16, 17]
+
+[[constellation.stroke]]
+name = "cetus-reach"
+comment = "Anatomy: the bend that first touches the chest of Cetus, and the trio beyond."
+stars = [17, 18, 19, 20, 21, 22]
+
+[[constellation.stroke]]
+name = "the-pool"
+comment = "Anatomy: the four that make almost a quadrangle."
+stars = [23, 24, 26, 25, 23]
+
+[[constellation.stroke]]
+name = "pool-entry"
+comment = "License: the trio joined to the pool's northern corner."
+stars = [22, 23]
+
+[[constellation.stroke]]
+name = "lower-course"
+comment = "Anatomy: the eastward pair, the after-bend pair."
+stars = [25, 27, 28, 29, 30]
+
+[[constellation.stroke]]
+name = "last-reach"
+comment = "Anatomy: the final trio, then the last star of the river, brilliant."
+stars = [30, 31, 32, 33, 34]
+
+[[constellation]]
+code = "Lep"
+name_latin = "Lepus"
+name_english = "The Hare"
+stars_figure = 12
+stars_unformed = 0
+description = """
+The hare crouched at Orion's feet, forever bolting from the great dog
+behind it. Its ears get the best geometry — a full quadrangular figure of
+four stars for two ears — with chin, forefoot, body, belly, loins, hind
+feet, and a tail-tip filling out the crouch in single stars. Small, quick,
+and complete: the whole animal in twelve."""
+
+[[constellation.stroke]]
+name = "ears"
+comment = "Anatomy: the quadrangular figure in the ears."
+stars = [1, 2, 4, 3, 1]
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: ears down to the chin."
+stars = [4, 5]
+
+[[constellation.stroke]]
+name = "foreleg"
+comment = "Anatomy: chin to the front left foot's tip."
+stars = [5, 6]
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: chin, mid-body, belly."
+stars = [5, 7, 8]
+
+[[constellation.stroke]]
+name = "loins-and-tail"
+comment = "Anatomy: mid-body to loins to the tail's tip."
+stars = [7, 11, 12]
+
+[[constellation.stroke]]
+name = "hind-feet"
+comment = "Anatomy: the pair in the hind feet, under the loins."
+stars = [11, 9, 10]
+
+[[constellation]]
+code = "CMa"
+name_latin = "Canis Major"
+name_english = "The Great Dog"
+stars_figure = 18
+stars_unformed = 11
+description = """
+The dog opens with the best star in the sky: 'the most brilliant one in
+the mouth, called Sirius — and it is reddish.' (That last word has kept
+historians of astronomy arguing for two thousand years: Sirius is
+blue-white.) Behind the blaze, a complete hound — ears, head, neck, chest,
+four legs with knees and named tips, a tail — trotting at Orion's heel.
+Eleven unformed stars run below and west of the hind feet in straight
+lines and bright pairs, an escort of strays."""
+
+[[constellation.stroke]]
+name = "muzzle"
+comment = "Anatomy: Sirius in the mouth, then ears, then head."
+stars = [1, 2, 3]
+
+[[constellation.stroke]]
+name = "neck"
+comment = "Anatomy: the neck pair, into the chest."
+stars = [3, 4, 5, 6]
+
+[[constellation.stroke]]
+name = "right-foreleg"
+comment = "Anatomy: chest, the right-knee pair, the front foot's tip."
+stars = [6, 7, 8, 9]
+
+[[constellation.stroke]]
+name = "left-foreleg"
+comment = "Anatomy: the left-knee pair, hung from the chest."
+stars = [6, 10, 11]
+
+[[constellation.stroke]]
+name = "shoulder"
+comment = "Anatomy: the left-shoulder pair, behind the neck."
+stars = [4, 13, 12]
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: shoulder to leg-root to the star between the legs."
+stars = [12, 14, 15]
+
+[[constellation.stroke]]
+name = "hind-leg"
+comment = "Anatomy: leg-root, right-foot hollow, right-foot tip."
+stars = [14, 16, 17]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: the tail, from the leg-root."
+stars = [14, 18]
+
+[[constellation]]
+code = "CMi"
+name_latin = "Canis Minor"
+name_english = "The Little Dog"
+stars_figure = 2
+stars_unformed = 0
+description = """
+Two stars. That is the whole dog: one in the neck, and 'the bright one in
+the hindquarters, called Procyon' — the name means 'before the dog',
+because it rises just ahead of Sirius and warns that the big one is
+coming. The smallest constellation in the catalogue by star count, and
+still one of the twenty brightest things in the night. One stroke, and
+the little dog is drawn."""
+
+[[constellation.stroke]]
+name = "the-whole-dog"
+comment = "Anatomy: neck to Procyon. There is nothing else, and nothing else is needed."
+stars = [1, 2]
+
+[[constellation]]
+code = "Arg"
+name_latin = "Argo Navis"
+name_english = "The Ship Argo"
+stars_figure = 45
+stars_unformed = 0
+description = """
+The largest constellation in the catalogue: Jason's ship, sailing the
+far southern sky stern-first — and only half a ship, like the half-horse
+and half-bull; the prow is lost in fog or below the horizon, depending on
+who you ask. The parts are real ship's parts: stern-post and little
+shields, a goose-head ornament (the cheniskos, 'or the little goose'),
+keel, decks, a mast with foot, middle and tip, a cut-off where the hull
+ends, and two steering-oars — in the southern one, 'the preceding of the
+two remaining, and it is called Canopus', the second-brightest star in
+the sky, steering the whole vessel. Eighteen centuries later the ship was
+broken up into Carina, Puppis and Vela; here it still sails whole."""
+
+[[constellation.stroke]]
+name = "stern-post"
+comment = "Anatomy: the pair at the ship's end, with the goose-head ornament above."
+stars = [1, 2, 10]
+
+[[constellation.stroke]]
+name = "stern-shield"
+comment = "Anatomy: the close pair above the little shield, their preceder, and the brilliant shield-boss."
+stars = [5, 3, 4, 6]
+
+[[constellation.stroke]]
+name = "under-shield"
+comment = "Anatomy: the three below the little shield."
+stars = [6, 7, 9, 8]
+
+[[constellation.stroke]]
+name = "stern-keel"
+comment = "Anatomy: the keel pair of the stern, under the post."
+stars = [2, 11, 12]
+
+[[constellation.stroke]]
+name = "deck"
+comment = "Anatomy: the stern deck star, the trio in order, and the brilliant deck star."
+stars = [13, 14, 15, 16, 17]
+
+[[constellation.stroke]]
+name = "deck-dims"
+comment = "Anatomy: the dim pair below the brilliant one, and the pair above it."
+stars = [18, 19]
+
+[[constellation.stroke]]
+name = "deck-uppers"
+comment = "Anatomy: the pair above the brilliant deck star."
+stars = [20, 21]
+
+[[constellation.stroke]]
+name = "mast-foot"
+comment = "Anatomy: the three in the little shields, almost at the mast, and the close pair below."
+stars = [22, 23, 24, 25, 26]
+
+[[constellation.stroke]]
+name = "mast"
+comment = "Anatomy: mid-mast pair up to the mast-tip pair."
+stars = [23, 28, 27, 29, 30]
+
+[[constellation.stroke]]
+name = "hull-line"
+comment = "Anatomy: following shield, the cut-off of the decking. License: joined along the hull."
+stars = [17, 31, 32]
+
+[[constellation.stroke]]
+name = "keel"
+comment = "Anatomy: between the oars, the dim follower, the two brilliant keel stars."
+stars = [12, 33, 34, 35, 36]
+
+[[constellation.stroke]]
+name = "keel-run"
+comment = "Anatomy: the trio that follows, and the pair by the cut-off."
+stars = [36, 37, 38, 39, 40, 41]
+
+[[constellation.stroke]]
+name = "north-oar"
+comment = "Anatomy: the pair in the northern, preceding steering-oar."
+stars = [33, 42, 43]
+
+[[constellation.stroke]]
+name = "south-oar"
+comment = "Anatomy: Canopus and its follower — the southern steering-oar."
+stars = [36, 44, 45]
+
+[[constellation]]
+code = "Hya"
+name_latin = "Hydra"
+name_english = "The Water-Snake"
+stars_figure = 25
+stars_unformed = 2
+description = """
+The longest constellation there is: a water-snake stretched across a
+quarter of the sky, head under Cancer, tail-tip below the Claws. Five
+stars cluster in the head — nostrils, eye, skull, gape, chin — then the
+neck bends, a bright-and-dim pair marks the throat, and the body simply
+keeps going: trio after trio, 'almost in a straight line', past the base
+of the Cup, almost in a triangle, past the Crow, to the tip of the tail.
+Two constellations stand on its back and share its stars — the sky's
+longest pedestal."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: the five in the head, drawn round — nostrils, eye, skull, gape, chin."
+stars = [1, 2, 3, 4, 5, 1]
+
+[[constellation.stroke]]
+name = "neck"
+comment = "Anatomy: the neck-root pair, then the trio at the bend."
+stars = [5, 6, 7, 8, 9, 10]
+
+[[constellation.stroke]]
+name = "throat"
+comment = "Anatomy: the close bright-and-dim pair to the south."
+stars = [10, 11, 12]
+
+[[constellation.stroke]]
+name = "first-body"
+comment = "Anatomy: the trio after the bend, then the straight-line trio."
+stars = [12, 13, 14, 15, 16, 17, 18]
+
+[[constellation.stroke]]
+name = "under-the-cup"
+comment = "Anatomy: the pair behind the base of the Cup."
+stars = [18, 19, 20]
+
+[[constellation.stroke]]
+name = "the-triangle"
+comment = "Anatomy: the three 'almost in a triangle'."
+stars = [20, 21, 22, 23, 21]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: past the Crow, near the tail, to the tip."
+stars = [23, 24, 25]
+
+[[constellation]]
+code = "Crt"
+name_latin = "Crater"
+name_english = "The Cup"
+stars_figure = 7
+stars_unformed = 0
+description = """
+A wine-cup standing on the Water-Snake's back — its base star is declared
+'shared with the Water-Snake': the vessel rests directly on the serpent.
+From the base the bowl opens through a middle pair to two rim stars, with
+a handle star on each side. Apollo's cup from the tale of the lying
+raven, set down beside the bird that carried it."""
+
+[[constellation.stroke]]
+name = "south-side"
+comment = "Anatomy: base, southern mid-bowl, southern rim."
+stars = [1, 2, 4]
+
+[[constellation.stroke]]
+name = "north-side"
+comment = "Anatomy: base, northern mid-bowl, northern rim."
+stars = [1, 3, 5]
+
+[[constellation.stroke]]
+name = "south-handle"
+comment = "Anatomy: the southern handle, off the rim."
+stars = [4, 6]
+
+[[constellation.stroke]]
+name = "north-handle"
+comment = "Anatomy: the northern handle, off the rim."
+stars = [5, 7]
+
+[[constellation]]
+code = "Crv"
+name_latin = "Corvus"
+name_english = "The Crow"
+stars_figure = 7
+stars_unformed = 0
+description = """
+Apollo's raven, perched on the Water-Snake next to the Cup it was sent to
+fetch — and, in the myth, blamed the snake for its lateness, which is
+why all three stand together forever as evidence. Both its beak and its
+foot are declared 'shared with the Water-Snake': the bird touches its
+pedestal at two points. Between them: neck, breast, and two wings, one
+star preceding, a pair following."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: beak (shared with the Snake), neck, breast."
+stars = [1, 2, 3]
+
+[[constellation.stroke]]
+name = "right-wing"
+comment = "Anatomy: the preceding, right wing."
+stars = [3, 4]
+
+[[constellation.stroke]]
+name = "left-wing"
+comment = "Anatomy: the pair of the following wing."
+stars = [3, 5, 6]
+
+[[constellation.stroke]]
+name = "foot"
+comment = "Anatomy: the foot, shared with the Snake — the perch made literal."
+stars = [3, 7]
+
+[[constellation]]
+code = "Cen"
+name_latin = "Centaurus"
+name_english = "The Centaur"
+stars_figure = 37
+stars_unformed = 0
+description = """
+The wise centaur — Chiron, by most tellings — man to the waist, horse
+behind, carrying the thyrsus wand and gripping the Beast (Lupus, next
+door) by its hind foot. The catalogue marks the miracle point explicitly:
+'the brilliant one at the join of the human body' — the seam where man
+becomes horse, given its own bright star. The human half holds a
+four-star head, shoulders, a right arm reaching to a hand; the equine
+half runs through back, loins, thigh and four named legs. Among these
+stars are the closest of all our stellar neighbours; the catalogue could
+not know that, and lists them as ankles."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: the four in the head, drawn as a small cluster."
+stars = [1, 3, 4, 2]
+
+[[constellation.stroke]]
+name = "shoulders"
+comment = "Anatomy: left and right shoulders. License: barred, with the head above."
+stars = [5, 6]
+
+[[constellation.stroke]]
+name = "neck"
+comment = "License: head joined to the left shoulder."
+stars = [2, 5]
+
+[[constellation.stroke]]
+name = "thyrsus"
+comment = "Anatomy: from the left shoulder-blade, the wand's pairs out to its tip."
+stars = [7, 9, 8, 10, 11]
+
+[[constellation.stroke]]
+name = "thyrsus-grip"
+comment = "License: left shoulder to shoulder-blade — the carrying arm."
+stars = [5, 7]
+
+[[constellation.stroke]]
+name = "right-arm"
+comment = "Anatomy: shoulder, arm, elbow, hand-tip — reaching toward the Beast."
+stars = [6, 15, 16, 17]
+
+[[constellation.stroke]]
+name = "side"
+comment = "Anatomy: the trio in the right side, down from the shoulder."
+stars = [6, 12, 13, 14]
+
+[[constellation.stroke]]
+name = "the-join"
+comment = "Anatomy: the side into the brilliant star at the join of the human body — where man becomes horse."
+stars = [14, 18]
+
+[[constellation.stroke]]
+name = "join-dims"
+comment = "Anatomy: the two dim ones north of the join."
+stars = [18, 20, 19]
+
+[[constellation.stroke]]
+name = "horse-back"
+comment = "Anatomy: start of the shoulder-blade, the back, the loins trio."
+stars = [18, 21, 22, 23, 24, 25]
+
+[[constellation.stroke]]
+name = "right-thigh"
+comment = "Anatomy: the close pair in the right thigh."
+stars = [25, 26, 27]
+
+[[constellation.stroke]]
+name = "horse-chest"
+comment = "Anatomy: chest under the armpit, the belly pair."
+stars = [21, 28, 29, 30]
+
+[[constellation.stroke]]
+name = "right-hindleg"
+comment = "Anatomy: hollow, ankle of the same foot; the outside star below."
+stars = [26, 31, 32, 37]
+
+[[constellation.stroke]]
+name = "left-hindleg"
+comment = "Anatomy: below-hollow and calf of the left foot."
+stars = [28, 33, 34]
+
+[[constellation.stroke]]
+name = "forelegs"
+comment = "Anatomy: front right foot's tip; left knee. License: hung from the chest."
+stars = [30, 35, 36]
+
+[[constellation]]
+code = "Lup"
+name_latin = "Lupus"
+name_english = "The Beast"
+stars_figure = 19
+stars_unformed = 0
+description = """
+Not yet a wolf: in this catalogue it is simply the Beast — the wild
+animal the Centaur grips by the hind foot, carrying it toward the Altar
+as an offering. Its first star is exactly that grip: 'at the tip of the
+hind foot, at the hand of the Centaur.' From the captured leg the body
+runs through shoulder, flank and thigh to a three-star tail-tip, with
+neck, muzzle and front feet straining away at the far end — an animal
+drawn mid-struggle, which is the whole story."""
+
+[[constellation.stroke]]
+name = "the-grip"
+comment = "Anatomy: hind-foot tip (in the Centaur's hand) and the foot's hollow."
+stars = [1, 2]
+
+[[constellation.stroke]]
+name = "body"
+comment = "Anatomy: from the caught foot to mid-body and the shoulder pair."
+stars = [2, 5, 3, 4]
+
+[[constellation.stroke]]
+name = "belly"
+comment = "Anatomy: the belly star below the flank."
+stars = [5, 6]
+
+[[constellation.stroke]]
+name = "hindquarters"
+comment = "Anatomy: thigh, the thigh-root pair, the loins."
+stars = [6, 7, 8, 9, 10]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: the trio at the tip of the tail."
+stars = [10, 11, 12, 13]
+
+[[constellation.stroke]]
+name = "neck-and-head"
+comment = "Anatomy: the neck pair into the muzzle pair — straining away."
+stars = [4, 14, 15, 17, 16]
+
+[[constellation.stroke]]
+name = "front-feet"
+comment = "Anatomy: the pair in the front foot, beneath the neck."
+stars = [14, 18, 19]
+
+[[constellation]]
+code = "Ara"
+name_latin = "Ara"
+name_english = "The Altar"
+stars_figure = 7
+stars_unformed = 0
+description = """
+The altar of the gods — where the Olympians swore their oaths before the
+war with the Titans — standing in the far south with its smoke, by the
+old story, rising as the Milky Way. Seven stars build it like a piece of
+furniture: a two-star base, a middle, a three-star brazier, and one at
+the tip of the flame. The Centaur approaches it carrying the Beast: an
+offering, an altar, and a priest, arranged across three constellations."""
+
+[[constellation.stroke]]
+name = "base"
+comment = "Anatomy: the pair in the base."
+stars = [1, 2]
+
+[[constellation.stroke]]
+name = "column"
+comment = "Anatomy: base to the middle of the altar."
+stars = [2, 3]
+
+[[constellation.stroke]]
+name = "brazier"
+comment = "Anatomy: the three in the brazier, above the middle."
+stars = [3, 5, 6, 4]
+
+[[constellation.stroke]]
+name = "flame"
+comment = "Anatomy: the star at the tip — the flame."
+stars = [4, 7]
+
+[[constellation]]
+code = "CrA"
+name_latin = "Corona Australis"
+name_english = "The Southern Crown"
+stars_figure = 13
+stars_unformed = 0
+description = """
+The southern answer to Ariadne's crown: a ring of thirteen faint stars
+lying at the Archer's forefeet — a wreath slipped from someone's head,
+resting where it fell. The catalogue walks its circle almost star by
+star — follower after follower up the southern arc, past the knee of
+Sagittarius, north and north again, then back along the dim preceding
+side — so the figure closes on itself: one ring, complete."""
+
+[[constellation.stroke]]
+name = "wreath"
+comment = "Anatomy: the ring walked in catalogue order, closed — a fallen crown."
+stars = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1]
+
+[[constellation]]
+code = "PsA"
+name_latin = "Piscis Austrinus"
+name_english = "The Southern Fish"
+stars_figure = 12
+stars_unformed = 6
+description = """
+The lone fish of the deep south, floating on its back below the
+Water-Pourer with its mouth open — drinking the stream. Its mouth star
+is the catalogue's third and final shared star: 'the same as the
+beginning of the water', the point where Aquarius' pour ends and the
+fish begins; we call it Fomalhaut, the only first-magnitude star in
+these empty waters. Behind the mouth: a curved head, gills, fins north
+and south, a belly pair, and the tail's tip. Six unformed stars swim
+ahead of it, an escort into darker sky."""
+
+[[constellation.stroke]]
+name = "head"
+comment = "Anatomy: Fomalhaut in the mouth, then the southern curve of the head."
+stars = [1, 2, 3, 4]
+
+[[constellation.stroke]]
+name = "gills"
+comment = "Anatomy: head down to the gills, then the southern dorsal fin."
+stars = [4, 5, 6]
+
+[[constellation.stroke]]
+name = "belly"
+comment = "Anatomy: the belly pair, along the underside."
+stars = [6, 7, 8]
+
+[[constellation.stroke]]
+name = "north-fin"
+comment = "Anatomy: the trio of the northern fin, back from the head."
+stars = [4, 11, 10, 9]
+
+[[constellation.stroke]]
+name = "tail"
+comment = "Anatomy: fins converging on the tail's tip."
+stars = [9, 12]
+
+[[constellation.stroke]]
+name = "tail-south"
+comment = "License: the southern side closed to the tail."
+stars = [6, 12]

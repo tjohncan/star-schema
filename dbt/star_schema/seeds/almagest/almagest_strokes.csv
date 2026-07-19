@@ -1,0 +1,336 @@
+constellation,stroke_seq,stroke,comment
+UMi,1,tail,"Anatomy: tail tip (Polaris) back to the tail's root, joining the body."
+UMi,2,body,"Anatomy: the figura quadrilatera — preceding side 4-5, following side 6-7."
+UMa,1,head,"Anatomy: muzzle-tip through the eye pair to the brow pair, ear as spur."
+UMa,2,ear-spur,"Anatomy: the preceding ear's tip, hung from the brow."
+UMa,3,neck-and-chest,Anatomy: neck pair into the chest pair. License: joined at the brow.
+UMa,4,left-foreleg,Anatomy: chest to left knee to the forefoot pair.
+UMa,5,right-foreleg,Anatomy: above and below the right knee. License: hung from the chest.
+UMa,6,spine,"License: neck to Dubhe, joining head to hindquarters."
+UMa,7,body,"Anatomy: the figura quadrilatera — the Dipper's bowl (Dubhe, Merak, Phecda, Megrez)."
+UMa,8,left-hindleg,Anatomy: thigh to hock to hind-foot pair.
+UMa,9,right-hindleg,Anatomy: right hind-foot pair. License: hung from the flank.
+UMa,10,tail,Anatomy: 'the three placed in the tail' — the Dipper's handle.
+Dra,1,head,"Anatomy: tongue leads to mouth; jaw, eye and crown close the head lozenge."
+Dra,2,neck,"Anatomy: crown into the straight-line trio at the first bend (N, mid, S), then the eastward follower."
+Dra,3,first-coil,"Anatomy: the quadrilateral at the following bend; entered from the neck, exited south."
+Dra,4,second-coil-triangles,Anatomy: two triangles back-to-back; the following (eastern) then the preceding (western).
+Dra,5,western-triangle,"Anatomy: the preceding triangle, with its two small outliers to the west."
+Dra,6,small-pair,Anatomy: the two small stars at the western part of the triangle.
+Dra,7,tail,"Anatomy: straight-line trio, westward pair, the tail's bend, a distant pair, then tip. One unwinding stroke."
+Cep,1,tiara,"Anatomy: the three in the tiara, south to north."
+Cep,2,shoulders-and-crown,License: right shoulder up into the tiara; the king wears his hat.
+Cep,3,right-arm,"Anatomy: shoulder, elbow-above, elbow-below — three touching stars."
+Cep,4,torso,Anatomy: right foot to belt to right shoulder; chest hangs between; left arm from the chest.
+Cep,5,left-side,"License: chest down to the left foot, closing the standing frame."
+Boo,1,left-arm,"Anatomy: the left-hand trio, then elbow and shoulder."
+Boo,2,head-and-shoulders,"Anatomy: left shoulder, head, right shoulder."
+Boo,3,crook,Anatomy: from the right shoulder up the collorobus to its tip; the handle-end star closes it below.
+Boo,4,crook-handle,"Anatomy: the end of the crook's handle, back toward the hand."
+Boo,5,club,Anatomy: the pair in the club below the shoulder.
+Boo,6,right-hand,Anatomy: hand-tip and the palm pair. License: hung from the right shoulder.
+Boo,7,torso-and-belt,Anatomy: belt pair with the leg star beside it; head-to-belt line is license.
+Boo,8,right-leg,Anatomy: belt-side leg star down to the right heel.
+Boo,9,left-leg,"Anatomy: the left-shin trio, north to south. License: hung from the belt pair."
+CrB,1,diadem,"Anatomy: the arc in catalogue order — leader, jewel, then the southern followers to the last."
+CrB,2,northern-gem,"Anatomy: star 4 rides north of the band, following 3."
+Her,1,head-and-shoulders,Anatomy: head set between the two shoulders.
+Her,2,right-arm,"Anatomy: shoulder, arm, elbow."
+Her,3,left-arm,"Anatomy: shoulder, arm, elbow, into the hand."
+Her,4,left-palm,"Anatomy: the three in the palm, fanned from the follower."
+Her,5,torso,Anatomy: the two side stars. License: hung from the shoulders.
+Her,6,left-leg,"Anatomy: hip joint, head of thigh, the thigh trio, knee, calf."
+Her,7,left-foot,Anatomy: the three at the tip of the left foot.
+Her,8,right-leg,"Anatomy: hip joint, thigh, knee, shin, foot-tip (the shared crook star)."
+Her,9,right-knee-pair,"Anatomy: the two stars in the right knee, beside it."
+Lyr,1,shell,Anatomy: Vega with its two adjoining stars.
+Lyr,2,horn-spring,Anatomy: the star midway between the springing of the horns.
+Lyr,3,east-shell,Anatomy: the close-set pair at the eastern part of the shell.
+Lyr,4,yoke,Anatomy: preceding pair and following pair — the parallelogram.
+Lyr,5,neck,License: horn-spring down to the yoke.
+Cyg,1,neck-and-body,"Anatomy: beak, head, mid-neck, breast, and Deneb in the tail."
+Cyg,2,right-wing,Anatomy: from the breast through the elbow to the feather-edge trio.
+Cyg,3,left-wing,"Anatomy: elbow, mid-wing, feather-tip."
+Cyg,4,left-leg,"Anatomy: knee then foot, tucked beneath. License: hung from the breast."
+Cyg,5,right-leg,"Anatomy: the cloud-like knee, then the foot pair."
+Cas,1,body,"Anatomy: head to breast to girdle, then thighs, knees, shin, foot-tip."
+Cas,2,left-arm,"Anatomy: arm from the breast, elbow star beneath."
+Cas,3,right-arm,Anatomy: the right arm from the breast.
+Cas,4,throne,"Anatomy: seat-foot, mid-seat, seat-edge. License: joined beneath the thighs."
+Cas,5,seat-edge,Anatomy: the star at the edge of the seat.
+Per,1,sword-arm,"Anatomy: the nebulous hand (the Double Cluster), elbow, right shoulder."
+Per,2,head-and-shoulders,Anatomy: head between the shoulders.
+Per,3,occiput,Anatomy: the star at the back of the head.
+Per,4,torso,"Anatomy: right shoulder down to Mirfak, then the trio after the side."
+Per,5,gorgon-arm,"Anatomy: left shoulder to elbow, into the Gorgon's head."
+Per,6,gorgon-head,Anatomy: Algol with its follower and two preceders — Medusa's face.
+Per,7,right-leg,"Anatomy: from the side-trio: above-knee, knee, calf, ankle."
+Per,8,right-knee-hollow,Anatomy: the pair above the hollow of the knee.
+Per,9,left-leg,"Anatomy: thigh, knee, shin, heel, foot-tip. License: hung from Mirfak."
+Aur,1,head,"Anatomy: the head star and the one above it, set between the shoulders."
+Aur,2,frame,"License: shoulders to ankles, the pentagon-like hoop of the figure."
+Aur,3,right-arm,"Anatomy: shoulder, elbow, palm — the rein hand."
+Aur,4,kids,"Anatomy: left elbow, then the two Kids in the palm."
+Aur,5,foot-line,"Anatomy: from the shared horn-star northward: foot-tip, then the joint."
+Aur,6,left-foot-spur,Anatomy: the small star above the left foot.
+Oph,1,head-and-shoulders,Anatomy: head set between the inner shoulder stars; each shoulder a pair.
+Oph,2,right-shoulder-pair,Anatomy: preceding and following of the right shoulder.
+Oph,3,left-shoulder-pair,Anatomy: preceding and following of the left shoulder.
+Oph,4,left-arm,"Anatomy: elbow, then the two-star fist gripping the serpent's neck."
+Oph,5,right-arm,"Anatomy: elbow, then the two-star fist on the serpent's tail."
+Oph,6,right-leg,Anatomy: knee and shin. License: hung from the right shoulder.
+Oph,7,right-foot,"Anatomy: the four in the foot, then the heel-toucher."
+Oph,8,left-leg,"Anatomy: knee, the straight-line shin trio, heel, sole-toucher."
+Ser,1,head-quadrilateral,"Anatomy: jaw-tip, nostrils, neck-root, temple — the head's four corners."
+Ser,2,mouth,"Anatomy: the middle of the quadrilateral, in the open mouth."
+Ser,3,north-spur,Anatomy: the outsider north of the head.
+Ser,4,neck,"Anatomy: the first bend, then the following trio north to south."
+Ser,5,through-the-grip,"Anatomy: past Ophiuchus' left hand, behind his right thigh."
+Ser,6,tail,"Anatomy: the pair beyond the thigh, the bend past his right hand, tip."
+Sge,1,shaft,"Anatomy: iron head, the three in the reed, the notch — one line, whole."
+Aql,1,body,"Anatomy: head, neck, and Altair at the back of the head."
+Aql,2,north-companion,Anatomy: the near star north of Altair.
+Aql,3,left-wing,Anatomy: the left shoulder pair. License: opened from the neck.
+Aql,4,right-wing,Anatomy: the right shoulder pair. License: opened from the neck.
+Aql,5,tail-trail,"Anatomy: the remote star below the tail, at the Milky Way. License: one long feather-line."
+Del,1,rhombus,"Anatomy: the rhomboid quadrilateral — preceding side, following side."
+Del,2,tail,"Anatomy: the tail trio, fanned from its preceding star."
+Del,3,body,Anatomy: the trio between tail and rhombus — southern star under the northern pair.
+Del,4,leap,License: tail through the body pair into the rhombus.
+Equ,1,head,Anatomy: the pair in the head.
+Equ,2,muzzle,Anatomy: the pair in the mouth. License: joined to the head.
+Peg,1,great-square,"Anatomy: navel (shared with Andromeda), loins, shoulder, wing-shoulder. License: drawn as the ring."
+Peg,2,chest,Anatomy: the close chest pair. License: hung from the shoulder.
+Peg,3,neck-and-head,"Anatomy: neck pair, head pair, muzzle — the outstretched neck."
+Peg,4,mane,"Anatomy: the mane pair, riding above the neck."
+Peg,5,under-wing,Anatomy: the body pair beneath the wing.
+Peg,6,right-foreleg,"Anatomy: from the leg-root shoulder: the knee pair, then the ankle."
+Peg,7,left-foreleg,Anatomy: left knee and ankle. License: hung from the wing-shoulder.
+And,1,head-and-shoulders,Anatomy: back of the head between the shoulders.
+And,2,right-arm,"Anatomy: the arm trio — southern, middle, northern — reaching from the shoulder."
+And,3,right-hand,"Anatomy: the hand trio with its outer, preceding star."
+And,4,left-arm,"Anatomy: arm, then elbow."
+And,5,girdle,"Anatomy: the three above the girdle, south to north."
+And,6,torso,License: shoulders joined to the girdle's middle.
+And,7,left-leg,"Anatomy: knee-hollow pair, then the star above the left foot."
+And,8,right-leg,"Anatomy: right knee, right foot, and its southern companion."
+And,9,train,"Anatomy: the two in the syrma, the robe's train. License: trailing from the left foot."
+Tri,1,sides,Anatomy: base-ends up to the apex.
+Tri,2,base,Anatomy: the three in the base.
+Ari,1,head,Anatomy: horn pair into the muzzle pair — the turned-back head.
+Ari,2,back,"Anatomy: muzzle to neck, along the loin to the tail's root."
+Ari,3,tail,Anatomy: the three in the tail.
+Ari,4,hind-leg,"Anatomy: leg, knee-hollow, foot-tip. License: hung from the loin."
+Tau,1,cut-off,"Anatomy: the four at the abscissio, the line where the half-figure ends."
+Tau,2,shoulder-and-chest,"Anatomy: shoulder-blade and chest, joining the cut to the body."
+Tau,3,right-foreleg,Anatomy: chest to right knee to ankle.
+Tau,4,left-foreleg,Anatomy: shoulder to left elbow to left knee.
+Tau,5,hyades-face,"Anatomy: the V of the face — northern eye, cheek, nostrils, cheek, Aldebaran in the southern eye."
+Tau,6,southern-horn,Anatomy: from the southern eye through the ear-root and horn pair to the tip.
+Tau,7,northern-horn,Anatomy: from the northern eye to the horn root and out to the shared tip (Auriga's foot).
+Tau,8,northern-ear,Anatomy: the close pair in the northern ear.
+Tau,9,neck-pair,Anatomy: the two small stars in the neck.
+Tau,10,neck-quadrilateral,Anatomy: the quadrilateral in the neck — preceding and following sides.
+Tau,11,pleiades,"Anatomy: preceding side ends, the narrow following end — the Sisters' triangle."
+Tau,12,pleiades-outlier,Anatomy: the small outer Pleiad to the north.
+Gem,1,preceding-twin-arm,Anatomy: Castor's head to left elbow and arm.
+Gem,2,preceding-twin-body,"Anatomy: head, back of head, right side, left knee. License: one standing line."
+Gem,3,preceding-twin-feet,Anatomy: the far-foot pair and the right foot-tip.
+Gem,4,embrace,"License: the shoulder stars of the two, joined — the brothers touch."
+Gem,5,following-twin-body,"Anatomy: Pollux's head, following shoulder, armpit, left side, below-knee. License: one standing line."
+Gem,6,following-twin-feet,"Anatomy: knee-hollow star, then left and right foot-tips."
+Gem,7,castor-shoulder,"Anatomy: the right-shoulder star of the preceding Twin, from his head."
+Cnc,1,body,"Anatomy: the quadrilateral around the nebula — preceding pair, then the Asses."
+Cnc,2,manger,"Anatomy: the Manger itself, held inside the body. License: tied to the northern Ass."
+Cnc,3,northern-claw,Anatomy: claw from the northern following corner.
+Cnc,4,southern-claw,Anatomy: claw from the southern following corner.
+Cnc,5,northern-foot,Anatomy: hind foot from the northern preceding corner.
+Cnc,6,southern-foot,Anatomy: hind foot from the southern preceding corner.
+Leo,1,head,"Anatomy: nostrils, mouth, then the head pair."
+Leo,2,neck,"Anatomy: the neck trio, curving to the heart — with the head, the Sickle."
+Leo,3,heart,"Anatomy: neck into Regulus, with the chest star below and the near-heart star ahead."
+Leo,4,forward-spur,Anatomy: the star a little ahead of the heart.
+Leo,5,right-foreleg,Anatomy: chest to right knee to forward right paw.
+Leo,6,left-foreleg,"Anatomy: armpit, left knee, forward left paw."
+Leo,7,belly,Anatomy: armpit into the belly trio.
+Leo,8,back,Anatomy: heart-line along the loins to the rump pair. License: the top line.
+Leo,9,rump,Anatomy: the rump pair.
+Leo,10,hind-leg,"Anatomy: rump down through legs, knee-hollows, shanks, hind paws."
+Leo,11,tail,"Anatomy: the tail's tip, Denebola, flying from the rump."
+Vir,1,head,Anatomy: the crown pair into the face pair.
+Vir,2,southern-wing,"Anatomy: the wing-tip, then the four along the left wing."
+Vir,3,wing-root,License: face joined to the southern wing's first feather.
+Vir,4,northern-wing,"Anatomy: the trio of the right, northern wing, ending at Previndemiatrix."
+Vir,5,northern-wing-root,License: face joined to the northern wing.
+Vir,6,spica,Anatomy: the tip of the left hand — Spica. License: hung from the wing's last feather.
+Vir,7,torso,Anatomy: the two below-girdle stars. License: strung from the face.
+Vir,8,left-leg,"Anatomy: the quadrilateral in the left leg, entered from the hip."
+Vir,9,left-foot,"Anatomy: knee, then the southern foot-tip."
+Vir,10,right-leg,Anatomy: hind leg to the northern foot-tip.
+Vir,11,train,Anatomy: the three in the syrma. License: trailing from the hind leg.
+Lib,1,southern-claw,"Anatomy: preceder, middle, and the bright tip of the southern claw."
+Lib,2,southern-tip,Anatomy: the dimmer companion above the bright tip.
+Lib,3,northern-claw,"Anatomy: follower, middle, and the bright tip of the northern claw."
+Lib,4,northern-tip,Anatomy: the dim star preceding the tip.
+Lib,5,hinge,"License: the two claw-middles joined, where the pincers meet the Scorpion."
+Sco,1,brow,"Anatomy: the three bright ones in the brow, north to south."
+Sco,2,foot-spur,Anatomy: the still-more-southern star in one of the feet.
+Sco,3,brow-companions,Anatomy: the close pair adhering to the northernmost bright star.
+Sco,4,body,Anatomy: the three bright ones in the body — Antares in the middle.
+Sco,5,under-foot,"Anatomy: the pair below the body stars, at the end of the foot."
+Sco,6,tail,"Anatomy: seven segments in order, then sting: preceding and following barbs."
+Sco,7,third-segment-pair,Anatomy: the southern twin of the third segment's pair.
+Sgr,1,bow,"Anatomy: southern arc, grip, northern arc, out to the bow's tip."
+Sgr,2,arrow,Anatomy: from the grip along the arrow star to the point.
+Sgr,3,head,Anatomy: the three in the head; the nebulous double eye as spur.
+Sgr,4,eye,"Anatomy: the nebulous, double eye star."
+Sgr,5,left-shoulder,"Anatomy: head to the left shoulder, the bow-arm."
+Sgr,6,northern-cloth,Anatomy: the three in the northern shoulder-cloth with their dim follower.
+Sgr,7,southern-cloth,Anatomy: the pair of the southern shoulder-cloth.
+Sgr,8,right-arm,"Anatomy: right shoulder and elbow, the draw-arm."
+Sgr,9,back,"Anatomy: the shoulder-blade trio, near the back of the head."
+Sgr,10,forelegs,Anatomy: front left ankle and its knee; front right ankle. License: hung from the cloths.
+Sgr,11,front-right,Anatomy: the front right ankle.
+Sgr,12,hind-quarters,"Anatomy: the left shin, the hind right elbow. License: strung from the back."
+Sgr,13,tail-root,Anatomy: the quadrilateral of four at the root of the tail.
+Sgr,14,tail-link,License: hind-quarters joined to the tail quadrilateral.
+Cap,1,following-horn,Anatomy: the trio of the following horn.
+Cap,2,preceding-horn,Anatomy: horn-tip down to the muzzle.
+Cap,3,muzzle,"Anatomy: the three in the muzzle, with the below-eye star following."
+Cap,4,horn-join,License: the two horns joined at the head.
+Cap,5,neck,"Anatomy: the neck pair, from below the eye."
+Cap,6,forelegs,"Anatomy: shoulder, the bent left knee, and below the right knee."
+Cap,7,belly,"Anatomy: the close pair below the belly, from the bent knee."
+Cap,8,mid-body,"Anatomy: the mid-body trio — preceding pair, then the follower."
+Cap,9,back,"Anatomy: the back pair, from the shoulder."
+Cap,10,southern-spine,Anatomy: the southern spine pair.
+Cap,11,tail,Anatomy: the pair at the tail.
+Cap,12,tail-fin,"Anatomy: the four in the northern part of the tail, fanned."
+Aqr,1,head-and-shoulders,"Anatomy: right shoulder, head, left shoulder; the dim companion below."
+Aqr,2,shoulder-companion,Anatomy: the dimmer star below the right shoulder.
+Aqr,3,drapery,"Anatomy: the three in the garment at the left hand, from the shoulder-blade."
+Aqr,4,right-arm,"Anatomy: elbow, then the three at the tip of the right hand — the pouring arm."
+Aqr,5,torso,"Anatomy: hip pair, right buttock; left-buttock pair. License: one falling line."
+Aqr,6,left-hip,Anatomy: the pair in the left buttock.
+Aqr,7,right-leg,"Anatomy: below the knee-hollow, then the shin."
+Aqr,8,left-leg,"Anatomy: back of the leg, below the knee, the shin."
+Aqr,9,pour,Anatomy: the stream leaves the hand — first four stars to the bend.
+Aqr,10,cascade,"Anatomy: the southern bend, its pair, the solitary drop, the close pair."
+Aqr,11,first-coil,Anatomy: the three in the following coil.
+Aqr,12,second-coil,Anatomy: the three next in order likewise.
+Aqr,13,last-coil,"Anatomy: the three of the remaining coil, then the last star of the water — Fomalhaut, in the Fish's mouth."
+Psc,1,west-fish,"Anatomy: mouth, skull, back, tail, belly — the fish drawn round."
+Psc,2,west-skull,Anatomy: the northern skull star.
+Psc,3,southern-cord,"Anatomy: from the tail along the cord — pairs, bright trio, the small bend pair, the after-bend trio, to the Knot."
+Psc,4,northern-cord,Anatomy: from the Knot up the northern cord to the tail-tip of the following fish.
+Psc,5,east-fish,"Anatomy: tail-fin, belly pair, head trio, mouth pair. License: drawn as one leaping line."
+Psc,6,east-fin,"Anatomy: the southern fin trio, behind the elbow of Andromeda."
+Cet,1,jaws,"Anatomy: nostril-tip, jaw-end, mid-mouth, chin — the open mouth."
+Cet,2,brow,"Anatomy: eye, hair, mane, climbing back from the jaw."
+Cet,3,neck,License: chin joined to the chest quadrilateral.
+Cet,4,chest,Anatomy: the quadrilateral figure in the chest.
+Cet,5,body,"Anatomy: the three in the body, from the chest onward."
+Cet,6,before-tail,Anatomy: the pair by the tail.
+Cet,7,tail,Anatomy: the quadrilateral figure in the tail.
+Cet,8,tail-join,License: the near-tail pair joined to the tail quadrilateral.
+Cet,9,flukes,"Anatomy: the two tail-end tips, north and south."
+Ori,1,head,Anatomy: the nebulous head set between the two shoulders.
+Ori,2,shoulder-drop,Anatomy: the star following below the left shoulder.
+Ori,3,right-arm,"Anatomy: shoulder, elbow, arm, into the four-star fist."
+Ori,4,fist,Anatomy: the quadrilateral at the tip of the right hand; its following-southern star is double.
+Ori,5,club,"Anatomy: the two in the club, raised from the fist."
+Ori,6,shoulder-blade,"Anatomy: the four in the shoulder-blade, almost in a straight line."
+Ori,7,pelt,"Anatomy: the nine in the pelt of the left hand, counted from the northernmost — the raised shield."
+Ori,8,pelt-grip,License: left shoulder to the pelt's northern end.
+Ori,9,torso,License: shoulders down to the belt's ends.
+Ori,10,torso-west,License: Bellatrix down to the belt's preceding end.
+Ori,11,belt,Anatomy: the three in the belt.
+Ori,12,sword,"Anatomy: hilt below the belt, the three joined at the tip, the two below."
+Ori,13,sword-drop,Anatomy: the pair below the sword's tip.
+Ori,14,left-leg,"Anatomy: from the belt down the shin to Rigel, heel-star outside."
+Ori,15,heel,Anatomy: the outer star below the left heel.
+Ori,16,right-leg,Anatomy: the star below the right knee. License: hung from the belt.
+Eri,1,headwaters,"Anatomy: from beside Orion's foot, the first meanders. Pairs zigzag; the line follows the stream."
+Eri,2,middle-course,"Anatomy: the two four-star reaches, a little apart."
+Eri,3,cetus-reach,"Anatomy: the bend that first touches the chest of Cetus, and the trio beyond."
+Eri,4,the-pool,Anatomy: the four that make almost a quadrangle.
+Eri,5,pool-entry,License: the trio joined to the pool's northern corner.
+Eri,6,lower-course,"Anatomy: the eastward pair, the after-bend pair."
+Eri,7,last-reach,"Anatomy: the final trio, then the last star of the river, brilliant."
+Lep,1,ears,Anatomy: the quadrangular figure in the ears.
+Lep,2,head,Anatomy: ears down to the chin.
+Lep,3,foreleg,Anatomy: chin to the front left foot's tip.
+Lep,4,body,"Anatomy: chin, mid-body, belly."
+Lep,5,loins-and-tail,Anatomy: mid-body to loins to the tail's tip.
+Lep,6,hind-feet,"Anatomy: the pair in the hind feet, under the loins."
+CMa,1,muzzle,"Anatomy: Sirius in the mouth, then ears, then head."
+CMa,2,neck,"Anatomy: the neck pair, into the chest."
+CMa,3,right-foreleg,"Anatomy: chest, the right-knee pair, the front foot's tip."
+CMa,4,left-foreleg,"Anatomy: the left-knee pair, hung from the chest."
+CMa,5,shoulder,"Anatomy: the left-shoulder pair, behind the neck."
+CMa,6,body,Anatomy: shoulder to leg-root to the star between the legs.
+CMa,7,hind-leg,"Anatomy: leg-root, right-foot hollow, right-foot tip."
+CMa,8,tail,"Anatomy: the tail, from the leg-root."
+CMi,1,the-whole-dog,"Anatomy: neck to Procyon. There is nothing else, and nothing else is needed."
+Arg,1,stern-post,"Anatomy: the pair at the ship's end, with the goose-head ornament above."
+Arg,2,stern-shield,"Anatomy: the close pair above the little shield, their preceder, and the brilliant shield-boss."
+Arg,3,under-shield,Anatomy: the three below the little shield.
+Arg,4,stern-keel,"Anatomy: the keel pair of the stern, under the post."
+Arg,5,deck,"Anatomy: the stern deck star, the trio in order, and the brilliant deck star."
+Arg,6,deck-dims,"Anatomy: the dim pair below the brilliant one, and the pair above it."
+Arg,7,deck-uppers,Anatomy: the pair above the brilliant deck star.
+Arg,8,mast-foot,"Anatomy: the three in the little shields, almost at the mast, and the close pair below."
+Arg,9,mast,Anatomy: mid-mast pair up to the mast-tip pair.
+Arg,10,hull-line,"Anatomy: following shield, the cut-off of the decking. License: joined along the hull."
+Arg,11,keel,"Anatomy: between the oars, the dim follower, the two brilliant keel stars."
+Arg,12,keel-run,"Anatomy: the trio that follows, and the pair by the cut-off."
+Arg,13,north-oar,"Anatomy: the pair in the northern, preceding steering-oar."
+Arg,14,south-oar,Anatomy: Canopus and its follower — the southern steering-oar.
+Hya,1,head,"Anatomy: the five in the head, drawn round — nostrils, eye, skull, gape, chin."
+Hya,2,neck,"Anatomy: the neck-root pair, then the trio at the bend."
+Hya,3,throat,Anatomy: the close bright-and-dim pair to the south.
+Hya,4,first-body,"Anatomy: the trio after the bend, then the straight-line trio."
+Hya,5,under-the-cup,Anatomy: the pair behind the base of the Cup.
+Hya,6,the-triangle,Anatomy: the three 'almost in a triangle'.
+Hya,7,tail,"Anatomy: past the Crow, near the tail, to the tip."
+Crt,1,south-side,"Anatomy: base, southern mid-bowl, southern rim."
+Crt,2,north-side,"Anatomy: base, northern mid-bowl, northern rim."
+Crt,3,south-handle,"Anatomy: the southern handle, off the rim."
+Crt,4,north-handle,"Anatomy: the northern handle, off the rim."
+Crv,1,head,"Anatomy: beak (shared with the Snake), neck, breast."
+Crv,2,right-wing,"Anatomy: the preceding, right wing."
+Crv,3,left-wing,Anatomy: the pair of the following wing.
+Crv,4,foot,"Anatomy: the foot, shared with the Snake — the perch made literal."
+Cen,1,head,"Anatomy: the four in the head, drawn as a small cluster."
+Cen,2,shoulders,"Anatomy: left and right shoulders. License: barred, with the head above."
+Cen,3,neck,License: head joined to the left shoulder.
+Cen,4,thyrsus,"Anatomy: from the left shoulder-blade, the wand's pairs out to its tip."
+Cen,5,thyrsus-grip,License: left shoulder to shoulder-blade — the carrying arm.
+Cen,6,right-arm,"Anatomy: shoulder, arm, elbow, hand-tip — reaching toward the Beast."
+Cen,7,side,"Anatomy: the trio in the right side, down from the shoulder."
+Cen,8,the-join,Anatomy: the side into the brilliant star at the join of the human body — where man becomes horse.
+Cen,9,join-dims,Anatomy: the two dim ones north of the join.
+Cen,10,horse-back,"Anatomy: start of the shoulder-blade, the back, the loins trio."
+Cen,11,right-thigh,Anatomy: the close pair in the right thigh.
+Cen,12,horse-chest,"Anatomy: chest under the armpit, the belly pair."
+Cen,13,right-hindleg,"Anatomy: hollow, ankle of the same foot; the outside star below."
+Cen,14,left-hindleg,Anatomy: below-hollow and calf of the left foot.
+Cen,15,forelegs,Anatomy: front right foot's tip; left knee. License: hung from the chest.
+Lup,1,the-grip,Anatomy: hind-foot tip (in the Centaur's hand) and the foot's hollow.
+Lup,2,body,Anatomy: from the caught foot to mid-body and the shoulder pair.
+Lup,3,belly,Anatomy: the belly star below the flank.
+Lup,4,hindquarters,"Anatomy: thigh, the thigh-root pair, the loins."
+Lup,5,tail,Anatomy: the trio at the tip of the tail.
+Lup,6,neck-and-head,Anatomy: the neck pair into the muzzle pair — straining away.
+Lup,7,front-feet,"Anatomy: the pair in the front foot, beneath the neck."
+Ara,1,base,Anatomy: the pair in the base.
+Ara,2,column,Anatomy: base to the middle of the altar.
+Ara,3,brazier,"Anatomy: the three in the brazier, above the middle."
+Ara,4,flame,Anatomy: the star at the tip — the flame.
+CrA,1,wreath,"Anatomy: the ring walked in catalogue order, closed — a fallen crown."
+PsA,1,head,"Anatomy: Fomalhaut in the mouth, then the southern curve of the head."
+PsA,2,gills,"Anatomy: head down to the gills, then the southern dorsal fin."
+PsA,3,belly,"Anatomy: the belly pair, along the underside."
+PsA,4,north-fin,"Anatomy: the trio of the northern fin, back from the head."
+PsA,5,tail,Anatomy: fins converging on the tail's tip.
+PsA,6,tail-south,License: the southern side closed to the tail.
