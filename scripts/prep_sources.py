@@ -5,8 +5,12 @@ write deterministically, exit nonzero touching no output on any violation.
 
 Reads   data/fetched/vvg_almagest/ptolema.dat   (CDS J/A+A/544/A31)
         data/fetched/yale_bsc5/ybsc5.gz         (Yale BSC5, Harvard TDC copy)
+        data/fetched/hipparcos/hip_main.dat     (CDS I/239, ESA 1997)
+        data/fetched/wgsn/iau_csn.csv           (IAU WGSN catalog: manual export)
 Writes  data/prepared/vvg_almagest_crosswalk.csv
         data/prepared/yale_bright_star.csv
+        data/prepared/hipparcos_almagest.csv    (thin slice: crosswalk HIPs only)
+        data/prepared/wgsn_star_name.csv
 
 data/fetched/ is gitignored: inputs are provisioned by the operator, never by
 the build (`dbt build` does not run this and touches no network).
@@ -31,6 +35,13 @@ CANONICAL = [
     ("vvg_almagest/ptolema.dat", "https://cdsarc.cds.unistra.fr/ftp/J/A+A/544/A31/ptolema.dat"),
     ("yale_bsc5/ybsc5.readme", "http://tdc-www.harvard.edu/catalogs/ybsc5.readme"),
     ("yale_bsc5/ybsc5.gz", "http://tdc-www.harvard.edu/catalogs/ybsc5.gz"),
+    ("hipparcos/ReadMe", "https://cdsarc.cds.unistra.fr/ftp/I/239/ReadMe"),
+    ("hipparcos/hip_main.dat", "https://cdsarc.cds.unistra.fr/ftp/I/239/hip_main.dat"),
+    ("wgsn/iau_csn.csv",
+     "MANUAL: export by hand from "
+     "https://exopla.net/star-names/modern-iau-star-names/ — set the table "
+     "to 'Show ALL entries', export as CSV, save to this path (the table is "
+     "the WGSN's own site; there is no stable file URL)"),
 ]
 
 # Shared stars: Ptolemy catalogues three stars twice (two Baily numbers each);
@@ -46,6 +57,9 @@ def fetch():
     for rel, url in CANONICAL:
         dest = FETCHED / rel
         dest.parent.mkdir(parents=True, exist_ok=True)
+        if url.startswith("MANUAL"):
+            print(f"manual step for {rel}:\n  {url[8:]}")
+            continue
         print(f"fetching {url}")
         urllib.request.urlretrieve(url, dest)
 
@@ -143,6 +157,73 @@ def parse_bright_stars():
     return rows
 
 
+def parse_hipparcos(hips):
+    """Thin positional slice of hip_main.dat, restricted to the crosswalk's
+    HIP set — we carry as little as does the job. Positions are ICRS at
+    epoch J1991.25; epoch propagation is warehouse work, not prep work."""
+    want = set(hips)
+    rows = []
+    with open(require("hipparcos/hip_main.dat"), encoding="latin-1") as f:
+        for line in f:
+            h = fld(line, 9, 14)
+            if not h or int(h) not in want:
+                continue
+            rows.append({
+                "hip": int(h),
+                "ra_deg": float(fld(line, 52, 63)) if fld(line, 52, 63) else None,
+                "dec_deg": float(fld(line, 65, 76)) if fld(line, 65, 76) else None,
+                "plx_mas": float(fld(line, 80, 86)) if fld(line, 80, 86) else None,
+                "pm_ra_mas_yr": float(fld(line, 88, 95)) if fld(line, 88, 95) else None,
+                "pm_de_mas_yr": float(fld(line, 97, 104)) if fld(line, 97, 104) else None,
+                "vmag": float(fld(line, 42, 46)) if fld(line, 42, 46) else None,
+                "b_v": float(fld(line, 246, 251)) if fld(line, 246, 251) else None,
+                "hd": int(fld(line, 391, 396)) if fld(line, 391, 396) else None,
+            })
+    rows.sort(key=lambda r: r["hip"])
+    found = {r["hip"] for r in rows}
+    missing = sorted(want - found)
+    if missing:
+        fail(f"hipparcos: crosswalk HIPs missing from hip_main: {missing}")
+    no_pos = [r["hip"] for r in rows if r["ra_deg"] is None]
+    for r in rows:
+        if r["ra_deg"] is not None and not (0 <= r["ra_deg"] < 360 and -90 <= r["dec_deg"] <= 90):
+            fail(f"hipparcos: HIP {r['hip']} position out of range")
+    return rows, no_pos
+
+
+def parse_wgsn():
+    rows = []
+    with open(require("wgsn/iau_csn.csv"), encoding="utf-8-sig", newline="") as f:
+        for r in csv.DictReader(f):
+            desig = (r.get("Designation") or "").strip()
+            hip = (r.get("HIP") or "").strip()
+            hr = None
+            if desig.startswith("HR "):
+                tail = desig[3:].strip()
+                if tail.isdigit():
+                    hr = int(tail)
+            rows.append({
+                "proper_name": (r.get("proper names") or "").strip(),
+                "designation": desig or None,
+                "hip": int(hip) if hip.isdigit() else None,
+                "hr": hr,
+                "bayer_id": (r.get("Bayer ID") or "").strip() or None,
+                "constellation": (r.get("Constellation") or "").strip() or None,
+                "origin": (r.get("Origin") or "").strip() or None,
+                "language": (r.get("Language") or "").strip() or None,
+                "adopted": (r.get("Date of Adoption") or "").strip() or None,
+            })
+    if len(rows) < 400:
+        fail(f"wgsn: implausibly few rows: {len(rows)}")
+    if any(not r["proper_name"] for r in rows):
+        fail("wgsn: blank proper name")
+    by_name = {r["proper_name"]: r for r in rows}
+    for name, hip in [("Sirius", 32349), ("Vega", 91262), ("Polaris", 11767)]:
+        if name not in by_name or by_name[name]["hip"] != hip:
+            fail(f"wgsn: expected {name} = HIP {hip}")
+    return rows
+
+
 def write_csv(path, rows):
     with open(path, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=rows[0].keys())
@@ -155,14 +236,22 @@ def main():
         fetch()
     crosswalk = parse_crosswalk()
     bright = parse_bright_stars()
+    hip_slice, no_pos = parse_hipparcos(r["hip"] for r in crosswalk if r["hip"])
+    names = parse_wgsn()
 
     PREPARED.mkdir(parents=True, exist_ok=True)
     write_csv(PREPARED / "vvg_almagest_crosswalk.csv", crosswalk)
     write_csv(PREPARED / "yale_bright_star.csv", bright)
+    write_csv(PREPARED / "hipparcos_almagest.csv", hip_slice)
+    write_csv(PREPARED / "wgsn_star_name.csv", names)
 
     no_hip = sum(r["hip"] is None for r in crosswalk)
+    no_hd = sum(r["hd"] is None for r in hip_slice)
     print(f"validated: crosswalk {len(crosswalk)} rows ({no_hip} without HIP id) | "
           f"bright stars {len(bright)} rows (14 ghosts)")
+    print(f"           hipparcos slice {len(hip_slice)} stars "
+          f"({len(no_pos)} without astrometry: {no_pos}) ({no_hd} without HD)")
+    print(f"           wgsn {len(names)} proper names")
     print(f"prepared extracts written to {PREPARED.relative_to(ROOT)}")
 
 
