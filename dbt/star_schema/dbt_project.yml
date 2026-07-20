@@ -25,5 +25,9 @@ seeds:
 models:
   star_schema:
     space:
-      +schema: space
-      +materialized: ephemeral
+      staging:
+        +schema: space_staging
+        +materialized: view
+      gold:
+        +schema: space
+        +materialized: table
