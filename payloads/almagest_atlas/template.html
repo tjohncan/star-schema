@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Almagest Atlas — Ptolemy's constellations on the real sky</title>
+<style>
+  :root {
+    --page: #0d1117; --sky: #070a12; --panel: #10151e;
+    --text: #c9d1dc; --dim: #8a93a3; --faint: #5c6572;
+    --accent: #8fb8e8; --accent-2: #e8c98f; --line: #1e2632;
+    --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+    --mono: Consolas, 'SF Mono', Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--page); color: var(--text);
+         font: 15px/1.55 var(--serif); overflow: hidden; }
+
+  header { height: 52px; display: flex; align-items: center; gap: 14px;
+           padding: 0 16px; border-bottom: 1px solid var(--line); }
+  header h1 { font-size: 17px; font-weight: normal; letter-spacing: .04em; }
+  header h1 span { color: var(--accent-2); }
+  #scenename { color: var(--dim); font-style: italic; }
+  header .spacer { flex: 1; }
+  button { background: none; border: 1px solid var(--line); color: var(--text);
+           font: 13px var(--mono); padding: 5px 12px; border-radius: 4px;
+           cursor: pointer; }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+
+  main { display: flex; height: calc(100vh - 52px); height: calc(100dvh - 52px); }
+  #skybox { position: relative; flex: 0 0 auto; background: var(--sky); }
+  canvas { display: block; cursor: crosshair; }
+  #tooltip { position: absolute; pointer-events: none; display: none;
+             background: rgba(10,14,22,.92); border: 1px solid var(--line);
+             border-radius: 4px; padding: 6px 10px; font: 12px/1.5 var(--mono);
+             color: var(--text); max-width: 260px; z-index: 5; }
+  #tooltip .tt-name { color: var(--accent-2); }
+
+  #panel { flex: 1; min-width: 340px; overflow-y: auto; padding: 22px 26px;
+           background: var(--panel); border-left: 1px solid var(--line); }
+  #panel h2 { font-size: 24px; font-weight: normal; }
+  #panel .latin-name { color: var(--dim); font-style: italic; margin-bottom: 10px; }
+  .viewline { font: 12px var(--mono); color: var(--dim); margin: 10px 0;
+              padding: 8px 10px; border-left: 2px solid var(--accent);
+              background: rgba(143,184,232,.05); }
+  .stats { font-size: 13.5px; color: var(--dim); margin-bottom: 14px; }
+  .stats b { color: var(--text); font-weight: normal; }
+  .desc { margin: 14px 0 18px; }
+  .section-h { font: 11px var(--mono); letter-spacing: .12em; color: var(--faint);
+               text-transform: uppercase; margin: 20px 0 6px; }
+  .star-list { font-size: 13.5px; color: var(--dim); line-height: 1.9; }
+  .star-list .item { cursor: pointer; white-space: nowrap; }
+  .star-list .item:hover { color: var(--accent); }
+  .star-list .item.sel { color: var(--accent-2); }
+  .warn { color: var(--accent-2); font-size: 13px; }
+
+  #detail { border: 1px solid var(--line); border-radius: 6px;
+            padding: 14px 16px; margin-top: 8px; }
+  #detail .hint { color: var(--faint); font-size: 13px; font-style: italic; }
+  #detail h3 { font-size: 19px; font-weight: normal; color: var(--accent-2); }
+  #detail .alt-names { font: 12px var(--mono); color: var(--dim); margin: 2px 0 8px; }
+  #detail .keys { font: 11.5px var(--mono); color: var(--faint); margin-bottom: 10px; }
+  #detail .caption { font-size: 16px; margin: 8px 0 4px; }
+  #detail .english { font-size: 14px; color: var(--dim); }
+  #detail .latin { font-style: italic; color: var(--dim); margin-bottom: 10px; }
+  #detail .edges { margin-top: 10px; border-top: 1px solid var(--line);
+                   padding-top: 8px; }
+  #detail .edges .lbl { font: 11px var(--mono); letter-spacing: .1em;
+                        color: var(--faint); text-transform: uppercase;
+                        margin-right: 6px; }
+  .edge-chip { display: inline-block; font: 12px var(--mono);
+               color: var(--accent); border: 1px solid var(--line);
+               border-radius: 10px; padding: 1px 9px; margin: 2px 4px 2px 0;
+               cursor: pointer; }
+  .edge-chip:hover, .edge-chip.sel { border-color: var(--accent);
+               background: rgba(143,184,232,.08); }
+  .edge-row { display: block; padding: 6px 0 5px;
+              border-top: 1px solid var(--line); cursor: pointer; }
+  .edge-row:first-of-type { border-top: none; }
+  .edge-row .nm { color: var(--accent-2); }
+  .edge-row .cap { color: var(--dim); font-size: 13.5px; }
+  .edge-row:hover .nm { color: var(--accent); }
+  #detail .row { font-size: 13.5px; color: var(--dim); }
+  #detail .row b { color: var(--text); font-weight: normal; }
+  #detail .origin { font-size: 13.5px; color: var(--dim); margin-top: 10px;
+                    border-top: 1px solid var(--line); padding-top: 8px; }
+
+  #splash { position: fixed; inset: 52px 0 0 0; background: rgba(7,10,18,.97);
+            overflow-y: auto; padding: 30px 40px; z-index: 10; }
+  #splash .intro { max-width: 720px; margin-bottom: 24px; color: var(--dim); }
+  #splash .intro b { color: var(--text); font-weight: normal; }
+  #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+          gap: 10px; margin-bottom: 30px; }
+  .cell { border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px;
+          cursor: pointer; }
+  .cell:hover { border-color: var(--accent); background: rgba(143,184,232,.06); }
+  .cell .code { font: 12px var(--mono); color: var(--accent); }
+  .cell .en { font-size: 15px; }
+  .cell .n { font: 11px var(--mono); color: var(--faint); }
+  #splash footer { border-top: 1px solid var(--line); padding-top: 14px;
+                   font: 11.5px/1.7 var(--mono); color: var(--faint);
+                   max-width: 860px; }
+  #banner { display: block; width: 100%; height: 150px; margin: 2px 0 6px;
+            border: 1px solid var(--line); border-radius: 6px;
+            background: var(--sky); }
+  #bannercap { font: 11px var(--mono); color: var(--faint);
+               letter-spacing: .06em; margin-bottom: 22px; }
+
+  #bgtoggle { position: absolute; left: 12px; bottom: 10px; z-index: 4;
+              font: 11px var(--mono); letter-spacing: .09em;
+              text-transform: uppercase; color: var(--faint);
+              cursor: pointer; user-select: none; }
+  #bgtoggle:hover { color: var(--dim); }
+  #bgtoggle span.cur { color: var(--accent); }
+
+  @media (max-width: 700px) {
+    main { flex-direction: column; }
+    #skybox { display: flex; justify-content: center; }
+    #panel { min-width: 0; border-left: none; padding: 16px;
+             border-top: 1px solid var(--line); }
+    #scenename { display: none; }
+    #splash { padding: 20px 16px; }
+    #banner { height: 110px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Almagest <span>Atlas</span></h1>
+  <span id="scenename"></span>
+  <span class="spacer"></span>
+  <button id="prev" title="previous constellation">&larr;</button>
+  <button id="showindex">Index</button>
+  <button id="next" title="next constellation">&rarr;</button>
+</header>
+
+<main>
+  <div id="skybox">
+    <canvas id="sky" width="1000" height="1000"></canvas>
+    <div id="tooltip"></div>
+    <div id="bgtoggle" title="show or hide the naked-eye backdrop">Background:
+      <span id="bg-on" class="cur">on</span> | <span id="bg-off">off</span></div>
+  </div>
+  <div id="panel"></div>
+</main>
+
+<div id="splash"></div>
+
+<script>
+window.ATLAS = __ATLAS_JSON__;
+(function () {
+  'use strict';
+  const A = window.ATLAS;
+  const R = Math.PI / 180;
+
+  // ---- data prep ---------------------------------------------------------
+  for (const s of A.stars) vec(s);
+  const memberByKey = new Map();   // "cst:seq" -> figure member
+  const membersByCst = new Map();  // cst -> [members]
+  const memberByBaily = new Map(); // baily -> member
+  for (const m of A.members) {
+    if (m.is_placed) vec(m);
+    if (m.member_type === 'figure') memberByKey.set(m.cst + ':' + m.seq, m);
+    if (!membersByCst.has(m.cst)) membersByCst.set(m.cst, []);
+    membersByCst.get(m.cst).push(m);
+    memberByBaily.set(m.baily, m);
+  }
+  function vec(o) {
+    const d = o.dec * R, r = o.ra * R;
+    o._x = Math.cos(d) * Math.cos(r); o._y = Math.cos(d) * Math.sin(r);
+    o._z = Math.sin(d);
+  }
+
+  // ---- elements ----------------------------------------------------------
+  const canvas = document.getElementById('sky');
+  const ctx = canvas.getContext('2d');
+  const tooltip = document.getElementById('tooltip');
+  const panel = document.getElementById('panel');
+  const splash = document.getElementById('splash');
+  const scenename = document.getElementById('scenename');
+
+  function fitCanvas() {
+    const side = window.innerWidth <= 700
+      ? Math.min(window.innerWidth, Math.floor((window.innerHeight - 52) * 0.55))
+      : Math.min(window.innerHeight - 52, Math.floor(window.innerWidth * 0.56));
+    canvas.style.width = side + 'px'; canvas.style.height = side + 'px';
+  }
+  fitCanvas();
+  window.addEventListener('resize', function () {
+    fitCanvas();
+    if (splash.style.display !== 'none') drawBanner();
+  });
+
+  // ---- scene state -------------------------------------------------------
+  let cur = -1;              // index into A.constellations
+  let scene = null;          // computed geometry
+  let hover = null;          // transient {kind:'star'|'member'|'stroke', obj}
+  let sel = null;            // persistent selection (tap-first):
+                             // {kind:'member',m} | {kind:'star',b} | {kind:'stroke',st}
+  let showBg = true;         // backdrop stars on/off — survives scene changes
+  const W = canvas.width, CXp = W / 2, CYp = W / 2;
+
+  function buildScene(i) {
+    cur = i;
+    const c = A.constellations[i];
+    const d0 = c.view.dec * R, r0 = c.view.ra * R;
+    const sinD0 = Math.sin(d0), cosD0 = Math.cos(d0);
+    const cx = cosD0 * Math.cos(r0), cy = cosD0 * Math.sin(r0), cz = sinD0;
+    const thetaMax = (c.view.fov / 2) * R;
+    const S = (W / 2 - 10) / (2 * Math.tan(thetaMax / 2));
+    const reach = Math.cos(Math.min(thetaMax * 1.5, 170 * R));
+
+    function project(o) {
+      const dRA = o.ra * R - r0, d = o.dec * R;
+      const sinD = Math.sin(d), cosD = Math.cos(d);
+      const dot = o._x * cx + o._y * cy + o._z * cz;
+      if (dot < Math.cos(170 * R)) return null;
+      const k = 2 / (1 + sinD0 * sinD + cosD0 * cosD * Math.cos(dRA));
+      const X = k * cosD * Math.sin(dRA);
+      const Y = k * (cosD0 * sinD - sinD0 * cosD * Math.cos(dRA));
+      return [CXp - X * S, CYp - Y * S];   // east left, north up
+    }
+
+    const memberHRs = new Set();
+    const members = [];
+    for (const m of membersByCst.get(c.code)) {
+      if (!m.is_placed) continue;
+      if (m.hr != null) memberHRs.add(m.hr);
+      const p = project(m);
+      if (p) members.push({ px: p[0], py: p[1], m: m });
+    }
+    const backdrop = [];
+    for (const s of A.stars) {
+      if (memberHRs.has(s.hr)) continue;
+      if (s._x * cx + s._y * cy + s._z * cz < reach) continue;
+      const p = project(s);
+      if (p && p[0] > -30 && p[0] < W + 30 && p[1] > -30 && p[1] < W + 30)
+        backdrop.push({ px: p[0], py: p[1], s: s });
+    }
+    const strokes = [];
+    c.strokes.forEach(function (st, si) {
+      const segs = [];
+      for (let j = 0; j + 1 < st.seqs.length; j++) {
+        const a = memberByKey.get(c.code + ':' + st.seqs[j]);
+        const b = memberByKey.get(c.code + ':' + st.seqs[j + 1]);
+        if (!a || !b || !a.is_placed || !b.is_placed) continue;
+        const pa = project(a), pb = project(b);
+        if (pa && pb) segs.push([pa[0], pa[1], pb[0], pb[1]]);
+      }
+      strokes.push({ id: si, name: st.name, comment: st.comment,
+                     seqs: st.seqs, segs: segs });
+    });
+    const mmByBaily = new Map();
+    for (const mm of members) mmByBaily.set(mm.m.baily, mm);
+    scene = { c: c, members: members, backdrop: backdrop, strokes: strokes,
+              mmByBaily: mmByBaily };
+    hover = null;
+    sel = null;
+    scenename.textContent = (i + 1) + ' / 48 — ' + c.english + ' (' + c.latin + ')';
+    renderPanel(c);
+    draw();
+  }
+
+  // ---- drawing -----------------------------------------------------------
+  function starColor(bv) {
+    if (bv == null) return '#cfd8e6';
+    if (bv <= 0) return '#9db4ff';
+    if (bv <= 0.35) return '#c3d2ff';
+    if (bv <= 0.6) return '#e9edf6';
+    if (bv <= 1.0) return '#ffe4c0';
+    if (bv <= 1.5) return '#ffc98a';
+    return '#ff9d5c';
+  }
+  function radius(v) {
+    if (v == null) v = 6;
+    return Math.max(0.7, 4.6 - 0.58 * v);
+  }
+  function drawStar(px, py, v, bv, dimmed) {
+    const r = radius(v);
+    ctx.beginPath();
+    ctx.arc(px, py, r, 0, 7);
+    ctx.fillStyle = starColor(bv);
+    ctx.globalAlpha = dimmed ? 0.55 : 1;
+    if (!dimmed && v != null && v < 2.5) {
+      ctx.shadowColor = starColor(bv); ctx.shadowBlur = r * 2.4;
+    }
+    ctx.fill();
+    ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+  }
+
+  function draw() {
+    ctx.fillStyle = getComputedStyle(document.documentElement)
+      .getPropertyValue('--sky').trim() || '#070a12';
+    ctx.fillRect(0, 0, W, W);
+
+    if (showBg)
+      for (const b of scene.backdrop) drawStar(b.px, b.py, b.s.v, b.s.bv, true);
+
+    for (const st of scene.strokes) {
+      const hot = (hover && hover.kind === 'stroke' && hover.obj.id === st.id) ||
+                  (sel && sel.kind === 'stroke' && sel.st.id === st.id);
+      ctx.strokeStyle = hot ? 'rgba(143,184,232,.95)' : 'rgba(143,184,232,.30)';
+      ctx.lineWidth = hot ? 2.2 : 1.1;
+      if (hot) { ctx.shadowColor = 'rgba(143,184,232,.8)'; ctx.shadowBlur = 6; }
+      ctx.beginPath();
+      for (const g of st.segs) { ctx.moveTo(g[0], g[1]); ctx.lineTo(g[2], g[3]); }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+
+    for (const mm of scene.members) {
+      const m = mm.m;
+      if (m.pt_mag === 9) {   // Ptolemy saw fuzz; draw fuzz
+        const g = ctx.createRadialGradient(mm.px, mm.py, 0, mm.px, mm.py, 10);
+        g.addColorStop(0, 'rgba(233,237,246,.55)');
+        g.addColorStop(1, 'rgba(233,237,246,0)');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(mm.px, mm.py, 10, 0, 7); ctx.fill();
+      } else {
+        drawStar(mm.px, mm.py, m.v, m.bv, false);
+      }
+      const hot = hover && hover.kind === 'member' && hover.obj === mm;
+      if (hot) ring(mm.px, mm.py, radius(m.v) + 5, m.member_type === 'unformed');
+    }
+    if (hover && hover.kind === 'star')
+      ring(hover.obj.px, hover.obj.py, radius(hover.obj.s.v) + 5, false);
+    if (sel && sel.kind === 'member') {
+      const mm = scene.mmByBaily.get(sel.m.baily);
+      if (mm) ring(mm.px, mm.py, radius(mm.m.v) + 5,
+                   mm.m.member_type === 'unformed');
+    } else if (sel && sel.kind === 'star') {
+      ring(sel.b.px, sel.b.py, radius(sel.b.s.v) + 5, false);
+    }
+  }
+  function ring(px, py, r, dotted) {
+    ctx.beginPath();
+    ctx.setLineDash(dotted ? [3, 3] : []);
+    ctx.arc(px, py, r, 0, 7);
+    ctx.strokeStyle = 'rgba(232,201,143,.9)'; ctx.lineWidth = 1.2;
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // ---- interaction -------------------------------------------------------
+  function canvasPos(ev) {
+    const b = canvas.getBoundingClientRect();
+    return [(ev.clientX - b.left) * W / b.width, (ev.clientY - b.top) * W / b.height];
+  }
+  function pick(px, py) {
+    let best = null, bd = 12 * 12;
+    for (const mm of scene.members) {
+      const d = (mm.px - px) ** 2 + (mm.py - py) ** 2;
+      if (d < bd) { bd = d; best = { kind: 'member', obj: mm }; }
+    }
+    if (!best && showBg) {
+      bd = 9 * 9;
+      for (const b of scene.backdrop) {
+        const d = (b.px - px) ** 2 + (b.py - py) ** 2;
+        if (d < bd) { bd = d; best = { kind: 'star', obj: b }; }
+      }
+    }
+    if (!best) {
+      let sd = 7;
+      for (const st of scene.strokes) for (const g of st.segs) {
+        const d = segDist(px, py, g);
+        if (d < sd) { sd = d; best = { kind: 'stroke', obj: st }; }
+      }
+    }
+    return best;
+  }
+  function segDist(px, py, g) {
+    const dx = g[2] - g[0], dy = g[3] - g[1];
+    const len2 = dx * dx + dy * dy;
+    let t = len2 ? ((px - g[0]) * dx + (py - g[1]) * dy) / len2 : 0;
+    t = Math.max(0, Math.min(1, t));
+    const qx = g[0] + t * dx, qy = g[1] + t * dy;
+    return Math.hypot(px - qx, py - qy);
+  }
+
+  canvas.addEventListener('mousemove', function (ev) {
+    if (!scene) return;
+    const p = canvasPos(ev);
+    const h = pick(p[0], p[1]);
+    const changed = JSON.stringify(sig(h)) !== JSON.stringify(sig(hover));
+    hover = h;
+    if (changed) draw();
+    showTooltip(ev, h);
+  });
+  canvas.addEventListener('mouseleave', function () {
+    hover = null; tooltip.style.display = 'none'; if (scene) draw();
+  });
+  canvas.addEventListener('click', function (ev) {
+    if (!scene) return;
+    const p = canvasPos(ev);
+    const h = pick(p[0], p[1]);
+    if (h && h.kind === 'member') selectMember(h.obj.m);
+    else if (h && h.kind === 'star') selectBackdrop(h.obj);
+    else if (h && h.kind === 'stroke') selectStroke(h.obj);
+    else clearSel();
+  });
+  function sig(h) {
+    if (!h) return null;
+    if (h.kind === 'member') return ['m', h.obj.m.baily];
+    if (h.kind === 'star') return ['s', h.obj.s.hr];
+    return ['k', h.obj.id];
+  }
+
+  const bgOn = document.getElementById('bg-on');
+  const bgOff = document.getElementById('bg-off');
+  document.getElementById('bgtoggle').addEventListener('click', function (ev) {
+    const want = ev.target === bgOn ? true : ev.target === bgOff ? false : !showBg;
+    if (want === showBg) return;
+    showBg = want;
+    bgOn.classList.toggle('cur', showBg);
+    bgOff.classList.toggle('cur', !showBg);
+    if (!showBg && hover && hover.kind === 'star') hover = null;
+    if (!showBg && sel && sel.kind === 'star') { clearSel(); return; }
+    if (scene) draw();
+  });
+
+  function ptMagText(m) {
+    if (m.pt_mag === 7) return 'called simply “faint”';
+    if (m.pt_mag === 9) return 'recorded as “nebulous”';
+    const q = m.pt_qual === 'b' ? ', somewhat brighter'
+            : m.pt_qual === 'f' ? ', somewhat fainter' : '';
+    const ord = ['', '1st', '2nd', '3rd', '4th', '5th', '6th'][m.pt_mag] || m.pt_mag;
+    return ord + ' magnitude' + q;
+  }
+  function showTooltip(ev, h) {
+    if (!h) { tooltip.style.display = 'none'; return; }
+    let html = '';
+    if (h.kind === 'member') {
+      const m = h.obj.m;
+      html = '<span class="tt-name">' + esc(m.name) + '</span><br>' +
+             (m.caption ? '<i>' + esc(m.caption) + '</i><br>' : '') +
+             (m.v != null ? 'V ' + m.v.toFixed(2) + ' · ' : '') +
+             'Ptolemy: ' + ptMagText(m) +
+             (m.member_type === 'unformed' ? '<br>unformed — outside the figure' : '');
+    } else if (h.kind === 'star') {
+      const s = h.obj.s;
+      html = '<span class="tt-name">' + esc(s.name) + '</span><br>V ' +
+             (s.v != null ? s.v.toFixed(2) : '?');
+    } else {
+      html = '<span class="tt-name">' + esc(h.obj.name) + '</span><br>' +
+             esc(h.obj.comment);
+    }
+    tooltip.innerHTML = html;
+    tooltip.style.display = 'block';
+    const b = canvas.getBoundingClientRect();
+    let x = ev.clientX - b.left + canvas.offsetLeft + 14,
+        y = ev.clientY - b.top + canvas.offsetTop + 14;
+    if (x > b.width - 270) x -= 290;
+    if (y > b.height - 90) y -= 110;
+    tooltip.style.left = x + 'px'; tooltip.style.top = y + 'px';
+  }
+
+  // ---- panel -------------------------------------------------------------
+  function esc(t) {
+    return t == null ? '' : String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  }
+  function ly(pc) { return Math.round(pc * 3.26156); }
+  function renderPanel(c) {
+    let h = '<h2>' + esc(c.english) + '</h2>' +
+      '<div class="latin-name">' + esc(c.latin) + ' · ' + esc(c.code) + ' · ' +
+      c.n_figure + ' figure + ' + c.n_unformed + ' unformed</div>' +
+      '<div class="viewline">Looking from the Sun toward RA ' +
+      c.view.ra.toFixed(1) + '°, Dec ' + (c.view.dec >= 0 ? '+' : '') +
+      c.view.dec.toFixed(1) + '° — field ' + c.view.fov.toFixed(0) + '°</div>' +
+      '<div class="stats">Brightest: <b>' + esc(c.stats.brightest) + '</b> (V ' +
+      c.stats.brightest_v.toFixed(2) + ')';
+    if (c.stats.nearest_pc != null)
+      h += ' · Nearest: <b>' + esc(c.stats.nearest) + '</b> (' +
+           ly(c.stats.nearest_pc) + ' ly)';
+    if (c.stats.farthest_pc != null)
+      h += ' · Farthest: <b>' + esc(c.stats.farthest) + '</b> (' +
+           ly(c.stats.farthest_pc) + ' ly)';
+    h += '</div><div class="desc">' + esc(c.description) + '</div>';
+    if (c.n_unplaced > 0)
+      h += '<div class="warn">' + c.n_unplaced +
+           ' catalogued star' + (c.n_unplaced > 1 ? 's' : '') +
+           ' could not be identified with a modern star and ' +
+           (c.n_unplaced > 1 ? 'are' : 'is') + ' not drawn.</div>';
+    h += '<div class="section-h">Star detail</div>' +
+         '<div id="detail">' + HINT + '</div>';
+    const all = membersByCst.get(c.code);
+    const figs = all.filter(function (m) { return m.member_type === 'figure'; });
+    const unf = all.filter(function (m) { return m.member_type === 'unformed'; });
+    h += '<div class="section-h">Figured stars</div>' +
+         '<div class="star-list">' + listItems(figs) + '</div>';
+    if (unf.length)
+      h += '<div class="section-h">Unformed stars (never edged)</div>' +
+           '<div class="star-list">' + listItems(unf) + '</div>';
+    panel.innerHTML = h;
+  }
+  const HINT = '<div class="hint">Tap a star or an edge for its story — ' +
+    'or pick any name below. Tap empty sky to clear.</div>';
+  function listItems(ms) {
+    return ms.map(function (m) {
+      return '<span class="item" data-baily="' + m.baily + '">' +
+             esc(m.name) + '</span>';
+    }).join(' · ');
+  }
+  function renderDetail(m) {
+    const d = document.getElementById('detail');
+    let h = '<h3>' + esc(m.name) + '</h3>';
+    const alts = [];
+    if (m.proper_name && m.proper_name !== m.name) alts.push(esc(m.proper_name));
+    if (m.tier !== 'hr' && m.hr != null) alts.push('HR ' + m.hr);
+    h += '<div class="alt-names">' + alts.join(' · ') + '</div>';
+    const keys = ['Baily ' + m.baily];
+    if (m.hip != null) keys.push('HIP ' + m.hip);
+    if (m.hd != null) keys.push('HD ' + m.hd);
+    h += '<div class="keys">' + keys.join(' · ') + '</div>';
+    if (m.caption) h += '<div class="caption">' + esc(m.caption) + '</div>';
+    h += '<div class="english">&ldquo;' + esc(m.english) + '&rdquo;</div>';
+    h += '<div class="latin">' + esc(m.latin) + '</div>';
+    h += '<div class="row">' + esc(m.cst) + ' ' + m.member_type + ' #' + m.seq +
+         ' · Ptolemy: <b>' + ptMagText(m) + '</b>' +
+         (m.v != null ? ' · today: <b>V ' + m.v.toFixed(2) + '</b>' : '') + '</div>';
+    const bits = [];
+    if (m.sp_type) bits.push('spectral type <b>' + esc(m.sp_type) + '</b>');
+    if (m.bv != null) bits.push('B−V ' + m.bv.toFixed(2));
+    if (m.dist_pc != null) bits.push('<b>' + ly(m.dist_pc) + ' light-years</b>');
+    if (bits.length) h += '<div class="row">' + bits.join(' · ') + '</div>';
+    if (m.origin)
+      h += '<div class="origin"><b>' + esc(m.proper_name) + '</b> — ' +
+           esc(m.origin) + (m.language ? ' (' + esc(m.language) + ')' : '') +
+           ' <span style="color:var(--faint)">· etymology: IAU WGSN</span></div>';
+    if (scene && m.cst === scene.c.code && m.member_type === 'figure') {
+      const sts = scene.strokes.filter(function (st) {
+        return st.seqs.indexOf(m.seq) >= 0;
+      });
+      if (sts.length)
+        h += '<div class="edges"><span class="lbl">Edges</span>' +
+             sts.map(function (st) {
+               return '<span class="edge-chip" data-stroke="' + st.id + '">' +
+                      esc(st.name) + '</span>';
+             }).join('') + '</div>';
+    }
+    d.innerHTML = h;
+  }
+  function renderStroke(st) {
+    const d = document.getElementById('detail');
+    const seqs = Array.from(new Set(st.seqs)).sort(function (a, b) {
+      return a - b;
+    });
+    let h = '<h3>' + esc(st.name) + '</h3>' +
+      '<div class="alt-names">edge · ' + seqs.length + ' stars, ' +
+      'in Ptolemy&rsquo;s order</div>' +
+      '<div class="row">' + esc(st.comment) + '</div>' +
+      '<div style="margin-top:8px">';
+    h += seqs.map(function (q) {
+      const m = memberByKey.get(scene.c.code + ':' + q);
+      if (!m) return '';
+      return '<span class="edge-row" data-baily="' + m.baily + '">' +
+        '<span class="nm">' + esc(m.name) + '</span> ' +
+        '<span class="cap">— ' + esc(m.caption) + '</span></span>';
+    }).join('');
+    d.innerHTML = h + '</div>';
+  }
+  function selectMember(m) { sel = { kind: 'member', m: m }; renderDetail(m); syncSel(); draw(); }
+  function selectStroke(st) { sel = { kind: 'stroke', st: st }; renderStroke(st); syncSel(); draw(); }
+  function selectBackdrop(b) { sel = { kind: 'star', b: b }; renderStarDetail(b.s); syncSel(); draw(); }
+  function clearSel() {
+    sel = null;
+    const d = document.getElementById('detail');
+    if (d) d.innerHTML = HINT;
+    syncSel(); draw();
+  }
+  function syncSel() {
+    panel.querySelectorAll('.item').forEach(function (el) {
+      el.classList.toggle('sel', !!(sel && sel.kind === 'member' &&
+        String(sel.m.baily) === el.dataset.baily));
+    });
+  }
+  panel.addEventListener('click', function (ev) {
+    if (!scene) return;
+    const chip = ev.target.closest('.edge-chip');
+    if (chip) { selectStroke(scene.strokes[+chip.dataset.stroke]); return; }
+    const it = ev.target.closest('[data-baily]');
+    if (it) {
+      const m = memberByBaily.get(+it.dataset.baily);
+      if (m) selectMember(m);
+    }
+  });
+  function renderStarDetail(s) {
+    const d = document.getElementById('detail');
+    d.innerHTML = '<h3>' + esc(s.name) + '</h3>' +
+      '<div class="keys">HR ' + s.hr + (s.cst ? ' · ' + esc(s.cst) : '') + '</div>' +
+      '<div class="row">Backdrop star — in the Bright Star Catalogue but not in ' +
+      'Ptolemy&rsquo;s list for this figure.' +
+      (s.v != null ? ' · V <b>' + s.v.toFixed(2) + '</b>' : '') +
+      (s.bv != null ? ' · B−V ' + s.bv.toFixed(2) : '') + '</div>';
+  }
+
+  // ---- splash index ------------------------------------------------------
+  function renderSplash() {
+    let h = '<div class="intro"><b>Ptolemy&rsquo;s star catalogue, drawn on the real ' +
+      'sky.</b> All 1,028 stars of the <i>Almagest</i> (c. 150 AD) with our English ' +
+      'translations of the 1528 Latin, the figures traced star to star. ' +
+      'Pick a constellation. ' +
+      '<!-- <span style="color:var(--faint)">(The view from the Sun and from Earth ' +
+      'differ by less than an arcsecond — that is what parallax is.)</span> --> </div>' +
+      '<canvas id="banner"></canvas>' +
+      '<div id="bannercap">the whole catalogue on one panoramic band of sky — ' +
+      '48 figures, 1,024 of its 1,028 stars (four cannot be placed), ' +
+      'east to the left</div>' +
+      '<div id="grid">';
+    A.constellations.forEach(function (c, i) {
+      h += '<div class="cell" data-i="' + i + '"><div class="code">' + esc(c.code) +
+        '</div><div class="en">' + esc(c.english) + '</div><div class="n">' +
+        c.n_figure + ' + ' + c.n_unformed + '</div></div>';
+    });
+    h += '</div><footer>' + A.meta.credits.map(esc).join('<br>') + '</footer>';
+    splash.innerHTML = h;
+    drawBanner();
+    splash.addEventListener('click', function (ev) {
+      const cell = ev.target.closest('.cell');
+      if (!cell) return;
+      splash.style.display = 'none';
+      buildScene(+cell.dataset.i);
+    });
+  }
+
+  // the splash frieze: the whole catalogue on one equirectangular band,
+  // members only, east to the left, right edge at RA 71° — the meridian that
+  // cuts the fewest figures. Decorative; hit-testing lives in the scenes.
+  const SEAM = 71, DEC_TOP = 93, DEC_BOT = -67;   // data spans -63.1..+89.3
+  function drawBanner() {
+    const bc = document.getElementById('banner');
+    if (!bc || !bc.clientWidth) return;
+    const dpr = window.devicePixelRatio || 1;
+    const bw = bc.clientWidth, bh = bc.clientHeight;
+    bc.width = Math.round(bw * dpr); bc.height = Math.round(bh * dpr);
+    const g = bc.getContext('2d');
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.fillStyle = getComputedStyle(document.documentElement)
+      .getPropertyValue('--sky').trim() || '#070a12';
+    g.fillRect(0, 0, bw, bh);
+    function bx(u) { return bw * (1 - u / 360); }
+    function by(dec) { return (DEC_TOP - dec) / (DEC_TOP - DEC_BOT) * bh; }
+    g.strokeStyle = 'rgba(143,184,232,.26)'; g.lineWidth = 0.7;
+    g.beginPath();
+    for (const c of A.constellations) for (const st of c.strokes) {
+      for (let j = 0; j + 1 < st.seqs.length; j++) {
+        const a = memberByKey.get(c.code + ':' + st.seqs[j]);
+        const b = memberByKey.get(c.code + ':' + st.seqs[j + 1]);
+        if (!a || !b || !a.is_placed || !b.is_placed) continue;
+        const u1 = ((a.ra - SEAM) % 360 + 360) % 360;
+        const u2 = u1 + (((b.ra - a.ra + 540) % 360 + 360) % 360 - 180);
+        const y1 = by(a.dec), y2 = by(b.dec);
+        for (const sh of [-bw, 0, bw]) {   // wrap-around copies; off-canvas clips
+          const x1 = bx(u1) + sh, x2 = bx(u2) + sh;
+          if (Math.max(x1, x2) < 0 || Math.min(x1, x2) > bw) continue;
+          g.moveTo(x1, y1); g.lineTo(x2, y2);
+        }
+      }
+    }
+    g.stroke();
+    for (const m of A.members) {
+      if (!m.is_placed) continue;
+      const x = bx(((m.ra - SEAM) % 360 + 360) % 360), y = by(m.dec);
+      const r = m.v == null ? 0.5 : Math.max(0.4, 1.7 - 0.24 * m.v);
+      g.fillStyle = starColor(m.bv);
+      if (m.v != null && m.v < 2) {
+        g.globalAlpha = 0.18;
+        g.beginPath(); g.arc(x, y, r * 2.3, 0, 7); g.fill();
+        g.globalAlpha = 1;
+      }
+      g.beginPath(); g.arc(x, y, r, 0, 7); g.fill();
+    }
+  }
+
+  // ---- nav ---------------------------------------------------------------
+  document.getElementById('showindex').onclick = function () {
+    const opening = splash.style.display === 'none';
+    splash.style.display = opening ? 'block' : 'none';
+    if (opening) drawBanner();
+  };
+  document.getElementById('prev').onclick = function () { step(-1); };
+  document.getElementById('next').onclick = function () { step(1); };
+  function step(d) {
+    if (cur < 0) return;
+    splash.style.display = 'none';
+    buildScene((cur + d + 48) % 48);
+  }
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'ArrowLeft') step(-1);
+    else if (ev.key === 'ArrowRight') step(1);
+    else if (ev.key === 'Escape') { splash.style.display = 'block'; drawBanner(); }
+  });
+
+  // preload the Little Bear beneath the splash: Index and the arrow keys
+  // then have somewhere to go from the very first click
+  buildScene(0);
+  renderSplash();
+})();
+</script>
+</body>
+</html>

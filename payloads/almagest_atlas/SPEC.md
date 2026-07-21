@@ -1,4 +1,4 @@
-# Almagest Atlas — payload specification (draft)
+# Almagest Atlas — payload specification (status: shipped; v1)
 
 A single self-contained HTML file: Ptolemy's 48 constellations,
 one fixed scene at a time, drawn on a realistic night sky
@@ -25,7 +25,14 @@ shown when nothing is selected.
 a slim nav bar on top (prev / index / next).
 Lots of text, deliberately arranged (by a LITERAL MACHINE - thanks Claude!).
 
-- **Index panel** — the splash overlay; click a constellation, get its scene.
+- **Index panel** — the splash overlay: a frieze of the whole catalogue
+  up top (every placed member and all 48 figures on one equirectangular
+  band, east to the left, seamed at RA 71° where the fewest figures are
+  cut — decorative, not interactive), then the constellation cards;
+  click a constellation, get its scene.
+  On a fresh load the Little Bear sits preloaded beneath the splash,
+  so Index and the arrow keys have somewhere to go from the very
+  first click.
 - **Scene** — canvas sky render, plus a text panel:
   - The constellation's names, figure/unformed counts,
     and our museum **description prose** as the intro.
@@ -54,6 +61,10 @@ Lots of text, deliberately arranged (by a LITERAL MACHINE - thanks Claude!).
     the stroke's name and comment, then its member stars as a vertical
     selectable column — best name+caption per row, **in Ptolemy's order**
     (seq ascending, not walk order). The selected stroke stays lit.
+- **Background: on | off** — a small switch in the sky's corner douses
+  the naked-eye backdrop, leaving Ptolemy's stars and the figures alone
+  on the black: the shape-reading mode. The choice holds across scenes;
+  hidden backdrop stars stop answering taps, and a selected one is let go.
 - **Panel lists** — two flowing lists close the panel:
   **Figured stars** and **Unformed stars (never edged)**,
   every name tappable into star focus.
@@ -147,11 +158,13 @@ project, draw, and look things up in maps — zero astronomy in the browser.
 - Opens from `file://`, no console errors, no network requests.
 - All 48 scenes render; every figure star drawn or listed as unplaced.
 - Hover/click behaviors above all work; Latin is reachable for every star.
+- Usable at phone width: below 700 px the layout stacks
+  (sky above, panel below) under the same tap-first interactions.
 - Single file, target < ~2 MB.
 - `py payloads/almagest_atlas/build.py` after a fresh `dbt build`
   reproduces the committed file byte-for-byte.
 
-## Decisions log (was: open questions)
+## Decisions log
 
 1. **Projection**: stereographic, locked — it is the "as seen from Earth,
    pointed at the figure" rendering (explained above). Hydra is the
@@ -178,3 +191,18 @@ project, draw, and look things up in maps — zero astronomy in the browser.
 8. **Interaction model** (2026-07-20): tap-first with three views —
    nothing / star focus / edge focus — because hover is not
    mobile-friendly; hover remains as desktop garnish only.
+9. **Background switch** (2026-07-20): each scene's corner carries
+   `Background: on | off`. Off douses the backdrop for shape-reading;
+   the state survives scene navigation, hidden stars leave hit-testing,
+   and a selected backdrop star is released. Zoom was weighed for the
+   same job and deliberately skipped: the switch solves it without
+   touching the fixed-camera contract, and pinch fights tap-first
+   selection — free zoom stays on the v2 queue.
+10. **Splash frieze** (2026-07-20): the index opens with the whole
+    catalogue on one thin equirectangular band — members only,
+    east to the left, right edge at RA 71°
+    (the meridian scan's minimum: 3 segments cut across 2 figures).
+    Decorative by decision; the scenes stay the only interactive sky.
+11. **Small screens** (2026-07-20): below 700 px the page stacks sky
+    over panel (dvh-aware); hover was already garnish, so touch loses
+    nothing. Tablets get the desktop layout.
