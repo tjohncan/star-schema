@@ -8,6 +8,7 @@ select
     m.seq,
     m.latin,
     m.english,
+    m.caption,
     b.ptolemy_mag,
     b.mag_qualifier,
     b.id_quality,
