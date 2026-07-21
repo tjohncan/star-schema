@@ -7,7 +7,7 @@ seeds:
       Ptolemy's 1,028 stars (verbatim copy of the museum artifact).
       One row per catalogue entry in book order;
       three real stars appear twice under two Baily numbers
-       (shared between constellations),
+      (shared between constellations),
       so `baily` keys the constellation-member entry, not the physical star.
     config:
       column_types:
@@ -42,6 +42,11 @@ seeds:
         description: "Our original English translation (CC0)."
         data_tests:
           - not_null
+      - name: caption
+        description: >
+          Our standalone picture caption (CC0): where the star sits in the
+          drawn figure, with Ptolemy's relative references resolved.
+          Figured stars only; empty for unformed.
 
   - name: almagest_constellations
     description: >

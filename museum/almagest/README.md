@@ -11,7 +11,12 @@ constellation *figure* or one of Ptolemy's 108 *unformed* stars (ἀμόρφωτ
 catalogued neighbours lying outside the figure), its sequence within that
 section, the star's **Latin description** — its anatomical place in the figure
 ("Quae est in corde et vocatur Regulus": *the one in the heart, called
-Regulus*) — and our **English translation**.
+Regulus*) — and our **English translation**. A final **caption** column
+carries our standalone picture caption: the same anatomy with every
+relative reference resolved — where Ptolemy writes "the middle of them"
+and sends you back up his list, the caption names the group outright — so
+each star reads on its own, in any order. Figured stars only; the
+unformed, never drawn, carry none.
 
 **`almagest_figures.toml`** — per-constellation figure prose and edge sets.
 Each constellation carries a short description of its overall shape and story,
@@ -43,5 +48,5 @@ not duplicated here; see the repository's [SOURCES.md](../../SOURCES.md)
 ledger. Greek terms the book left untranslated are restored as Greek
 (γλυφίδος, the arrow's notch; χηνίσκου, the goose-head stern ornament).
 
-English translations and edge sets are original work, released CC0.
-Errors are ours.
+English translations, captions, and edge sets are original work, released
+CC0. Errors are ours.
