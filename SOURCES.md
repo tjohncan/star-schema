@@ -18,12 +18,11 @@ Two kinds of content live in this repository:
 We take as little as does the job: full raw catalogues stay out of the
 repository — `scripts/prep_sources.py` documents how to retrieve them
 into `data/fetched/` (gitignored) and derives the carried extracts in
-`data/prepared/` from them. We take nothing we are unwilling to credit
-at full volume. Where an upstream states no terms,
-the ledger registers that plainly along with the community norm
-we relied on instead; where terms exist
-(citation, share-alike, commercial caveats),
-the entry quotes them so downstream users can make their own calls.
+`data/prepared/` from them. Everything taken, we cite: loudly, proudly,
+and as politely as possible. Where an upstream states no terms,
+the ledger registers that plainly and points to a community norm;
+where terms exist (citation, share-alike, commercial caveats),
+the entry quotes them so downstream users can make informed calls.
 
 **Build contract:** `dbt build` from a fresh clone does not access networks.
 Any fetch scripts are operator-side provisioning tools, not build steps.
@@ -108,8 +107,7 @@ Their Licence page (retrieved 2026-07-18) states, in part:
   Data Center CD ROM" — a CD-ROM-era note on a "preliminary" edition that
   became the de facto BSC5, openly mirrored for decades by Harvard, CDS,
   HEASARC, and planetarium software everywhere.
-  We treat the community norm as controlling
-  and carry an extract with citation.
+  We carry an extract with citation.
 - **We carry**: `data/prepared/yale_bright_star.csv` —
   identifiers (HR, HD, SAO, name fields), J2000 position, V magnitude,
   B−V, spectral type, proper motion, parallax;
@@ -164,9 +162,8 @@ Their Licence page (retrieved 2026-07-18) states, in part:
   "Last updated 2022-04-04")
   itself endeavours to link readers back to IAU/WGSN resources:
   https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt
-  ... exopla.net is the working group's own outreach domain — and
-  the IAU-CSN.txt file directs questions to starnames@exopla.net,
-  so the export is first-party.
+  ... directing questions to an address at exopla.net,
+  the working group's own outreach domain.
 - **Retrieved**: 2026-07-17 (CSV export); 2026-07-19 (txt).
 - **Terms**: No formal license found on either home. The site footer reads
   "© 2026 The Working Group on Star Names (WGSN) of the International
