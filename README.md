@@ -2,13 +2,15 @@
 
 *Curating scientific information, with modern data tech.*
 
-A map of the stars, kept in a dimensional star schema.
-This repository curates astronomy's reference data
+A map of stars, kept in a dimensional star schema.
+This repository gathers astronomy's hottest & brightest data
 into a small, reproducible [DuckDB](https://duckdb.org) warehouse
-modeled with [dbt](https://www.getdbt.com): the constellations and their boundaries,
-the bright stars and their names.
+modeled with [dbt](https://www.getdbt.com): the constellations and their shapes,
+stellar traits and names.
 Seeds declare facts with provenance, models derive everything else,
 and tests pin the numbers to uphold our sky's integrity.
+
+[tjohncan.github.io/star-schema/](https://tjohncan.github.io/star-schema/)
 
 ## The museum
 
@@ -92,13 +94,13 @@ import duckdb
 print(duckdb.connect('dev.duckdb').sql('show all tables'))
 ```
 
-Then, for the sky itself:
+Then, to see the sky:
 
 ```bash
 python payloads/almagest_atlas/build.py   # writes payloads/almagest_atlas/index.html
 ```
 
-and open `index.html` in a browser.
+... and open `index.html` in a browser.
 
 ## Licensing & provenance
 
