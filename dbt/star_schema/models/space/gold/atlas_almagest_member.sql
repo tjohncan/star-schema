@@ -24,8 +24,9 @@ select
              case when b.hip is not null then 'hip' else 'baily' end) as name_tier,
     s.proper_name,
     s.sp_type,
+    -- full precision: rounding is presentation, and a rounded distance ties
     case when b.plx_mas is not null and b.plx_mas >= 1.0
-         then round(1000.0 / b.plx_mas, 1) end as dist_pc,
+         then 1000.0 / b.plx_mas end as dist_pc,
     b.ra_deg_j2000 is not null as is_placed,
     w.origin as name_origin,
     w.language as name_language

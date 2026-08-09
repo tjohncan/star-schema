@@ -3,6 +3,8 @@
 -- Camera: unit-vector centroid of the placed figure stars (safe across the
 -- RA 0/360 wrap); fov = twice the maximal member offset x 1.3 margin,
 -- floored at 12 degrees for the tiny figures (Sagitta, Equuleus).
+-- Nearest/farthest rank on the full-precision distance: at display precision
+-- Arcturus and Muphrid both read 11.3 pc, and arg_min would pick by scan order.
 with members as (
     select * from {{ ref('atlas_almagest_member') }}
 ),

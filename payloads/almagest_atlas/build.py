@@ -53,7 +53,7 @@ def main():
                round(ra_deg, 4) as ra, round(dec_deg, 4) as dec,
                round(vmag, 2) as v, round(b_v, 2) as bv,
                name, name_tier as tier, proper_name, sp_type,
-               dist_pc, is_placed,
+               round(dist_pc, 1) as dist_pc, is_placed,
                name_origin as origin, name_language as language
         from space.atlas_almagest_member
         order by baily
@@ -64,7 +64,8 @@ def main():
                stars_figure, stars_unformed, description,
                view_ra_deg, view_dec_deg, fov_deg, n_unplaced,
                brightest_name, brightest_vmag,
-               nearest_name, nearest_pc, farthest_name, farthest_pc
+               nearest_name, round(nearest_pc, 1) as nearest_pc,
+               farthest_name, round(farthest_pc, 1) as farthest_pc
         from space.atlas_constellation
     """)
 
