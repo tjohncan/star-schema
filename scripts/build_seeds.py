@@ -97,8 +97,9 @@ def prose(text):
 
 
 def write_csv(path, header, rows):
+    # lineterminator: csv writes CRLF on every platform; the seeds are LF.
     with open(path, "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
+        w = csv.writer(f, lineterminator="\n")
         w.writerow(header)
         w.writerows(rows)
 

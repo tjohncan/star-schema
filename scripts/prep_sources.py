@@ -225,8 +225,9 @@ def parse_wgsn():
 
 
 def write_csv(path, rows):
+    # lineterminator: csv writes CRLF on every platform; the extracts are LF.
     with open(path, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=rows[0].keys())
+        w = csv.DictWriter(f, fieldnames=rows[0].keys(), lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
 
