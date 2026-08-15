@@ -180,15 +180,32 @@ window.ATLAS = {"meta":{"schema_version":1,"title":"Almagest Atlas","counts":{"s
   const splash = document.getElementById('splash');
   const scenename = document.getElementById('scenename');
 
+  // The sky is drawn in a fixed 1000x1000 logical space: every literal below —
+  // star radii, hit-test radii, line widths, ring offsets — is a logical pixel.
+  // Only the backing store scales with the display, so none of them move.
+  const W = 1000;
+
   function fitCanvas() {
     const side = window.innerWidth <= 700
       ? Math.min(window.innerWidth, Math.floor((window.innerHeight - 52) * 0.55))
       : Math.min(window.innerHeight - 52, Math.floor(window.innerWidth * 0.56));
     canvas.style.width = side + 'px'; canvas.style.height = side + 'px';
+    // One backing pixel per device pixel, so the sky is never upscaled — on a
+    // wide monitor `side` runs well past W and the old fixed 1000 was stretched.
+    // Floored at W because the scene carries sub-pixel detail at that scale
+    // (the faintest stars are 0.7 logical px); below it we render at W and let
+    // the browser downsample, which is free supersampling.
+    // Assigning width/height also clears the canvas and resets the transform,
+    // so both are (re)applied here.
+    const dpr = window.devicePixelRatio || 1;
+    const px = Math.max(W, Math.round(side * dpr));
+    canvas.width = px; canvas.height = px;
+    ctx.setTransform(px / W, 0, 0, px / W, 0, 0);
   }
   fitCanvas();
   window.addEventListener('resize', function () {
     fitCanvas();
+    if (scene) draw();   // fitCanvas cleared the canvas; put the sky back
     if (splash.style.display !== 'none') drawBanner();
   });
 
@@ -199,7 +216,7 @@ window.ATLAS = {"meta":{"schema_version":1,"title":"Almagest Atlas","counts":{"s
   let sel = null;            // persistent selection (tap-first):
                              // {kind:'member',m} | {kind:'star',b} | {kind:'stroke',st}
   let showBg = true;         // backdrop stars on/off — survives scene changes
-  const W = canvas.width, CXp = W / 2, CYp = W / 2;
+  const CXp = W / 2, CYp = W / 2;
 
   function buildScene(i) {
     cur = i;
