@@ -105,6 +105,14 @@
             background: var(--sky); }
   #bannercap { font: 11px var(--mono); color: var(--faint);
                letter-spacing: .06em; margin-bottom: 22px; }
+  #search { display: block; width: 100%; max-width: 420px; margin-bottom: 6px;
+            background: rgba(255,255,255,.03); border: 1px solid var(--line);
+            border-radius: 4px; color: var(--text); font: 14px var(--serif);
+            padding: 8px 12px; }
+  #search:focus { outline: none; border-color: var(--accent); }
+  #search::placeholder { color: var(--faint); font-style: italic; }
+  #searchnote { font: 11px var(--mono); color: var(--faint);
+                letter-spacing: .06em; min-height: 15px; margin-bottom: 10px; }
 
   #bgtoggle { position: absolute; left: 12px; bottom: 10px; z-index: 4;
               font: 11px var(--mono); letter-spacing: .09em;
@@ -112,6 +120,9 @@
               cursor: pointer; user-select: none; }
   #bgtoggle:hover { color: var(--dim); }
   #bgtoggle span.cur { color: var(--accent); }
+  #bgtoggle span.key { text-transform: none; letter-spacing: 0; margin-left: 8px;
+                       border: 1px solid var(--line); border-radius: 3px;
+                       padding: 0 4px; color: var(--faint); }
 
   @media (max-width: 700px) {
     main { flex-direction: column; }
@@ -119,6 +130,7 @@
     #panel { min-width: 0; border-left: none; padding: 16px;
              border-top: 1px solid var(--line); }
     #scenename { display: none; }
+    #bgtoggle span.key { display: none; }   /* no keyboard to press it with */
     #splash { padding: 20px 16px; }
     #banner { height: 110px; }
   }
@@ -139,8 +151,9 @@
   <div id="skybox">
     <canvas id="sky" width="1000" height="1000"></canvas>
     <div id="tooltip"></div>
-    <div id="bgtoggle" title="show or hide the naked-eye backdrop">Background:
-      <span id="bg-on" class="cur">on</span> | <span id="bg-off">off</span></div>
+    <div id="bgtoggle" title="show or hide the naked-eye backdrop (shortcut: b)">Background:
+      <span id="bg-on" class="cur">on</span> | <span id="bg-off">off</span><span
+      class="key">b</span></div>
   </div>
   <div id="panel"></div>
 </main>
@@ -425,8 +438,10 @@ window.ATLAS = __ATLAS_JSON__;
 
   const bgOn = document.getElementById('bg-on');
   const bgOff = document.getElementById('bg-off');
-  document.getElementById('bgtoggle').addEventListener('click', function (ev) {
-    const want = ev.target === bgOn ? true : ev.target === bgOff ? false : !showBg;
+  // One implementation for the switch and the keyboard: dousing the backdrop
+  // also drops a hovered backdrop star and releases a selected one, and a
+  // second copy of that would drift.
+  function setBg(want) {
     if (want === showBg) return;
     showBg = want;
     bgOn.classList.toggle('cur', showBg);
@@ -434,6 +449,9 @@ window.ATLAS = __ATLAS_JSON__;
     if (!showBg && hover && hover.kind === 'star') hover = null;
     if (!showBg && sel && sel.kind === 'star') { clearSel(); return; }
     if (scene) draw();
+  }
+  document.getElementById('bgtoggle').addEventListener('click', function (ev) {
+    setBg(ev.target === bgOn ? true : ev.target === bgOff ? false : !showBg);
   });
 
   function ptMagText(m) {
@@ -623,6 +641,9 @@ window.ATLAS = __ATLAS_JSON__;
       '<div id="bannercap">the whole catalogue on one panoramic band of sky — ' +
       '48 figures, 1,024 of its 1,028 stars (four cannot be placed), ' +
       'east to the left</div>' +
+      '<input id="search" type="search" autocomplete="off" spellcheck="false" ' +
+      'placeholder="Find a constellation — English, Latin, or code">' +
+      '<div id="searchnote"></div>' +
       '<div id="grid">';
     A.constellations.forEach(function (c, i) {
       h += '<div class="cell" data-i="' + i + '"><div class="code">' + esc(c.code) +
@@ -635,9 +656,57 @@ window.ATLAS = __ATLAS_JSON__;
     splash.addEventListener('click', function (ev) {
       const cell = ev.target.closest('.cell');
       if (!cell) return;
-      splash.style.display = 'none';
-      buildScene(+cell.dataset.i);
+      openScene(+cell.dataset.i);
     });
+    initSearch();
+  }
+  function openScene(i) { splash.style.display = 'none'; buildScene(i); }
+
+  // ---- index search ------------------------------------------------------
+  // The 48 cells are built once and only ever toggled, so the splash keeps the
+  // single click handler attached above — re-rendering would stack duplicates.
+  // Query text never reaches innerHTML: the note is written with textContent.
+  let searchBox = null, searchNote = null, searchCells = null,
+      searchKeys = null, searchFirst = -1;
+
+  // Fold accents so a pasted "Boötes" still finds plain "Bootes" in the data.
+  function fold(s) {
+    return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  }
+
+  function initSearch() {
+    searchBox = document.getElementById('search');
+    searchNote = document.getElementById('searchnote');
+    searchCells = splash.querySelectorAll('.cell');
+    searchKeys = A.constellations.map(function (c) {
+      return fold(c.code + ' ' + c.english + ' ' + c.latin);
+    });
+    searchBox.addEventListener('input', applyFilter);
+    searchBox.addEventListener('keydown', function (ev) {
+      // Guard on the query too: with the box empty every cell "matches", so
+      // searchFirst is 0 and a bare Enter would sail off into Ursa Minor.
+      if (ev.key === 'Enter' && searchBox.value.trim() && searchFirst >= 0)
+        openScene(searchFirst);
+      // Escape is deliberately not handled here — it has one owner at the
+      // document level, so it behaves the same whether the box has focus or
+      // not. A filter you left behind is clearable without clicking into it.
+    });
+  }
+
+  function applyFilter() {
+    const raw = searchBox.value.trim(), q = fold(raw);
+    let shown = 0;
+    searchFirst = -1;
+    for (let i = 0; i < searchCells.length; i++) {
+      const hit = !q || searchKeys[i].indexOf(q) >= 0;
+      searchCells[i].style.display = hit ? '' : 'none';
+      if (hit) { shown++; if (searchFirst < 0) searchFirst = i; }
+    }
+    searchNote.textContent =
+      !q ? ''
+      : shown === 0 ? 'no constellation matches “' + raw + '”'
+      : shown === 1 ? '1 of 48 — press Enter for ' + A.constellations[searchFirst].english
+      : shown + ' of 48 — press Enter for ' + A.constellations[searchFirst].english;
   }
 
   // the splash frieze: the whole catalogue on one equirectangular band,
@@ -690,10 +759,12 @@ window.ATLAS = __ATLAS_JSON__;
   }
 
   // ---- nav ---------------------------------------------------------------
+  function showIndex(open) {
+    splash.style.display = open ? 'block' : 'none';
+    if (open) drawBanner();
+  }
   document.getElementById('showindex').onclick = function () {
-    const opening = splash.style.display === 'none';
-    splash.style.display = opening ? 'block' : 'none';
-    if (opening) drawBanner();
+    showIndex(splash.style.display === 'none');
   };
   document.getElementById('prev').onclick = function () { step(-1); };
   document.getElementById('next').onclick = function () { step(1); };
@@ -702,10 +773,39 @@ window.ATLAS = __ATLAS_JSON__;
     splash.style.display = 'none';
     buildScene((cur + d + 48) % 48);
   }
+  // Escape backs out one layer at a time, and does the same thing whether or
+  // not the search box has focus: drop the filter first, then toggle the index
+  // against the sky — the same toggle the Index button performs.
+  function escapeOut(ev) {
+    const onIndex = splash.style.display !== 'none';
+    if (onIndex && searchBox && searchBox.value) {
+      searchBox.value = '';
+      applyFilter();
+      ev.preventDefault();   // pre-empt the browser's own search-field clear
+      return;
+    }
+    showIndex(!onIndex);
+  }
+
   document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape') { escapeOut(ev); return; }   // one owner, always
+    // Otherwise the search box owns its own keys, so arrows move the caret
+    // rather than the sky.
+    if (ev.target === searchBox) return;
+    const plain = !ev.ctrlKey && !ev.metaKey && !ev.altKey;
+    // Type anywhere on the index to start searching — no click needed.
+    // Space is excluded: it belongs to the scrollbar on a page this long.
+    if (splash.style.display !== 'none' && searchBox &&
+        ev.key.length === 1 && ev.key !== ' ' && plain) {
+      searchBox.focus();   // no preventDefault: the character lands in the box
+      return;
+    }
+    // b flicks the backdrop — the shape-reading mode, toggled over and over
+    // while reading one figure. Scene-only for free: on the index the branch
+    // above has already claimed the key for the search box.
+    if ((ev.key === 'b' || ev.key === 'B') && plain) { setBg(!showBg); return; }
     if (ev.key === 'ArrowLeft') step(-1);
     else if (ev.key === 'ArrowRight') step(1);
-    else if (ev.key === 'Escape') { splash.style.display = 'block'; drawBanner(); }
   });
 
   // preload the Little Bear beneath the splash: Index and the arrow keys
