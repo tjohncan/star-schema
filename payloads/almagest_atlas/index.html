@@ -172,8 +172,9 @@ window.ATLAS = {"meta":{"schema_version":1,"title":"Almagest Atlas","counts":{"s
   const memberByKey = new Map();   // "cst:seq" -> figure member
   const membersByCst = new Map();  // cst -> [members]
   const memberByBaily = new Map(); // baily -> member
+  let nPlaced = 0;                 // the frieze caption derives its counts
   for (const m of A.members) {
-    if (m.is_placed) vec(m);
+    if (m.is_placed) { vec(m); nPlaced++; }
     if (m.member_type === 'figure') memberByKey.set(m.cst + ':' + m.seq, m);
     if (!membersByCst.has(m.cst)) membersByCst.set(m.cst, []);
     membersByCst.get(m.cst).push(m);
@@ -512,9 +513,9 @@ window.ATLAS = {"meta":{"schema_version":1,"title":"Almagest Atlas","counts":{"s
            ly(c.stats.farthest_pc) + ' ly)';
     h += '</div><div class="desc">' + esc(c.description) + '</div>';
     if (c.n_unplaced > 0)
-      h += '<div class="warn">' + c.n_unplaced +
-           ' catalogued star' + (c.n_unplaced > 1 ? 's' : '') +
-           ' could not be identified with a modern star and ' +
+      h += '<div class="warn">' + c.n_unplaced + ' catalogued entr' +
+           (c.n_unplaced > 1 ? 'ies have' : 'y has') +
+           ' no counterpart star in the modern Hipparcos catalogue, and ' +
            (c.n_unplaced > 1 ? 'are' : 'is') + ' not drawn.</div>';
     h += '<div class="section-h">Star detail</div>' +
          '<div id="detail">' + HINT + '</div>';
@@ -630,6 +631,14 @@ window.ATLAS = {"meta":{"schema_version":1,"title":"Almagest Atlas","counts":{"s
   }
 
   // ---- splash index ------------------------------------------------------
+  // The frieze caption counts what the frieze actually draws, so the prose
+  // cannot drift from the data. Spelled-out small numbers keep its voice;
+  // the locale is pinned so the thousands separator does not wander.
+  const NUMWORD = ['no', 'one', 'two', 'three', 'four',
+                   'five', 'six', 'seven', 'eight', 'nine'];
+  function numWord(n) { return NUMWORD[n] !== undefined ? NUMWORD[n] : String(n); }
+  function count(n) { return n.toLocaleString('en-US'); }
+
   function renderSplash() {
     let h = '<div class="intro"><b>Ptolemy&rsquo;s star catalogue, drawn on the real ' +
       'sky.</b> All 1,028 stars of the <i>Almagest</i> (c. 150 AD) with our English ' +
@@ -639,8 +648,9 @@ window.ATLAS = {"meta":{"schema_version":1,"title":"Almagest Atlas","counts":{"s
       'differ by less than an arcsecond — that is what parallax is.)</span> --> </div>' +
       '<canvas id="banner"></canvas>' +
       '<div id="bannercap">the whole catalogue on one panoramic band of sky — ' +
-      '48 figures, 1,024 of its 1,028 stars (four cannot be placed), ' +
-      'east to the left</div>' +
+      '48 figures, ' + count(nPlaced) + ' of its ' + count(A.members.length) +
+      ' stars (' + numWord(A.members.length - nPlaced) +
+      ' without a Hipparcos star), east to the left</div>' +
       '<input id="search" type="search" autocomplete="off" spellcheck="false" ' +
       'placeholder="Find a constellation — English, Latin, or code">' +
       '<div id="searchnote"></div>' +

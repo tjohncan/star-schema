@@ -1,6 +1,8 @@
 -- All 1,028 Almagest entries, render-ready: book text, Ptolemy's magnitude,
 -- modern astrometry and names where the bridge lands, honest nulls where it
--- cannot (is_placed = false only for the four entries V&vG left unidentified).
+-- cannot (is_placed = false only for the four entries with no Hipparcos
+-- counterpart star — most of which V&vG did identify securely, just without
+-- supplying a HIP number; see tests/atlas_placement_pinned.sql).
 select
     m.baily,
     m.constellation,

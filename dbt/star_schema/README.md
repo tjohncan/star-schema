@@ -31,7 +31,7 @@ dbt build        # seeds + models + all tests
 
 Tests pin the shape of the sky: 1,028 members, 48 constellations,
 336 strokes, every figured star captioned and drawn, the four
-unidentifiable entries and no others unplaced.
+entries with no Hipparcos counterpart star and no others unplaced.
 
 ## A taste
 

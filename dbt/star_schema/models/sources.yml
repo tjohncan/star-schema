@@ -24,7 +24,10 @@ sources:
               - unique
               - not_null
           - name: hip
-            description: "Hipparcos identifier; null where the star is unidentified."
+            description: >
+              Hipparcos identifier; null where V&vG supply none — which is not
+              the same as unidentified, since a secure identification of a
+              cluster has no single HIP star behind it. See id_quality.
           - name: id_quality
             description: "V&vG identification grade: 1–2 secure, 3 probable, 4 possible, 5 not identified, 6 repeated entry."
             data_tests:
