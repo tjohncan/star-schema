@@ -13,6 +13,34 @@ models:
           - unique
           - not_null
 
+  - name: int_wgsn_name
+    description: >
+      Each IAU proper name resolved to a Yale HR number, one name per star.
+      WGSN states an HR outright for 415 of its 597 names; the rest it
+      designates by Bayer letter (multiple-star systems) or by HD/GJ number,
+      and those are resolved here through bayer_id — against the Greek alphabet
+      seed, or as a Flamsteed number — so that Acrux and Alnitak reach the sky.
+    columns:
+      - name: proper_name
+        data_tests:
+          - unique
+          - not_null
+      - name: hr
+        description: >
+          Yale HR number. Unique by construction: where two names claim one
+          star, the one WGSN stated outright keeps it and the inferred one is
+          dropped, so Betelgeuse holds HR 2061 against its companion's name.
+        data_tests:
+          - unique
+          - not_null
+      - name: match_via
+        description: "Which route resolved it — WGSN's own HR, or our Bayer / Flamsteed inference."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['designation', 'bayer', 'flamsteed']
+
   - name: int_star_name
     description: "Naming waterfall per Yale star: proper > Bayer > Flamsteed > HR."
     columns:

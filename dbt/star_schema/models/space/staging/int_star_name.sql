@@ -1,10 +1,10 @@
 -- Best display name per Yale bright star — the naming waterfall:
 -- WGSN proper name > Bayer (greek letter + constellation) > Flamsteed > HR.
 with wgsn_by_hr as (
-    select hr, min(proper_name) as proper_name
-    from {{ ref('src_wgsn_star_name') }}
-    where hr is not null
-    group by hr
+    -- int_wgsn_name resolves the names WGSN does not state an HR for, and
+    -- guarantees one name per star; both are pinned by test, so nothing is
+    -- aggregated away here -- a collision should fail loudly, not pick one.
+    select hr, proper_name from {{ ref('int_wgsn_name') }}
 ),
 
 named as (
