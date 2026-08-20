@@ -4,6 +4,10 @@
 -- catalogue proper motions (delta-t = 8.75 yr; pmRA is mu_alpha*cos(dec)).
 -- Two binaries lack a hip_main astrometric solution and fall back to the
 -- BSC J2000 position via the HD bridge.
+-- Below both of those sits a third tier for Ptolemy's nebulous entries, which
+-- have no point source anywhere: the museum names the BSC stars that mark
+-- where the object lies, and their mean position stands in. See SOURCES.md --
+-- no coordinate is authored here, only the choice of stars.
 with cross_hip as (
     select
         x.baily, x.hip, x.id_quality, x.ptolemy_mag, x.mag_qualifier,
@@ -25,18 +29,46 @@ bridged as (
     qualify row_number() over (
         partition by c.baily order by b.vmag asc nulls last, b.hr
     ) = 1
+),
+
+-- Unit-vector mean of the declared anchors' carried J2000 places. Vectors
+-- rather than averaged angles, for the same reason atlas_constellation uses
+-- them: an arithmetic mean of right ascensions breaks across the 0/360 wrap.
+anchor_vec as (
+    select
+        p.baily,
+        avg(cos(radians(s.dec_deg_j2000)) * cos(radians(s.ra_deg_j2000))) as x,
+        avg(cos(radians(s.dec_deg_j2000)) * sin(radians(s.ra_deg_j2000))) as y,
+        avg(sin(radians(s.dec_deg_j2000))) as z
+    from {{ ref('src_almagest_placements') }} p
+    join {{ ref('src_yale_bright_star') }} s on s.hr = p.anchor_hr
+    group by p.baily
+),
+
+anchored as (
+    select
+        baily,
+        fmod(degrees(atan2(y, x)) + 360.0, 360.0) as anchor_ra,
+        degrees(asin(z / sqrt(x*x + y*y + z*z))) as anchor_dec
+    from anchor_vec
 )
 
 select
-    baily, hip, hd, hr, id_quality, ptolemy_mag, mag_qualifier,
-    vmag_hip, b_v_hip, plx_mas,
-    case when ra_deg is not null
-         then fmod(ra_deg
-                   + (coalesce(pm_ra_mas_yr, 0) * 8.75 / 3600000.0)
-                     / cos(radians(dec_deg))
+    b.baily, b.hip, b.hd, b.hr, b.id_quality, b.ptolemy_mag, b.mag_qualifier,
+    b.vmag_hip, b.b_v_hip, b.plx_mas,
+    case when b.ra_deg is not null
+         then fmod(b.ra_deg
+                   + (coalesce(b.pm_ra_mas_yr, 0) * 8.75 / 3600000.0)
+                     / cos(radians(b.dec_deg))
                    + 360.0, 360.0)
-         else bsc_ra_deg end as ra_deg_j2000,
-    case when dec_deg is not null
-         then dec_deg + coalesce(pm_de_mas_yr, 0) * 8.75 / 3600000.0
-         else bsc_dec_deg end as dec_deg_j2000
-from bridged
+         when b.bsc_ra_deg is not null then b.bsc_ra_deg
+         else a.anchor_ra end as ra_deg_j2000,
+    case when b.dec_deg is not null
+         then b.dec_deg + coalesce(b.pm_de_mas_yr, 0) * 8.75 / 3600000.0
+         when b.bsc_dec_deg is not null then b.bsc_dec_deg
+         else a.anchor_dec end as dec_deg_j2000,
+    case when b.ra_deg is not null then 'hipparcos'
+         when b.bsc_ra_deg is not null then 'bsc'
+         when a.anchor_ra is not null then 'anchors' end as placement_source
+from bridged b
+left join anchored a using (baily)

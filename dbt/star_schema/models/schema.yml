@@ -82,6 +82,17 @@ models:
       - name: name
         data_tests:
           - not_null
+      - name: placement_source
+        description: >
+          Where the position came from — Hipparcos astrometry, the BSC fallback
+          for the two binaries without a hip_main solution, or the museum's
+          anchors for the two entries that are not stars. Null when unplaced.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['hipparcos', 'bsc', 'anchors']
+      - name: placement_note
+        description: "The museum's reason an entry has no position; null where one exists."
 
   - name: atlas_constellation
     description: "One scene per Ptolemaic constellation: camera, prose, stats."

@@ -30,6 +30,8 @@ select
     case when b.plx_mas is not null and b.plx_mas >= 1.0
          then 1000.0 / b.plx_mas end as dist_pc,
     b.ra_deg_j2000 is not null as is_placed,
+    b.placement_source,
+    p.note as placement_note,
     w.origin as name_origin,
     w.language as name_language
 from {{ ref('src_almagest_stars') }} m
@@ -37,3 +39,7 @@ join {{ ref('int_star_bridge') }} b using (baily)
 left join {{ ref('atlas_star') }} s using (hr)
 left join {{ ref('src_wgsn_star_name') }} w
   on w.proper_name = s.proper_name
+-- the museum's reason an entry has no position; anchor rows carry no reason,
+-- and at most one reason row exists per entry (build_seeds.py enforces both)
+left join {{ ref('src_almagest_placements') }} p
+  on p.baily = m.baily and p.anchor_hr is null

@@ -48,6 +48,35 @@ seeds:
           drawn figure, with Ptolemy's relative references resolved.
           Figured stars only; empty for unformed.
 
+  - name: almagest_placements
+    description: >
+      What the museum knows about the entries the Hipparcos bridge cannot reach.
+      A row either names a Bright Star Catalogue star that anchors a non-point
+      entry — several per entry, averaged in int_star_bridge — or, carrying no
+      anchor, states why the entry stays unplaced. The anchors are our
+      editorial judgement about where an object sits, not a claim about which
+      stars belong to it; no coordinate is authored anywhere (see SOURCES.md).
+    config:
+      column_types:
+        baily: integer
+        anchor_hr: integer
+    columns:
+      - name: baily
+        description: "The catalogue entry this row is about."
+        data_tests:
+          - not_null
+      - name: anchor_hr
+        description: >
+          A Bright Star Catalogue star marking where the object sits.
+          Empty on the row that instead explains why an entry has no position.
+      - name: note
+        description: >
+          Why the row exists. On an anchor row, where that star sits in the
+          object; on a row without an anchor, the reason the entry cannot be
+          placed — which reaches the reader as atlas_almagest_member.placement_note.
+        data_tests:
+          - not_null
+
   - name: almagest_constellations
     description: >
       One row per Ptolemaic constellation, generated from the museum TOML —

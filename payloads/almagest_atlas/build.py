@@ -54,6 +54,7 @@ def main():
                round(vmag, 2) as v, round(b_v, 2) as bv,
                name, name_tier as tier, proper_name, sp_type,
                round(dist_pc, 1) as dist_pc, is_placed,
+               placement_source, placement_note,
                name_origin as origin, name_language as language
         from space.atlas_almagest_member
         order by baily

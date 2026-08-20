@@ -55,6 +55,41 @@ def load_stars():
     return stars, sections
 
 
+def load_placements(baily_numbers):
+    """The placement artifact: position anchors for the entries the Hipparcos
+    bridge cannot reach, and the reason for the ones that stay unplaced.
+
+    A row either names an anchor star (several per entry, averaged downstream)
+    or carries the reason no position exists — never both, for one entry.
+    Whether an entry is genuinely unreachable is a question about the carried
+    crosswalk, so dbt asks it; here we only check the artifact against itself.
+    """
+    with open(MUSEUM / "almagest_placements.csv", newline="", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    by_baily, seen = defaultdict(list), set()
+    for r in rows:
+        b, hr = r["baily"].strip(), r["anchor_hr"].strip()
+        if not b.isdigit() or int(b) not in baily_numbers:
+            fail(f"placements: {b!r} is not a catalogue entry")
+        if not r["note"].strip():
+            fail(f"placements: baily {b} has a row with no note")
+        if hr and not hr.isdigit():
+            fail(f"placements: baily {b} has a non-numeric anchor_hr {hr!r}")
+        if (b, hr) in seen:
+            fail(f"placements: duplicate row for baily {b}, anchor {hr or '-'}")
+        seen.add((b, hr))
+        by_baily[b].append(hr)
+    for b, hrs in by_baily.items():
+        anchors = [h for h in hrs if h]
+        if anchors and len(anchors) != len(hrs):
+            fail(f"placements: baily {b} mixes anchor rows with a reason row")
+        if anchors and len(anchors) < 2:
+            fail(f"placements: baily {b} has one anchor; averaging needs at least 2")
+        # At most one reason row per entry needs no check of its own: reason
+        # rows share the key (baily, ""), so a second one is a duplicate above.
+    return rows, by_baily
+
+
 def validate_figures(doc, sections):
     cons = doc.get("constellation", [])
     if len(cons) != N_CONSTELLATIONS:
@@ -109,9 +144,12 @@ def main():
     with open(MUSEUM / "almagest_figures.toml", "rb") as f:
         doc = tomllib.load(f)
     cons = validate_figures(doc, sections)
+    placements, placed_by = load_placements({int(r["baily"]) for r in stars})
 
     SEED_DIR.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(MUSEUM / "almagest_stars.csv", SEED_DIR / "almagest_stars.csv")
+    shutil.copyfile(MUSEUM / "almagest_placements.csv",
+                    SEED_DIR / "almagest_placements.csv")
 
     con_rows, stroke_rows, point_rows = [], [], []
     for c in cons:
@@ -130,8 +168,11 @@ def main():
     write_csv(SEED_DIR / "almagest_stroke_points.csv",
               ["constellation", "stroke_seq", "point_order", "seq"], point_rows)
 
+    anchored = sum(1 for hrs in placed_by.values() if any(hrs))
     print(f"validated: {len(stars)} stars | {len(cons)} constellations | "
           f"{len(stroke_rows)} strokes | {len(point_rows)} stroke points")
+    print(f"           {len(placements)} placement rows: {anchored} entries anchored, "
+          f"{len(placed_by) - anchored} left unplaced with a reason")
     print(f"seeds written to {SEED_DIR.relative_to(ROOT)}")
 
 

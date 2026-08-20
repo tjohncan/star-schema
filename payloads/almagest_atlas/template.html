@@ -512,11 +512,15 @@ window.ATLAS = __ATLAS_JSON__;
       h += ' · Farthest: <b>' + esc(c.stats.farthest) + '</b> (' +
            ly(c.stats.farthest_pc) + ' ly)';
     h += '</div><div class="desc">' + esc(c.description) + '</div>';
-    if (c.n_unplaced > 0)
-      h += '<div class="warn">' + c.n_unplaced + ' catalogued entr' +
-           (c.n_unplaced > 1 ? 'ies have' : 'y has') +
-           ' no counterpart star in the modern Hipparcos catalogue, and ' +
-           (c.n_unplaced > 1 ? 'are' : 'is') + ' not drawn.</div>';
+    // Each unplaced entry says for itself why, in the museum's words —
+    // the reasons differ.
+    const unplaced = membersByCst.get(c.code)
+      .filter(function (m) { return !m.is_placed; });
+    if (unplaced.length)
+      h += '<div class="warn">' + unplaced.map(function (m) {
+        return esc(m.caption || m.english) + ' is not drawn. ' +
+               esc(m.placement_note);
+      }).join('<br>') + '</div>';
     h += '<div class="section-h">Star detail</div>' +
          '<div id="detail">' + HINT + '</div>';
     const all = membersByCst.get(c.code);
@@ -559,6 +563,10 @@ window.ATLAS = __ATLAS_JSON__;
     if (m.bv != null) bits.push('B−V ' + m.bv.toFixed(2));
     if (m.dist_pc != null) bits.push('<b>' + ly(m.dist_pc) + ' light-years</b>');
     if (bits.length) h += '<div class="row">' + bits.join(' · ') + '</div>';
+    if (m.placement_source === 'anchors')
+      h += '<div class="row">Ptolemy recorded a cloud here, not a star. ' +
+           'Drawn at the mean position of the nearby catalogue stars that ' +
+           'mark it.</div>';
     if (m.origin)
       h += '<div class="origin"><b>' + esc(m.proper_name) + '</b> — ' +
            esc(m.origin) + (m.language ? ' (' + esc(m.language) + ')' : '') +
