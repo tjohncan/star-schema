@@ -43,6 +43,19 @@
   .viewline { font: 12px var(--mono); color: var(--dim); margin: 10px 0;
               padding: 8px 10px; border-left: 2px solid var(--accent);
               background: rgba(143,184,232,.05); }
+  /* block, not inline-block: an inline box would inherit the panel's 23px
+     line strut for 15px of content. fit-content shrink-wraps it; where that
+     is unsupported it falls back to a full-width row, which looks the same. */
+  .copylink { display: block; width: fit-content; margin: 0 0 12px;
+              font: 11px/1.7 var(--mono); letter-spacing: .09em;
+              text-transform: uppercase; color: var(--faint);
+              text-decoration: none; cursor: pointer; }
+  .copylink:hover { color: var(--dim); }
+  .copylink.done .lbl { color: var(--accent-2); }
+  .copylink .frag { text-transform: none; letter-spacing: 0; margin-right: 9px;
+                    border: 1px solid var(--line); border-radius: 3px;
+                    padding: 0 5px; color: var(--accent); }
+  .copylink:hover .frag { border-color: var(--accent); }
   .stats { font-size: 13.5px; color: var(--dim); margin-bottom: 14px; }
   .stats b { color: var(--text); font-weight: normal; }
   .desc { margin: 14px 0 18px; }
@@ -55,6 +68,14 @@
   .star-list .item.unplaced { font-style: italic; color: var(--faint); }
   .star-list .item.unplaced:hover { color: var(--accent-2); }
   #detail .unplaced-note { color: var(--accent-2); margin-top: 8px; }
+  #detail .elsewhere { margin-top: 6px; }
+  #detail .go { display: block; padding: 6px 0 5px; cursor: pointer;
+                border-top: 1px solid var(--line); }
+  #detail .go:first-child { border-top: none; }
+  #detail .go .nm { color: var(--accent); }
+  #detail .go .nm::after { content: ' \2192'; color: var(--faint); }
+  #detail .go:hover .nm { color: var(--accent-2); }
+  #detail .go .cap { display: block; color: var(--dim); font-size: 13.5px; }
   .warn { color: var(--accent-2); font-size: 13px; }
 
   #detail { border: 1px solid var(--line); border-radius: 6px;
@@ -183,6 +204,19 @@ window.ATLAS = __ATLAS_JSON__;
     membersByCst.get(m.cst).push(m);
     memberByBaily.set(m.baily, m);
   }
+  // A star in one scene's backdrop is very often a catalogued member of
+  // another -- 1,021 of the 9,096 are. That deserves a door rather than the
+  // dead end "not in Ptolemy's list for this figure", which was only ever
+  // true of the figure you happened to be looking at.
+  const membersByHr = new Map();
+  for (const m of A.members)
+    if (m.hr != null) {
+      if (!membersByHr.has(m.hr)) membersByHr.set(m.hr, []);
+      membersByHr.get(m.hr).push(m);
+    }
+  const sceneIndex = new Map();
+  A.constellations.forEach(function (c, i) { sceneIndex.set(c.code, i); });
+
   function vec(o) {
     const d = o.dec * R, r = o.ra * R;
     o._x = Math.cos(d) * Math.cos(r); o._y = Math.cos(d) * Math.sin(r);
@@ -515,6 +549,7 @@ window.ATLAS = __ATLAS_JSON__;
       '<div class="viewline">Looking from the Sun toward RA ' +
       c.view.ra.toFixed(1) + '°, Dec ' + (c.view.dec >= 0 ? '+' : '') +
       c.view.dec.toFixed(1) + '° — field ' + c.view.fov.toFixed(0) + '°</div>' +
+      copyLinkHtml(c.code) +
       '<div class="stats">Brightest: <b>' + esc(c.stats.brightest) + '</b> (V ' +
       c.stats.brightest_v.toFixed(2) + ')';
     if (c.stats.nearest_pc != null)
@@ -589,6 +624,11 @@ window.ATLAS = __ATLAS_JSON__;
     else if (m.placement_source === 'cluster')
       h += '<div class="row">' + esc(m.placement_note) +
            ' Drawn at that object&rsquo;s own catalogued position.</div>';
+    // three stars carry two Baily numbers, shared between figures
+    const also = elsewhereFor(m.hr, m.baily);
+    if (also.length)
+      h += '<div class="row">Ptolemy counted this star twice — it is also in:</div>' +
+           doorsHtml(also);
     if (m.origin)
       h += '<div class="origin"><b>' + esc(m.proper_name) + '</b> — ' +
            esc(m.origin) + (m.language ? ' (' + esc(m.language) + ')' : '') +
@@ -641,7 +681,19 @@ window.ATLAS = __ATLAS_JSON__;
     });
   }
   panel.addEventListener('click', function (ev) {
+    const cl = ev.target.closest('.copylink');
+    if (cl) {
+      // Only the plain click is ours. A modifier click belongs to the browser
+      // -- ctrl/cmd opens a tab, shift a window, alt saves it -- and it is a
+      // real anchor, so letting it through lands on the scene it names. A
+      // keyboard Enter arrives here as button 0 with no modifiers, so that
+      // still copies.
+      if (ev.button || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+      ev.preventDefault(); copyLink(cl); return;
+    }
     if (!scene) return;
+    const go = ev.target.closest('.go');
+    if (go) { goToMember(memberByBaily.get(+go.dataset.baily)); return; }
     const chip = ev.target.closest('.edge-chip');
     if (chip) { selectStroke(scene.strokes[+chip.dataset.stroke]); return; }
     const it = ev.target.closest('[data-baily]');
@@ -650,14 +702,38 @@ window.ATLAS = __ATLAS_JSON__;
       if (m) selectMember(m);
     }
   });
+  // Where else Ptolemy filed this star. Entries in the scene on screen are
+  // excluded -- those are drawn here already and need no door.
+  function elsewhereFor(hr, exceptBaily) {
+    return (membersByHr.get(hr) || []).filter(function (m) {
+      return m.baily !== exceptBaily && (!scene || m.cst !== scene.c.code);
+    });
+  }
+  function doorsHtml(ms) {
+    return '<div class="elsewhere">' + ms.map(function (m) {
+      const c = A.constellations[sceneIndex.get(m.cst)];
+      return '<span class="go" data-baily="' + m.baily + '">' +
+        '<span class="nm">' + esc(c ? c.english : m.cst) + '</span>' +
+        '<span class="cap">' + esc(m.caption || m.english) + '</span></span>';
+    }).join('') + '</div>';
+  }
+
   function renderStarDetail(s) {
     const d = document.getElementById('detail');
-    d.innerHTML = '<h3>' + esc(s.name) + '</h3>' +
-      '<div class="keys">HR ' + s.hr + (s.cst ? ' · ' + esc(s.cst) : '') + '</div>' +
-      '<div class="row">Backdrop star — in the Bright Star Catalogue but not in ' +
-      'Ptolemy&rsquo;s list for this figure.' +
-      (s.v != null ? ' · V <b>' + s.v.toFixed(2) + '</b>' : '') +
-      (s.bv != null ? ' · B−V ' + s.bv.toFixed(2) : '') + '</div>';
+    let h = '<h3>' + esc(s.name) + '</h3>' +
+      '<div class="keys">HR ' + s.hr + (s.cst ? ' · ' + esc(s.cst) : '') + '</div>';
+    const doors = elsewhereFor(s.hr, null);
+    h += doors.length
+      ? '<div class="row">Ptolemy did catalogue this star — not in this figure, ' +
+        (doors.length > 1 ? 'but in these:' : 'but in this one:') +
+        '</div>' + doorsHtml(doors)
+      : '<div class="row">Backdrop star — in the Bright Star Catalogue, but ' +
+        'nowhere in Ptolemy&rsquo;s list.</div>';
+    const bits = [];
+    if (s.v != null) bits.push('V <b>' + s.v.toFixed(2) + '</b>');
+    if (s.bv != null) bits.push('B−V ' + s.bv.toFixed(2));
+    if (bits.length) h += '<div class="row">' + bits.join(' · ') + '</div>';
+    d.innerHTML = h;
   }
 
   // ---- splash index ------------------------------------------------------
@@ -701,6 +777,86 @@ window.ATLAS = __ATLAS_JSON__;
     initSearch();
   }
   function openScene(i) { splash.style.display = 'none'; buildScene(i); }
+
+  // Walk through a door: build the scene, then select the star you came for.
+  function goToMember(m) {
+    if (!m || !sceneIndex.has(m.cst)) return;
+    openScene(sceneIndex.get(m.cst));
+    selectMember(m);
+    panel.scrollTop = 0;   // the detail card sits high; don't land below it
+  }
+
+  // ---- link to this view -------------------------------------------------
+  // The address bar is a door, not a diary. #Ori opens Orion on the way in and
+  // nothing afterwards rewrites it, so browsing stacks no history and Back
+  // still means leave rather than undo the last forty clicks. The price of
+  // staying quiet is that the bar goes stale the moment you move, so the link
+  // is never read back out of it: it is built from the scene on screen and
+  // handed over on request. This button is the request, and printing the
+  // fragment on its face is how the trick stops being a secret you had to be
+  // told.
+  function urlFor(code) { return location.href.split('#')[0] + '#' + code; }
+  // esc() guards element text; an attribute value must also survive its quotes.
+  function escAttr(t) { return esc(t).replace(/"/g, '&quot;'); }
+  const COPY_LABEL = 'Copy link to this view';
+  function copyLinkHtml(code) {
+    // The fragment leads: every code is three letters, so in a monospace face
+    // it is a fixed-width anchor that keeps the label's flash from shoving the
+    // line around, and it lines up under the view line above it.
+    return '<a class="copylink" href="' + escAttr(urlFor(code)) +
+      '" title="copy a direct link to this view"><span class="frag">#' +
+      esc(code) + '</span><span class="lbl">' + COPY_LABEL + '</span></a>';
+  }
+
+  // The async clipboard where the browser grants it, the old selection trick
+  // where it does not -- a copy opened straight off disk gets no permission
+  // prompt to fall back on. Always resolves, to whether the text landed.
+  function legacyCopy(t) {
+    const ta = document.createElement('textarea');
+    ta.value = t;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed; top:-200px; opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    if (ta.setSelectionRange) ta.setSelectionRange(0, t.length);   // iOS wants this
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+  function copyText(t) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(t)
+        .then(function () { return true; })
+        .catch(function () { return legacyCopy(t); });
+    }
+    return Promise.resolve(legacyCopy(t));
+  }
+  let copyTimer = 0;
+  function copyLink(el) {
+    // Read the href back rather than rebuilding it: whatever the anchor
+    // carries is what a right-click would have yielded, so both routes to
+    // the link agree byte for byte.
+    copyText(el.getAttribute('href')).then(function (ok) {
+      // Failure is not a dead end -- it is a real anchor holding the real
+      // URL, so the browser's own right-click still gets you the link.
+      flash(el, ok ? 'Link copied' : 'Right-click to copy', ok);
+    });
+  }
+  function flash(el, msg, ok) {
+    const lbl = el.querySelector('.lbl');
+    if (lbl) lbl.textContent = msg;
+    el.classList.toggle('done', !!ok);
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function () {
+      // The panel may have been rebuilt since; reset whatever is there now.
+      const now = panel.querySelector('.copylink');
+      if (!now) return;
+      const l = now.querySelector('.lbl');
+      if (l) l.textContent = COPY_LABEL;
+      now.classList.remove('done');
+    }, 1800);
+  }
 
   // ---- index search ------------------------------------------------------
   // The 48 cells are built once and only ever toggled, so the splash keeps the
@@ -848,10 +1004,14 @@ window.ATLAS = __ATLAS_JSON__;
     else if (ev.key === 'ArrowRight') step(1);
   });
 
-  // preload the Little Bear beneath the splash: Index and the arrow keys
-  // then have somewhere to go from the very first click
-  buildScene(0);
+  // Preload the Little Bear beneath the splash so Index and the arrow keys
+  // have somewhere to go from the very first click -- unless a link named a
+  // scene, which is the one and only moment the URL is consulted.
+  const linked = decodeURIComponent(location.hash.slice(1));
+  const deep = sceneIndex.has(linked) ? sceneIndex.get(linked) : -1;
+  buildScene(deep >= 0 ? deep : 0);
   renderSplash();
+  if (deep >= 0) showIndex(false);   // arrived by link: go straight to the sky
 })();
 </script>
 </body>
