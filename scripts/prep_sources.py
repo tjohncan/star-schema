@@ -6,10 +6,12 @@ write deterministically, exit nonzero touching no output on any violation.
 Reads   data/fetched/vvg_almagest/ptolema.dat   (CDS J/A+A/544/A31)
         data/fetched/yale_bsc5/ybsc5.gz         (Yale BSC5, Harvard TDC copy)
         data/fetched/hipparcos/hip_main.dat     (CDS I/239, ESA 1997)
+        data/fetched/harris_gc/mwgc.dat         (Harris 1996 (2010 edition))
         data/fetched/wgsn/iau_csn.csv           (IAU WGSN catalog: manual export)
 Writes  data/prepared/vvg_almagest_crosswalk.csv
         data/prepared/yale_bright_star.csv
         data/prepared/hipparcos_almagest.csv    (thin slice: crosswalk HIPs only)
+        data/prepared/globular_cluster.csv      (one row)
         data/prepared/wgsn_star_name.csv
 
 data/fetched/ is gitignored: inputs are provisioned by the operator, never by
@@ -37,6 +39,7 @@ CANONICAL = [
     ("yale_bsc5/ybsc5.gz", "http://tdc-www.harvard.edu/catalogs/ybsc5.gz"),
     ("hipparcos/ReadMe", "https://cdsarc.cds.unistra.fr/ftp/I/239/ReadMe"),
     ("hipparcos/hip_main.dat", "https://cdsarc.cds.unistra.fr/ftp/I/239/hip_main.dat"),
+    ("harris_gc/mwgc.dat", "https://physics.mcmaster.ca/~harris/mwgc.dat"),
     ("wgsn/iau_csn.csv",
      "MANUAL: export by hand from "
      "https://exopla.net/star-names/modern-iau-star-names/ — set the table "
@@ -47,6 +50,12 @@ CANONICAL = [
 # Shared stars: Ptolemy catalogues three stars twice (two Baily numbers each);
 # the crosswalk must map both entries of a pair to the same HIP star.
 SHARED_STARS = {25428: (230, 400), 76041: (96, 147), 113368: (670, 1011)}
+
+# Clusters the museum places an Almagest entry on, by their Harris identifier.
+# Carried thin, the same way the Hipparcos slice carries only the crosswalk's
+# stars. A dbt test closes the loop from the museum side, so a cluster named
+# there and missing here fails the build rather than silently going unplaced.
+CARRIED_CLUSTERS = ["NGC 5139"]   # omega Centauri -- Ptolemy's Baily 955
 
 
 def fail(msg):
@@ -224,6 +233,54 @@ def parse_wgsn():
     return rows
 
 
+def parse_globular_clusters():
+    """Thin slice of Harris: position and integrated magnitude for the clusters
+    the museum places an entry on. Part I of the catalogue carries J2000
+    positions, Part II the integrated V of the whole cluster -- which is what
+    the eye sees, and so what the atlas should size the object by."""
+    want, pos, phot, part = set(CARRIED_CLUSTERS), {}, {}, 0
+    with open(require("harris_gc/mwgc.dat"), encoding="latin-1") as f:
+        for line in f:
+            # the three parts repeat the same identifiers, so track which
+            # section we are in; the table of contents shouts PART I in caps
+            # and does not collide with these
+            for n, tag in ((1, "Part I:"), (2, "Part II:"), (3, "Part III:")):
+                if tag in line:
+                    part = n
+                    break
+            else:
+                cid = line[:11].strip()
+                if cid not in want:
+                    continue
+                if part == 1:
+                    f_ = line[25:].split()
+                    ra = 15 * (int(f_[0]) + int(f_[1]) / 60 + float(f_[2]) / 3600)
+                    dec = abs(int(f_[3])) + int(f_[4]) / 60 + float(f_[5]) / 3600
+                    if f_[3].startswith("-"):
+                        dec = -dec
+                    pos[cid] = (line[11:25].strip(), round(ra, 6), round(dec, 6))
+                elif part == 2:
+                    phot[cid] = float(line[11:].split()[5])
+    missing = sorted(want - set(pos))
+    if missing:
+        fail(f"globulars: not found in Harris Part I: {missing}")
+    rows = []
+    for cid in CARRIED_CLUSTERS:
+        name, ra, dec = pos[cid]
+        if not (0 <= ra < 360 and -90 <= dec <= 90):
+            fail(f"globulars: {cid} position out of range")
+        rows.append({"cluster_id": cid, "name": name or None,
+                     "ra_deg_j2000": ra, "dec_deg_j2000": dec,
+                     "vmag": phot.get(cid)})
+    by_id = {r["cluster_id"]: r for r in rows}
+    w = by_id.get("NGC 5139")
+    if not w or w["name"] != "omega Cen" or not (3.5 < w["vmag"] < 3.9):
+        fail("globulars: NGC 5139 should be omega Cen at V~3.7")
+    if not (201.0 < w["ra_deg_j2000"] < 202.5 and -48.0 < w["dec_deg_j2000"] < -47.0):
+        fail("globulars: NGC 5139 position implausible")
+    return rows
+
+
 def write_csv(path, rows):
     # lineterminator: csv writes CRLF on every platform; the extracts are LF.
     with open(path, "w", newline="", encoding="utf-8") as f:
@@ -239,11 +296,13 @@ def main():
     bright = parse_bright_stars()
     hip_slice, no_pos = parse_hipparcos(r["hip"] for r in crosswalk if r["hip"])
     names = parse_wgsn()
+    clusters = parse_globular_clusters()
 
     PREPARED.mkdir(parents=True, exist_ok=True)
     write_csv(PREPARED / "vvg_almagest_crosswalk.csv", crosswalk)
     write_csv(PREPARED / "yale_bright_star.csv", bright)
     write_csv(PREPARED / "hipparcos_almagest.csv", hip_slice)
+    write_csv(PREPARED / "globular_cluster.csv", clusters)
     write_csv(PREPARED / "wgsn_star_name.csv", names)
 
     no_hip = sum(r["hip"] is None for r in crosswalk)
@@ -252,7 +311,8 @@ def main():
           f"bright stars {len(bright)} rows (14 ghosts)")
     print(f"           hipparcos slice {len(hip_slice)} stars "
           f"({len(no_pos)} without astrometry: {no_pos}) ({no_hd} without HD)")
-    print(f"           wgsn {len(names)} proper names")
+    print(f"           globulars {len(clusters)} carried ({', '.join(CARRIED_CLUSTERS)}) | "
+          f"wgsn {len(names)} proper names")
     print(f"prepared extracts written to {PREPARED.relative_to(ROOT)}")
 
 

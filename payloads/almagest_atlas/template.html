@@ -567,6 +567,9 @@ window.ATLAS = __ATLAS_JSON__;
       h += '<div class="row">Ptolemy recorded a cloud here, not a star. ' +
            'Drawn at the mean position of the nearby catalogue stars that ' +
            'mark it.</div>';
+    else if (m.placement_source === 'cluster')
+      h += '<div class="row">' + esc(m.placement_note) +
+           ' Drawn at that object&rsquo;s own catalogued position.</div>';
     if (m.origin)
       h += '<div class="origin"><b>' + esc(m.proper_name) + '</b> — ' +
            esc(m.origin) + (m.language ? ' (' + esc(m.language) + ')' : '') +
@@ -658,7 +661,7 @@ window.ATLAS = __ATLAS_JSON__;
       '<div id="bannercap">the whole catalogue on one panoramic band of sky — ' +
       '48 figures, ' + count(nPlaced) + ' of its ' + count(A.members.length) +
       ' stars (' + numWord(A.members.length - nPlaced) +
-      ' without a Hipparcos star), east to the left</div>' +
+      ' we cannot place), east to the left</div>' +
       '<input id="search" type="search" autocomplete="off" spellcheck="false" ' +
       'placeholder="Find a constellation — English, Latin, or code">' +
       '<div id="searchnote"></div>' +

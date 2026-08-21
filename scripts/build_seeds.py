@@ -2,10 +2,12 @@
 
 Reads   museum/almagest/almagest_stars.csv      (authoritative, hand-reviewed)
         museum/almagest/almagest_figures.toml   (authoritative, hand-edited)
+        museum/almagest/almagest_placements.csv (authoritative, hand-edited)
 Writes  dbt/star_schema/seeds/almagest/almagest_stars.csv          (verbatim copy)
         dbt/star_schema/seeds/almagest/almagest_constellations.csv (from TOML)
         dbt/star_schema/seeds/almagest/almagest_strokes.csv        (from TOML)
         dbt/star_schema/seeds/almagest/almagest_stroke_points.csv  (from TOML)
+        dbt/star_schema/seeds/almagest/almagest_placements.csv     (verbatim copy)
 
 Validates the full artifact contract before writing anything; exits nonzero,
 touching no output file, on any violation. Deterministic: rerunning on an
@@ -56,11 +58,12 @@ def load_stars():
 
 
 def load_placements(baily_numbers):
-    """The placement artifact: position anchors for the entries the Hipparcos
-    bridge cannot reach, and the reason for the ones that stay unplaced.
+    """The placement artifact: how the entries the Hipparcos bridge cannot
+    reach are placed instead, or why they cannot be placed at all.
 
-    A row either names an anchor star (several per entry, averaged downstream)
-    or carries the reason no position exists — never both, for one entry.
+    A row is one of three kinds: it names anchor stars (several per entry,
+    averaged downstream), or it names a cluster the entry is placed from, or
+    it carries the reason no position exists at all. One entry gets one kind.
     Whether an entry is genuinely unreachable is a question about the carried
     crosswalk, so dbt asks it; here we only check the artifact against itself.
     """
@@ -68,25 +71,30 @@ def load_placements(baily_numbers):
         rows = list(csv.DictReader(f))
     by_baily, seen = defaultdict(list), set()
     for r in rows:
-        b, hr = r["baily"].strip(), r["anchor_hr"].strip()
+        b, hr, cid = (r["baily"].strip(), r["anchor_hr"].strip(),
+                      r["cluster_id"].strip())
         if not b.isdigit() or int(b) not in baily_numbers:
             fail(f"placements: {b!r} is not a catalogue entry")
         if not r["note"].strip():
             fail(f"placements: baily {b} has a row with no note")
+        if hr and cid:
+            fail(f"placements: baily {b} names both an anchor star and a cluster")
         if hr and not hr.isdigit():
             fail(f"placements: baily {b} has a non-numeric anchor_hr {hr!r}")
-        if (b, hr) in seen:
-            fail(f"placements: duplicate row for baily {b}, anchor {hr or '-'}")
-        seen.add((b, hr))
-        by_baily[b].append(hr)
-    for b, hrs in by_baily.items():
-        anchors = [h for h in hrs if h]
-        if anchors and len(anchors) != len(hrs):
-            fail(f"placements: baily {b} mixes anchor rows with a reason row")
+        if (b, hr, cid) in seen:
+            fail(f"placements: duplicate row for baily {b}, anchor {hr or '-'}, "
+                 f"cluster {cid or '-'}")
+        seen.add((b, hr, cid))
+        by_baily[b].append("anchor" if hr else "cluster" if cid else "reason")
+    for b, kinds in by_baily.items():
+        anchors = [k for k in kinds if k == "anchor"]
+        if anchors and len(anchors) != len(kinds):
+            fail(f"placements: baily {b} mixes anchor rows with another kind")
         if anchors and len(anchors) < 2:
             fail(f"placements: baily {b} has one anchor; averaging needs at least 2")
-        # At most one reason row per entry needs no check of its own: reason
-        # rows share the key (baily, ""), so a second one is a duplicate above.
+        if not anchors and len(kinds) != 1:
+            fail(f"placements: baily {b} carries {len(kinds)} non-anchor rows, "
+                 f"expected 1 — an entry is placed one way or not at all")
     return rows, by_baily
 
 
@@ -168,11 +176,12 @@ def main():
     write_csv(SEED_DIR / "almagest_stroke_points.csv",
               ["constellation", "stroke_seq", "point_order", "seq"], point_rows)
 
-    anchored = sum(1 for hrs in placed_by.values() if any(hrs))
+    kinds = Counter(k for ks in placed_by.values() for k in set(ks))
     print(f"validated: {len(stars)} stars | {len(cons)} constellations | "
           f"{len(stroke_rows)} strokes | {len(point_rows)} stroke points")
-    print(f"           {len(placements)} placement rows: {anchored} entries anchored, "
-          f"{len(placed_by) - anchored} left unplaced with a reason")
+    print(f"           {len(placements)} placement rows over {len(placed_by)} entries: "
+          f"{kinds['anchor']} anchored, {kinds['cluster']} from a cluster, "
+          f"{kinds['reason']} unplaced with a reason")
     print(f"seeds written to {SEED_DIR.relative_to(ROOT)}")
 
 

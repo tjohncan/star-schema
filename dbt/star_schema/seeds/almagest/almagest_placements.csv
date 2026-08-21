@@ -1,9 +1,9 @@
-baily,anchor_hr,note
-191,654,Nearest the core of h Persei
-191,662,"7 Persei, east of h Persei's core"
-191,696,"10 Persei, out toward χ Persei"
-233,,Verbunt & van Gent could not identify it with any modern star.
-449,3427,"39 Cancri, on the Manger's preceding edge"
-449,3428,Nearest the centre of the cloud
-449,3429,"Meleph, the brightest of the three"
-955,,"Verbunt & van Gent identify it with ω Centauri (2012, sect. 5.4) — a globular cluster of millions of stars, which Ptolemy recorded as an ordinary star of the fifth magnitude. Its own stars fall far below the Bright Star Catalogue's limit, so nothing carried here can place it."
+baily,anchor_hr,cluster_id,note
+191,654,,Nearest the core of h Persei
+191,662,,"7 Persei, east of h Persei's core"
+191,696,,"10 Persei, out toward χ Persei"
+233,,,Verbunt & van Gent could not identify it with any modern star.
+449,3427,,"39 Cancri, on the Manger's preceding edge"
+449,3428,,Nearest the centre of the cloud
+449,3429,,"Meleph, the brightest of the three"
+955,,NGC 5139,"Verbunt & van Gent identify it with ω Centauri (2012, sect. 5.4) — a globular cluster of millions of stars, which Ptolemy recorded as an ordinary star of the fifth magnitude."

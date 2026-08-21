@@ -68,6 +68,25 @@ sources:
               - unique
               - not_null
 
+      - name: globular_cluster
+        description: >
+          Thin slice of Harris (1996, 2010 edition): position and integrated
+          magnitude for the globular clusters the museum places an Almagest
+          entry on. One row today — NGC 5139, ω Centauri, which Ptolemy
+          catalogued as an ordinary star. Terms and citation in SOURCES.md.
+        columns:
+          - name: cluster_id
+            description: "Harris identifier, the key the museum names a cluster by."
+            data_tests:
+              - unique
+              - not_null
+          - name: ra_deg_j2000
+            data_tests:
+              - not_null
+          - name: dec_deg_j2000
+            data_tests:
+              - not_null
+
       - name: yale_bright_star
         description: >
           Yale Bright Star Catalogue, 5th revised edition (Hoffleit & Warren 1991)

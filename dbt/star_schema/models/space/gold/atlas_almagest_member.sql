@@ -19,7 +19,7 @@ select
     b.hr,
     b.ra_deg_j2000 as ra_deg,
     b.dec_deg_j2000 as dec_deg,
-    coalesce(s.vmag, b.vmag_hip) as vmag,
+    coalesce(s.vmag, b.vmag_hip, b.vmag_cluster) as vmag,
     coalesce(s.b_v, b.b_v_hip) as b_v,
     coalesce(s.name, 'HIP ' || b.hip, 'Baily ' || m.baily) as name,
     coalesce(s.name_tier,
@@ -39,7 +39,9 @@ join {{ ref('int_star_bridge') }} b using (baily)
 left join {{ ref('atlas_star') }} s using (hr)
 left join {{ ref('src_wgsn_star_name') }} w
   on w.proper_name = s.proper_name
--- the museum's reason an entry has no position; anchor rows carry no reason,
--- and at most one reason row exists per entry (build_seeds.py enforces both)
+-- the museum's note on an entry the bridge cannot reach: what the object is
+-- where we place it another way, or why we cannot place it at all. Anchor rows
+-- are excluded, and an entry has at most one such row (build_seeds.py enforces
+-- both), so this join can neither miss one nor fan out.
 left join {{ ref('src_almagest_placements') }} p
   on p.baily = m.baily and p.anchor_hr is null

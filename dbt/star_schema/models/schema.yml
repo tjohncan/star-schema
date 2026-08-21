@@ -85,14 +85,19 @@ models:
       - name: placement_source
         description: >
           Where the position came from — Hipparcos astrometry, the BSC fallback
-          for the two binaries without a hip_main solution, or the museum's
-          anchors for the two entries that are not stars. Null when unplaced.
+          for the two binaries without a hip_main solution, a cluster's own
+          carried entry, or the mean of the museum's anchor stars for an object
+          with no catalogue entry of its own. Null when unplaced.
         data_tests:
           - accepted_values:
               arguments:
-                values: ['hipparcos', 'bsc', 'anchors']
+                values: ['hipparcos', 'bsc', 'cluster', 'anchors']
       - name: placement_note
-        description: "The museum's reason an entry has no position; null where one exists."
+        description: >
+          The museum's note on an entry the star bridge cannot reach — what the
+          object is where we place it another way, or why we cannot place it at
+          all. Null everywhere else, including for the entries placed from
+          anchor stars, whose rows carry no note of this kind.
 
   - name: atlas_constellation
     description: "One scene per Ptolemaic constellation: camera, prose, stats."
