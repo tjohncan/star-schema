@@ -52,6 +52,9 @@
   .star-list .item { cursor: pointer; white-space: nowrap; }
   .star-list .item:hover { color: var(--accent); }
   .star-list .item.sel { color: var(--accent-2); }
+  .star-list .item.unplaced { font-style: italic; color: var(--faint); }
+  .star-list .item.unplaced:hover { color: var(--accent-2); }
+  #detail .unplaced-note { color: var(--accent-2); margin-top: 8px; }
   .warn { color: var(--accent-2); font-size: 13px; }
 
   #detail { border: 1px solid var(--line); border-radius: 6px;
@@ -261,9 +264,18 @@ window.ATLAS = __ATLAS_JSON__;
       const p = project(m);
       if (p) members.push({ px: p[0], py: p[1], m: m });
     }
+    // Backdrop density: one fixed magnitude cut cannot serve both ends of the
+    // catalogue -- it leaves Hydra's 150-degree scene a wall of 3,600 points
+    // and the Northern Crown nearly bare. So the cut follows the field. At the
+    // tightest scenes it sits at 6.5, the Bright Star Catalogue's own nominal
+    // limit, which keeps the complete naked-eye sky and drops only the
+    // scattered fainter extras; the widest scenes lose what was crowding them.
+    // Ptolemy's own stars are never subject to it -- they are the subject.
+    const magLimit = 6.5 - 1.8 * Math.log10(c.view.fov / 12);
     const backdrop = [];
     for (const s of A.stars) {
       if (memberHRs.has(s.hr)) continue;
+      if (s.v != null && s.v > magLimit) continue;
       if (s._x * cx + s._y * cy + s._z * cz < reach) continue;
       const p = project(s);
       if (p && p[0] > -30 && p[0] < W + 30 && p[1] > -30 && p[1] < W + 30)
@@ -537,8 +549,12 @@ window.ATLAS = __ATLAS_JSON__;
     'or pick any name below. Tap empty sky to clear.</div>';
   function listItems(ms) {
     return ms.map(function (m) {
-      return '<span class="item" data-baily="' + m.baily + '">' +
-             esc(m.name) + '</span>';
+      // an entry with no position is still Ptolemy's, so it stays in the list
+      // and stays selectable -- marked, because tapping it moves nothing on
+      // the sky and that should look deliberate rather than broken
+      return '<span class="item' + (m.is_placed ? '' : ' unplaced') +
+             '" data-baily="' + m.baily + '">' + esc(m.name) +
+             (m.is_placed ? '' : '&#8224;') + '</span>';
     }).join(' · ');
   }
   function renderDetail(m) {
@@ -563,6 +579,9 @@ window.ATLAS = __ATLAS_JSON__;
     if (m.bv != null) bits.push('B−V ' + m.bv.toFixed(2));
     if (m.dist_pc != null) bits.push('<b>' + ly(m.dist_pc) + ' light-years</b>');
     if (bits.length) h += '<div class="row">' + bits.join(' · ') + '</div>';
+    if (!m.is_placed)
+      h += '<div class="row unplaced-note">&#8224; Not on the map. ' +
+           esc(m.placement_note) + '</div>';
     if (m.placement_source === 'anchors')
       h += '<div class="row">Ptolemy recorded a cloud here, not a star. ' +
            'Drawn at the mean position of the nearby catalogue stars that ' +
