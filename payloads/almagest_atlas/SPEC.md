@@ -1,8 +1,15 @@
-# Almagest Atlas — payload specification (status: shipped; v1)
+# Almagest Atlas — payload specification (as written, July 2026)
 
 A single self-contained HTML file: Ptolemy's 48 constellations,
 one fixed scene at a time, drawn on a realistic night sky
 and annotated from our own warehouse.
+
+*NOTE this "spec" is a period piece, kept unedited.*
+This is the plan the atlas was built from,
+not a description of what it became. Some is superseded;
+one promise is deliberately unkept.
+Where this file and the code disagree,
+the code is right — preserved here are the reasoning and history.
 
 ## Shape
 
