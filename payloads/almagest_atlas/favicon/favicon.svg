@@ -1,0 +1,178 @@
+<svg
+  width="512"
+  height="512"
+  viewBox="83.5 83.4 345 345"
+  xmlns="http://www.w3.org/2000/svg">
+
+<!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+  A L M A G E S T   A T L A S
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+<!--
+
+
+Two gold A's, for Almagest Atlas.
+
+The outer one is drawn along the star's own lines. A pentagram is five
+straight strokes, not ten edges — the apex and each lower leg tip are
+collinear through two of the inner vertices — so two of those five
+lines ARE the letter's legs, exactly, with no fudging:
+
+  P0 -> I4 -> I3 -> P3      and      P0 -> I0 -> I1 -> P2
+
+Those two run gold, foot to apex to foot, and nothing more: no serif,
+no turn at the tip. They simply trail off down the star's side edges
+and out of frame. What is left over runs blue: the two side arms
+(I3-P4-I4 and I0-P1-I1) and the inverted V between the lower legs
+(P2-I2-P3).
+
+The inner A is narrower, shares the crossbar, and its feet run right
+across that inverted V rather than stopping short of it, so the bottom
+of the star reads as alternating gold and blue from one side to the
+other.
+
+Three stroke weights, close enough to read as one family, ordered
+outer A 24 > inner A 20 > blue 16. The blue is thinnest on purpose:
+it is the part that is left over, and it should sit behind.
+
+Everything radiates from the middle. The gradients are radial and
+concentric on (256,252): both letters and the star are brightest at
+the centre and fall off toward the extremities, and the field does the
+opposite — darkest under the middle of the mark, lifting toward the
+corners. A star's energy comes from its centre; nothing here is lit
+from above.
+
+Palette from template.html's :root custom properties (named here
+without their leading dashes, which XML comments forbid). The tokens
+are the mid stops; the light and dark ends are drawn from them:
+
+  sky      #070a12   field, at the centre
+  accent   #8fb8e8   the star's leftover edges
+  accent-2 #e8c98f   both letters
+
+Geometry, so it can be re-derived rather than nudged:
+
+  star     centre (256,275), outer r 200, inner r 200/phi^2 = 76.3932.
+           The exact ratio is load-bearing: at anything else the apex
+           and the leg tips stop being collinear with the inner
+           vertices, and the outer A stops lying on the star.
+  legs     dx/dy 0.324920, stroked 24, mitred, so the apex stays sharp.
+  bar      centred on the star's two middle corners: I3 (183.35,298.61)
+           and I1 (328.65,298.61) sit on its axis, which they do for
+           free, being on the A's own lines. It takes the inner A's
+           weight (20), not the outer A's — thinner and higher than it
+           was, which moves the mark's mass toward the centre without
+           breaking the letter. A trapezoid, not a rectangle: the legs
+           are slanted, so square ends would overshoot one edge and
+           undershoot the other.
+  inner A  apex (256,168), legs dx/dy 0.304800, stroke 20,
+           counter 33.5 x 55 meeting the bar's top edge. Its apex
+           clears the outer A's legs by 18 — the two are nearly
+           parallel, so that gap stays near-constant the whole way.
+  clip     the inner A is drawn long and clipped by the notch V offset
+           OUTWARD by half the blue stroke, so its feet cross the blue
+           completely and stop flush with its far edge.
+  viewBox  345 of 512, centred on the letter rather than the star, so
+           the side arms run off the frame and the top and bottom
+           points are just kissed. The A is the subject; the star is
+           what it is drawn on.
+
+
+This file is the source. It is not loaded at runtime — it is inlined
+into template.html as a base64 data: URI, so that index.html stays a
+single self-contained file with no network requests. After editing
+here, regenerate that one line and paste it over the existing
+<link rel="icon"> in template.html:
+
+  py -c "import base64,re,pathlib;
+  t=pathlib.Path('favicon/favicon.svg').read_text(encoding='utf-8');
+  t=re.sub(r'<![-][-].*?[-][-]>','',t,flags=re.S);
+  t=re.sub(r'\s+',' ',t).strip();
+  print('data:image/svg+xml;base64,'+base64.b64encode(t.encode()).decode())"
+
+  (join those five lines into one; the [-] classes are only there so
+   this comment does not contain a literal double dash, which XML
+   forbids inside a comment)
+
+Run it from payloads/almagest_atlas. It strips these comments and collapses
+whitespace first, which takes the payload from ~7.5 kB to ~2.2 kB;
+whitespace inside SVG path data is free, so collapsing runs is safe.
+base64 rather than percent-encoding because the file is full of '#',
+in colour literals and in url(#id) references, every one of which would
+otherwise have to be escaped or the URI truncates at the first fragment
+marker.
+
+No PNG or .ico set is generated. Every browser that will meet this file
+takes an SVG icon; the raster fallbacks bought a long tail that is not
+worth ~44 kB of base64 in a file whose whole point is being one file.
+If that changes, rsvg-convert + optipng + icotool is the usual route,
+and each raster wants its own <link>.
+
+
+-->
+
+  <defs>
+    <!-- Field: darkest under the middle of the mark, lifting outward -->
+    <radialGradient id="sky" cx="256" cy="252" r="250"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#070a12"/>
+      <stop offset="52%"  stop-color="#0d1320"/>
+      <stop offset="100%" stop-color="#18202f"/>
+    </radialGradient>
+
+    <!-- Both letters: brightest at the centre, falling off outward -->
+    <radialGradient id="gold" cx="256" cy="252" r="235"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#f8ead0"/>
+      <stop offset="52%"  stop-color="#e8c98f"/>
+      <stop offset="100%" stop-color="#b8873f"/>
+    </radialGradient>
+
+    <!-- The star's leftover edges, same falloff -->
+    <radialGradient id="blue" cx="256" cy="252" r="245"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#dbeaff"/>
+      <stop offset="52%"  stop-color="#8fb8e8"/>
+      <stop offset="100%" stop-color="#3f5f8c"/>
+    </radialGradient>
+
+    <!-- Everything above the notch V, offset outward by half the blue
+         stroke. Clipping the inner A to this is what carries its feet
+         across the blue and stops them flush on its far edge. -->
+    <clipPath id="across-notch">
+      <path d="M -400,-400 L 912,-400 L 912,837.89 L 256,361.28 L -400,837.89 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Field. Oversized: the viewBox is a window on this space. -->
+  <rect x="-400" y="-400" width="1312" height="1312" fill="url(#sky)"/>
+
+  <!-- The whole star, blue and thinnest. Drawn complete so every point
+       and inner vertex gets a correct mitre; the gold below covers the
+       two lines it shares, leaving the arms and the notch showing. -->
+  <path fill="none" stroke="url(#blue)" stroke-width="16"
+        stroke-linejoin="miter" stroke-miterlimit="6" d="
+    M 256.00,75.00  L 300.90,213.20 L 446.21,213.20
+    L 328.65,298.61 L 373.56,436.80 L 256.00,351.39
+    L 138.44,436.80 L 183.35,298.61 L 65.79,213.20
+    L 211.10,213.20 Z"/>
+
+  <!-- The outer A: two of the pentagram's five lines, foot to apex to
+       foot. Both ends run out of frame, so no cap is ever seen. -->
+  <path fill="none" stroke="url(#gold)" stroke-width="24"
+        stroke-linejoin="miter" stroke-miterlimit="6" d="
+    M 138.44,436.80 L 256.00,75.00 L 373.56,436.80"/>
+
+  <!-- The crossbar the two of them share, hung on I3 and I1 -->
+  <path fill="url(#gold)" d="
+    M 173.98,288.61 L 338.02,288.61 L 344.52,308.61 L 167.48,308.61 Z"/>
+
+  <!-- The inner A, its feet carried across the notch -->
+  <g clip-path="url(#across-notch)">
+    <path fill="url(#gold)" d="
+      M 176.13,430.00 L 256.00,168.00 L 335.87,430.00
+      L 315.87,430.00 L 256.00,233.61 L 196.13,430.00 Z"/>
+  </g>
+
+</svg>
