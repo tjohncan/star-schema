@@ -15,8 +15,9 @@ Regulus*) — and our **English translation**. A final **caption** column
 carries our standalone picture caption: the same anatomy with every
 relative reference resolved — where Ptolemy writes "the middle of them"
 and sends you back up his list, the caption names the group outright — so
-each star reads on its own, in any order. Figured stars only; the
-unformed, never drawn, carry none.
+each star reads on its own, in any order. All 1,028 carry one — the
+unformed most of all, since nearly two in three of their entries say
+nothing but 'the middle of them'.
 
 **`almagest_figures.toml`** — per-constellation figure prose and edge sets.
 Each constellation carries a short description of its overall shape and story,

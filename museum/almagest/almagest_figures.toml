@@ -13,12 +13,15 @@ name_english = "The Little Bear"
 stars_figure = 7
 stars_unformed = 1
 description = """
-Seven stars, and not one wasted: a long tail rising to the pole, ending in the
-quadrilateral of the body. Star 1 — the tip of the tail — is Polaris, which in
-Ptolemy's day was NOT the pole star; it sat a full 12 degrees off the pole, an
-unremarkable tail-tip that precession has since promoted to the axis of the
-world. The anatomy alone reproduces the modern Little Dipper exactly: handle
-and bowl, drawn from a 2nd-century text with zero degrees of freedom."""
+Seven stars: a long tail rising to the pole, ending in the
+quadrilateral of the body. The first — the tip of the tail — is Polaris,
+which in Ptolemy's day was not the pole star. It sat a full 12 degrees
+off the pole, unremarkable; precession has since promoted it to
+the axis of the world. The anatomy alone reproduces the modern Little
+Dipper — handle and bowl — from a 2nd-century text with nothing left to
+artistic license. Ptolemy's 'northern' and 'southern' are ecliptic, not
+equatorial, and this close to the pole the frames pull apart: both sides
+of the bowl label backwards against a modern chart."""
 
 [[constellation.stroke]]
 name = "tail"
@@ -39,12 +42,15 @@ stars_unformed = 8
 description = """
 The whole animal, not just the Dipper: a muzzle, paired eyes and brow, an ear,
 neck, chest, four legs with feet, and the famous hindquarters. Ptolemy's
-figura quadrilatera — back (Dubhe), flank (Merak), tail-root (Megrez), left
-hind thigh (Phecda) — IS the Big Dipper's bowl, and 'the three placed in the
-tail' (Alioth, Mizar, Alkaid) are its handle. A bear with a long tail is bad
-zoology and perfect astronomy. The eight unformed stars drift south and west
-toward Leo and Gemini; centuries later Hevelius quarried that empty margin for
-Lynx and Leo Minor — you can watch the raw material waiting in this data."""
+figura quadrilatera — back (Dubhe), flank (Merak), tail-root (Megrez),
+left hind thigh (Phecda) — is the Big Dipper's bowl, and
+'the three placed in the tail' (Alioth, Mizar, Alkaid) are its handle.
+A bear with a long tail is bad zoology and perfect astronomy.
+Six of the eight unformed stars drift south and west toward Leo and
+Gemini: the other two lie far south of the tail. Hevelius later quarried
+all of these — Lynx and Leo Minor from the western group, and from the
+pair below the tail Canes Venatici, the Hunting Dogs, whose brighter
+star is Cor Caroli."""
 
 [[constellation.stroke]]
 name = "head"
@@ -103,18 +109,22 @@ name_english = "The Dragon"
 stars_figure = 31
 stars_unformed = 0
 description = """
-Thirty-one stars and the longest sentence in the northern sky: a dragon coiled
-between the two Bears. The anatomy reads like driving directions — tongue,
-mouth, jaw, eye, crown; a straight-line trio at the first bend of the neck; a
-quadrilateral coil; then TWO triangles, a pair of small stars off the western
-one, straight-line trios and pairs unwinding westward until the tail's bend
-and its final tip. Ptolemy narrates each curve of the serpent in order, so the
-figure is nearly self-drawing: one long spine that loops through every group.
-No unformed stars — the Dragon used everything it had."""
+Thirty-one stars and the longest sentence in the northern sky:
+a dragon coiled between the two Bears. The anatomy reads like driving directions —
+tongue, mouth, jaw, eye, crown; a straight-line trio at the first bend of the neck;
+a quadrilateral coil; then two triangles, a pair of small stars off the western one,
+straight-line trios and pairs unwinding westward until the tail's bend and its final tip.
+Ptolemy narrates each curve of the serpent in order, so the figure is nearly self-drawing:
+one long spine that loops through every group. No unformed stars.
+Thuban sits near the far end of that tail — the pole star of about 2800 BC,
+and a truer one than Polaris: it stood within a fraction of a degree of the
+real pole, closer than Polaris ever comes. Precession moved the job along,
+and Ptolemy, writing three thousand years later, gives it no name at all:
+'the one following them'."""
 
 [[constellation.stroke]]
 name = "head"
-comment = "The tongue leads to the mouth; jaw, crown and eye close the head's lozenge."
+comment = "The tongue leads to the mouth; jaw, crown, and eye close the head's lozenge."
 stars = [1, 2, 4, 5, 3, 2]
 
 [[constellation.stroke]]
@@ -129,7 +139,7 @@ stars = [9, 11, 10, 13, 12, 11]
 
 [[constellation.stroke]]
 name = "second-coil-triangles"
-comment = "Two triangles back-to-back; the following (eastern) then the preceding (western)."
+comment = "The following (eastern) of the two back-to-back triangles, entered from the coil."
 stars = [13, 14, 15, 16, 14]
 
 [[constellation.stroke]]
@@ -155,11 +165,15 @@ stars_figure = 11
 stars_unformed = 2
 description = """
 The king of Aethiopia stands near the pole wearing a tiara — the pointed
-Persian royal cap — which gets three stars of its own while his head gets
-none: Cepheus is drawn crown-first. Feet, belt, shoulders, a chest and a left
-arm sketch the standing figure; the modern 'house' asterism lives in the same
-stars. His two unformed stars bracket the tiara, one preceding and one
-following, like attendants who missed the portrait."""
+Persian royal cap — which gets three stars while his head gets none:
+Cepheus is drawn crown-first. Feet, belt, shoulders, a chest and a left arm
+sketch the standing figure; the same stars make a modern 'house' asterism.
+His two unformed stars bracket the tiara, one preceding and one following,
+like attendants who missed the portrait.
+Posterity disagreed about the casting. The attendant to the west is the
+Garnet Star, a red hypergiant among the largest known; the one to the east
+is Delta Cephei, whose steady pulsing became the yardstick astronomers
+still measure the universe with. Neither is part of the King."""
 
 [[constellation.stroke]]
 name = "tiara"
@@ -193,14 +207,16 @@ name_english = "The Herdsman"
 stars_figure = 22
 stars_unformed = 1
 description = """
-The Herdsman strides after the Bears carrying a collorobus — a shepherd's
-crook — in his right hand and a club below the shoulder. Left hand, elbow,
-shoulders and head give the upper body; belt, legs, heel and a left-shin trio
-plant him on the sky. And then the astonishment: Arcturus, fourth-brightest
-star in the heavens, is UNFORMED — 'between the thighs, called Arcturus,
-reddish' — catalogued beside the figure but not part of it. The brightest
-thing the Herdsman owns is not attached to him. It floats at his knees,
-edgeless by ancient decree, and this dataset keeps it that way."""
+The Herdsman strides after the Bears, carrying a collorobus —
+a shepherd's crook — in his right hand, and a club below the shoulder.
+Left hand, elbow, shoulders and head give the upper body;
+belt, legs, heel and a left-shin trio plant him on the sky.
+And then the astonishment: Arcturus, fourth-brightest star in the heavens,
+is unformed — 'between the thighs, called Arcturus, reddish' —
+catalogued beside the figure but not part of it.
+The brightest thing the Herdsman owns is not attached to him.
+It floats at his knees, edgeless by ancient decree:
+this dataset keeps it that way."""
 
 [[constellation.stroke]]
 name = "left-arm"
@@ -254,13 +270,15 @@ name_english = "The Northern Crown"
 stars_figure = 8
 stars_unformed = 0
 description = """
-Ariadne's wedding crown, flung into the sky: eight stars in a small, perfect
-arc, described almost entirely by their order in the curve — 'the one
-preceding them all', then follower after follower to 'the last of all those in
-the crown'. Star 1 is the Brilliant One (Fulgens), today's Alphecca or Gemma,
-the jewel set in the ring. Ptolemy's sequence walks the arc itself; one bent
-stroke draws the whole diadem, with one small northern companion riding just
-above the band."""
+Ariadne's wedding crown, flung into the sky:
+eight stars in a small, perfect arc,
+described almost entirely by their order in the curve —
+'the one preceding them all', then follower after follower
+to 'the last of all those in the crown'.
+The first is the Brilliant One (Fulgens), today's Alphecca or Gemma,
+the jewel set in the ring. Ptolemy's sequence walks the arc itself;
+one bent stroke draws the whole diadem,
+with a small northern companion riding just above the band."""
 
 [[constellation.stroke]]
 name = "diadem"
@@ -269,7 +287,7 @@ stars = [3, 2, 1, 5, 6, 7, 8]
 
 [[constellation.stroke]]
 name = "northern-gem"
-comment = "Star 4 rides north of the band, following 3."
+comment = "The small companion riding north of the band, hung from the arc's northern end."
 stars = [3, 4]
 
 [[constellation]]
@@ -279,13 +297,14 @@ name_english = "Hercules, the Kneeler"
 stars_figure = 29
 stars_unformed = 1
 description = """
-Ptolemy never calls him Hercules — the constellation is simply 'the Kneeler',
+Ptolemy never calls him Hercules: the constellation is simply 'the Kneeler',
 a man down on one knee, drawn head-downward so that his head nearly touches
 the head of Ophiuchus. Arms spread from both shoulders, one hand open with a
 three-star palm; the torso hangs from two side stars, and both legs fold
-beneath him in long chains of thigh, knee, and foot. His right foot is 'the
-very same star as the tip of the crook' — one point of light doing double
-duty as the Kneeler's toe and the end of Boötes' shepherd's staff."""
+beneath him in long chains of thigh, knee, and foot.
+His right foot is 'the very same star as the tip of the crook' —
+one point of light doing double duty
+as the Kneeler's toe and the end of Boötes' shepherd's staff."""
 
 [[constellation.stroke]]
 name = "head-and-shoulders"
@@ -339,12 +358,16 @@ name_english = "The Lyre"
 stars_figure = 10
 stars_unformed = 0
 description = """
-The tortoise-shell lyre of Hermes, passed to Orpheus: a sounding shell, two
-rising horns, and the yoke joining them — a real instrument, described part by
-part. The Brilliant One on the shell is Vega; the close pair beside it is the
-modern epsilon Lyrae, the Double-Double. Four yoke stars make the small
-parallelogram that still defines the constellation's shape, hanging beneath
-Vega like the frame the strings were stretched on."""
+The tortoise-shell lyre of Hermes, passed to Orpheus:
+a sounding shell, two rising horns, and the yoke joining them —
+a real instrument, described part by part.
+The Brilliant One on the shell is Vega; the two faint stars adjoining it
+are epsilon and zeta Lyrae. Ptolemy enters the first as one star of the
+fourth magnitude; it is four — the Double-Double, a pair of pairs that a
+small telescope divides.
+Four yoke stars make the small parallelogram that still defines
+the constellation's shape, hanging beneath Vega
+like the frame the strings were stretched on."""
 
 [[constellation.stroke]]
 name = "shell"
@@ -378,12 +401,15 @@ name_english = "The Bird"
 stars_figure = 17
 stars_unformed = 2
 description = """
-Ptolemy's Bird — the swan of the Zeus-and-Leda story — flies south along the
-Milky Way with its neck at full stretch: beak, head, mid-neck, breast, and the
-brilliant tail star, which is Deneb. Each wing opens from an elbow into a
-feather-edge, the 'comb' of flight feathers, giving the long crossbeam that
-makes the modern Northern Cross. The beak star is Albireo; the right knee is
-'like a little cloud', a star the catalogue itself admits is barely there."""
+Ptolemy's Bird — the swan of the Zeus-and-Leda story — flying south
+along the Milky Way with its neck at full stretch:
+beak, head, mid-neck, breast, and brilliant tail star, Deneb.
+Each wing opens from an elbow into a feather-edge, the 'comb' of flight
+feathers. The modern Northern Cross sits inside this figure rather than
+matching it: tail, breast and beak make the upright, the two wing-elbows
+the crossbeam, and Ptolemy's combs reach out past both ends.
+The beak star is Albireo; the right knee is 'like a little cloud',
+a star the catalogue itself admits is barely there."""
 
 [[constellation.stroke]]
 name = "neck-and-body"
@@ -417,13 +443,15 @@ name_english = "Cassiopeia, the Enthroned Queen"
 stars_figure = 13
 stars_unformed = 0
 description = """
-The boastful queen of the Aethiopian royal family — wife of Cepheus, mother of
-Andromeda — seated on the throne to which the myth chained her. Ptolemy draws
-her from crown to toe down one long line: head, breast, girdle, thighs, knees,
-shin, foot; her arms reach from the breast, and the throne gets stars of its
-own — its foot, its middle, its edge. The zigzag that skywatchers know as the
-W is her body and chair folded together, circling the pole forever, sometimes
-upright, sometimes upside down."""
+The boastful queen of the Aethiopian royal family —
+wife of Cepheus, mother of Andromeda —
+seated on the throne to which the myth chained her.
+Ptolemy draws her from crown to toe down one long line:
+head, breast, girdle, thighs, knees, shin, foot;
+her arms reach from the breast, and the throne gets stars of its own —
+its foot, middle, and edge. The zigzag that skywatchers know as
+the W is her body and chair folded together, circling the pole forever,
+sometimes upright, sometimes upside down."""
 
 [[constellation.stroke]]
 name = "body"
@@ -457,13 +485,18 @@ name_english = "Perseus, Bearer of the Gorgon's Head"
 stars_figure = 26
 stars_unformed = 3
 description = """
-The hero strides mid-rescue, sword-hand raised, Medusa's severed head swinging
-from his left fist. The raised right hand is 'nebulous' — that misty star is
-the Double Cluster, two entire star-swarms recorded as one smudge. The
-Brilliant One in his right side is Mirfak, and the Brilliant One in the
-Gorgon's head is Algol, whose clockwork winking would later earn it the name
-of demon. Below the belt-line his legs stride wide, each with knee, calf, and
-heel — a runner's pose caught in twenty-six stars."""
+The hero strides mid-rescue, sword-hand raised,
+Medusa's severed head swinging from his left fist.
+The raised right hand is 'nebulous' — that misty star is
+the Double Cluster, two entire star-swarms recorded as one smudge.
+The Brilliant One in his right side is Mirfak,
+and the Brilliant One in the Gorgon's head is Algol,
+named the demon's head seven centuries before the winking was written
+down — two thirds of its light, gone and back every two days and
+twenty-one hours.
+Below the belt-line his legs stride wide,
+each with knee, calf, and heel —
+a runner's pose in twenty-six stars."""
 
 [[constellation.stroke]]
 name = "sword-arm"
@@ -518,10 +551,11 @@ stars_figure = 14
 stars_unformed = 0
 description = """
 A charioteer without a chariot: he stands in the Milky Way holding the reins,
-a she-goat slung over his left shoulder and two kids cradled at his left
-wrist. The goat is Capella, named in the catalogue itself; the Kids keep their
-name (the Haedi) to this day. His right ankle is 'shared with the horn of the
-Bull' — one star serving as both the Charioteer's foot and the tip of Taurus'
+a she-goat slung over his left shoulder and two kids cradled at his left wrist.
+The goat is Capella, named in the catalogue;
+the Kids keep their name (the Haedi) to this day.
+His right ankle is 'shared with the horn of the Bull' —
+one star serving as both the Charioteer's foot and the tip of Taurus'
 northern horn, a seam in the sky that modern astronomy finally had to rip,
 giving the star to the Bull."""
 
@@ -542,7 +576,7 @@ stars = [4, 5, 6]
 
 [[constellation.stroke]]
 name = "kids"
-comment = "Left elbow, then the two Kids in the palm."
+comment = "From Capella to the left elbow, then the two Kids in the palm."
 stars = [3, 7, 9, 8]
 
 [[constellation.stroke]]
@@ -562,9 +596,10 @@ name_english = "The Serpent-Bearer"
 stars_figure = 24
 stars_unformed = 5
 description = """
-A giant grips a living serpent in both fists — left hand near the snake's
-head, right hand far down its tail — while the coils cross his body. His own
-head star stands close against the head of kneeling Hercules, crown to crown.
+A giant grips a living serpent in both fists —
+left hand near the snake's head, right hand far down its tail —
+while the coils cross his body. His own head star stands
+close against the head of kneeling Hercules, crown to crown.
 Both shoulders are close pairs; each arm runs to an elbow and a two-star fist,
 and the serpent's stars thread between them (see Serpens, whose catalogue
 entries name his hands and thigh as landmarks). His right foot gets four stars
@@ -617,14 +652,13 @@ name_english = "The Serpent"
 stars_figure = 18
 stars_unformed = 0
 description = """
-The serpent held by Ophiuchus, and the reason he has a job. Its head is a
-quadrilateral — jaw, nostrils, temple, neck-root — with a fifth star set
-inside it at the open mouth and a sixth floating free to the north. From the
-first bend of the neck the body runs star by star through the Bearer's grip:
+The serpent held by Ophiuchus. Its head is a quadrilateral —
+jaw, nostrils, temple, neck-root — with a fifth star set
+inside it at the open mouth and a sixth floating free to the north.
+From the first bend of the neck the body runs star by star through the Bearer's grip:
 past his left hand, behind his right thigh, beyond his right hand into the
 bend of the tail, and out to the tail's tip. The catalogue plots the snake by
-where it crosses the man — the two constellations are written into each
-other."""
+where it crosses the man — the two constellations are written into each other."""
 
 [[constellation.stroke]]
 name = "head-quadrilateral"
@@ -663,12 +697,12 @@ name_english = "The Arrow"
 stars_figure = 5
 stars_unformed = 0
 description = """
-The smallest constellation in the catalogue: an arrow in flight, complete in
-five stars. One solitary star for the iron head, three along the reed shaft,
-and one at the notch — the γλυφίς, the nock where the string sat. Whose arrow
-it is, the sky never says: Cupid's, Apollo's, or the one Hercules loosed at
-the eagle, take your pick. It flies between the Eagle and the Bird, a single
-drawn line."""
+An arrow in flight, complete in five stars. One solitary
+star for the iron head, three along the reed shaft,
+and one at the notch — the γλυφίς, the nock where the string sat.
+Whose arrow it is, the sky never says: Cupid's, Apollo's,
+or the one Hercules loosed at the eagle, take your pick.
+It flies between the Eagle and the Bird, a single drawn line."""
 
 [[constellation.stroke]]
 name = "shaft"
@@ -682,14 +716,18 @@ name_english = "The Eagle"
 stars_figure = 9
 stars_unformed = 6
 description = """
-The eagle of Zeus stoops through the Milky Way, wings half-folded in the
-dive. The Brilliant One at the back of its head is named in the catalogue as
-Aquila itself — the bird condensed into its brightest point, our Altair —
-with the head star before it and a close companion to the north. Each
-shoulder is a two-star wing-joint, and one remote star trails far below the
-tail, touching the Milky Way's edge. The six unformed stars south of the head
-were later gathered into Antinous, the drowned favourite of the emperor
-Hadrian, grafted onto the Eagle's talons."""
+The eagle of Zeus stoops through the Milky Way,
+wings half-folded in the dive. The Brilliant One at the
+back of its head is named in the catalogue as Aquila itself —
+the bird condensed into its brightest point, our Altair —
+with the head star before it and a close companion to the north.
+Each shoulder is a two-star wing-joint;
+one remote star trails far below the tail,
+touching the Milky Way's edge.
+The six unformed stars south of the head
+were later gathered into Antinous,
+the drowned favourite of the emperor Hadrian,
+grafted onto the Eagle's talons."""
 
 [[constellation.stroke]]
 name = "body"
@@ -723,12 +761,14 @@ name_english = "The Dolphin"
 stars_figure = 10
 stars_unformed = 0
 description = """
-A dolphin caught mid-leap in ten faint stars: a tail of three, a body of
-three, and — the part everyone remembers — a tight rhombus of four for the
-head, the little kite-shape that skywatchers would much later nickname Job's
-Coffin. The catalogue calls it plainly what it is: a quadrilateral rhomboid,
-preceding side and following side. This is the dolphin that carried the
-singer Arion safely to shore, paid for the rescue with a place in the sky."""
+A dolphin caught mid-leap in ten faint stars:
+a tail of three, a body of three, and — perhaps most distinctively —
+a tight rhombus of four for the head,
+the little kite-shape that skywatchers would much later nickname
+Job's Coffin. The catalogue names it geometrically:
+a quadrilateral rhomboid, preceding side and following side.
+This is the dolphin that carried the singer Arion
+safely to shore, rewarded for the rescue with a place in the sky."""
 
 [[constellation.stroke]]
 name = "rhombus"
@@ -757,12 +797,11 @@ name_english = "The Little Horse"
 stars_figure = 4
 stars_unformed = 0
 description = """
-Four dim stars and no more: a foal's head, floating beside Pegasus — two
-stars for the head, two for the mouth, and the rest of the animal never
-drawn. It is the sky's least-committed constellation, a sketch abandoned
-after the muzzle, and the smallest figure in the catalogue after the Arrow.
-Tradition makes it Celeris, brother or foal of Pegasus, given by Hermes to
-the horseman Castor."""
+Four dim stars: a foal's head, floating beside Pegasus —
+two stars for the head, two for the mouth,
+and the rest of the animal undrawn.
+Tradition makes it Celeris, brother or foal of Pegasus,
+given by Hermes to the horseman Castor."""
 
 [[constellation.stroke]]
 name = "head"
@@ -781,14 +820,14 @@ name_english = "The Winged Horse"
 stars_figure = 20
 stars_unformed = 0
 description = """
-Half a horse, upside down: head, neck, mane, chest, forelegs and wings —
+Half a horse, upside down: head, neck, mane, chest, forelegs and a wing —
 and nothing at all behind the navel, where the figure simply stops. That
-navel star is 'shared with the head of Andromeda': one star finishing the
-horse and starting the princess. With the loins, the shoulder, and the
+navel star is 'shared with the head of Andromeda': one star finishes the
+horse and starts the princess. With the loins, the shoulder, and the
 wing-shoulder it frames the Great Square, the huge empty box of autumn
 skies; from the chest the neck stretches out through close-set pairs —
-neck, mane, head — to the single star in the muzzle. The wings get their
-tips, the forelegs their knees and ankles, and the rest is left to flight."""
+neck, mane, head — to the single star in the muzzle. The wing gets its
+tip, the forelegs their knees and ankles, and the rest is left to flight."""
 
 [[constellation.stroke]]
 name = "great-square"
@@ -833,13 +872,13 @@ stars_figure = 23
 stars_unformed = 0
 description = """
 The daughter of Cepheus and Cassiopeia, staked out for the sea-monster and
-saved by Perseus, who stands just east of her. Her head is the star she
-shares with Pegasus; from it hang shoulders, two long arms — each ending in
-a three-star hand, stretched wide where the chains would be — a girdle of
-three, and legs reaching toward Perseus. Her robe gets its own detail: two
-stars in the syrma, the trailing train, sweeping behind her feet. The long
-line from head through girdle to foot is the chain of stars that leads
-skywatchers from the Great Square toward Perseus."""
+saved by Perseus, who stands just east of her. Her head is the star
+she shares with Pegasus; from it hang shoulders, two long arms —
+each ending in a three-star hand, stretched wide where the chains would be —
+a girdle of three, and legs reaching toward Perseus. Her robe gets its own detail:
+two stars in the syrma, the trailing train, sweeping behind her feet.
+The long line from head through girdle to foot is the chain of stars that
+leads skywatchers from the Great Square toward Perseus."""
 
 [[constellation.stroke]]
 name = "head-and-shoulders"
@@ -893,10 +932,10 @@ name_english = "The Triangle"
 stars_figure = 4
 stars_unformed = 0
 description = """
-A shape so simple the sky kept it: one star at the apex, three along the
-base. The Greeks called it Deltoton, the letter delta; some saw the Nile's
-delta in it, some the island of Sicily. Four stars, two strokes, done — a
-proof that a constellation needs only geometry to earn its place."""
+Almost as simple as it sounds: one star at the apex, three along the base.
+The Greeks called it Deltoton, the letter delta;
+some saw the Nile's delta in it, some the island of Sicily.
+Four stars, connected here by two strokes."""
 
 [[constellation.stroke]]
 name = "sides"
@@ -915,12 +954,13 @@ name_english = "The Ram"
 stars_figure = 13
 stars_unformed = 5
 description = """
-The ram of the Golden Fleece, lying down with its head turned back: a horn
-pair and a muzzle pair, one star each for neck and loin, a three-star tail
-and one folded hind leg. The first unformed star carries a rare thing — a
-disagreement, preserved: 'the one above the head, which Hipparchus places in
-the neck.' The catalogue citing its own greatest source, and declining to
-agree with him."""
+The ram of the Golden Fleece, lying down with its head turned back:
+a horn pair and a muzzle pair, one star each for neck and loin,
+a three-star tail and one folded hind leg.
+Ptolemy's entry for the first unformed star flags a disagreement
+with his greatest source: 'the one above the head,
+which Hipparchus places in the neck.' That star is Hamal,
+the brightest in the constellation."""
 
 [[constellation.stroke]]
 name = "head"
@@ -952,10 +992,12 @@ description = """
 Half a bull, like Pegasus is half a horse: the figure begins at the
 abscissio, the cut-off — four stars marking where the body simply ends — and
 charges west from there, head lowered. The face is the Hyades, named in the
-catalogue itself ('for so are called those in the face'), a V of five stars
-with the bright reddish one, Aldebaran, in the southern eye. The long horns
+catalogue ('for so are called those in the face'), a V of five stars
+with the bright reddish one, Aldebaran, in the southern eye. Four of the
+five stand together at about 47 parsecs; Aldebaran is at 20, a foreground
+star that only looks like one of them. The long horns
 reach north and south; the northern tip is the star shared with Auriga's
-right foot. And riding above the shoulder, the Pleiades — the Seven Sisters
+right foot. Riding above the shoulder are the Pleiades — the Seven Sisters
 compressed to four catalogue entries, a tiny figure with named ends, granted
 its own geometry inside the Bull. The disguise Zeus wore for Europa, drawn
 mid-charge."""
@@ -1027,14 +1069,15 @@ name_english = "The Twins"
 stars_figure = 18
 stars_unformed = 7
 description = """
-Two figures standing together, named by their stars: the head of the
-preceding Twin is Castor; the head of the following Twin — 'reddish' — is
-Pollux. The catalogue tells them apart limb by limb, this Twin's elbow,
-that Twin's knee, down to four separate foot-tips. The brothers of Helen,
-one mortal and one divine, sharing the sky on alternating days. Their
-inner arms reach toward one another; how tightly they embrace is the
-drawer's choice, and these strokes keep them side by side, lightly
-touching."""
+Two figures standing together, named by their stars:
+the head of the preceding Twin is Castor;
+the head of the following Twin — 'reddish' — is Pollux.
+The catalogue tells them apart limb by limb, this Twin's elbow,
+that Twin's knee, down to four separate foot-tips.
+The brothers of Helen, one mortal and one divine,
+sharing the sky on alternating days.
+Their inner arms reach toward one another; how tightly they embrace is the
+drawer's choice, and these strokes keep them side by side, lightly touching."""
 
 [[constellation.stroke]]
 name = "preceding-twin-arm"
@@ -1080,12 +1123,13 @@ stars_unformed = 4
 description = """
 The faintest zodiac figure, and the one with the best furniture: at its
 centre sits 'the cloud-like convolution in the chest, called the Manger' —
-the Beehive cluster, entered in the catalogue as a single star — and the
-two stars flanking it are named the Asses, the donkeys feeding at the
-trough. Around this scene a quadrilateral of body, two claws reaching
-sideways, and two hind feet. This is the crab that pinched Heracles' heel
-during the fight with the Hydra and was crushed for its trouble — rewarded
-with stars, all of them dim."""
+the Beehive cluster, entered in the catalogue as a single star.
+The two stars flanking it are named the Asses,
+the donkeys feeding at the trough.
+Around this scene: a quadrilateral of body, two claws reaching sideways,
+and two hind feet. This is the crab that pinched Heracles' heel
+during his fight with the Hydra, and was crushed for it. Hera, who sent
+it, set it in the sky anyway."""
 
 [[constellation.stroke]]
 name = "body"
@@ -1094,7 +1138,7 @@ stars = [2, 4, 5, 3, 2]
 
 [[constellation.stroke]]
 name = "manger"
-comment = "The Manger itself, held inside the body; our line ties it to the northern Ass."
+comment = "The Manger, held inside the body; our line ties it to the northern Ass."
 stars = [4, 1]
 
 [[constellation.stroke]]
@@ -1131,8 +1175,9 @@ head-to-heart curve is the hook modern skywatchers call the Sickle. The
 body runs along belly, loins and rump to the tail's tip star, Denebola,
 with four legs planted beneath. In the unformed margin behind the lion
 floats the 'nebulous convolution called Berenice's Hair' — the queen's
-sacrificed locks, catalogued here as Leo's leftovers three centuries
-before anyone drew them as their own constellation."""
+sacrificed locks. Ptolemy writes the name into the entry and files them
+under Leo anyway; no one drew them as a constellation of their own for
+another fourteen hundred years."""
 
 [[constellation.stroke]]
 name = "head"
@@ -1199,7 +1244,7 @@ description = """
 A winged maiden — harvest goddess, justice goddess, take your myth —
 gliding along the ecliptic with an ear of wheat in her left hand: Spica,
 named in the catalogue, the sky's cleanest one-star emblem. Two wings
-spread from her shoulders; on the northern one sits Previndemiatrix, 'the
+spread from her shoulders. On the northern one sits Previndemiatrix, 'the
 herald of the vintage', whose dawn rising once told farmers the grapes
 were ready. Head and face are close pairs, the left leg is a proper
 quadrilateral, and her robe trails a three-star train — the syrma again,
@@ -1273,7 +1318,8 @@ the Scorpion, reaching west — every description says claw, tip, middle, and
 never balance. Each claw is a short line ending in a bright star, and those
 two tips still carry the memory in their Arabic names, Zubenelgenubi and
 Zubeneschamali: the southern claw and the northern claw. Nine unformed
-stars scatter around the pincers, nearly outnumbering the figure itself."""
+stars scatter around the pincers, outnumbering the figure itself — the
+only constellation in the catalogue where that happens."""
 
 [[constellation.stroke]]
 name = "southern-claw"
@@ -1310,10 +1356,10 @@ description = """
 The scorpion that killed Orion, drawn whole and in motion: a three-star brow
 with a close pair adhering to its northern end and a spur at the foot; a
 three-star body whose reddish middle is named Antares; and then the tail,
-counted joint by joint — first segment, second, a paired third, on to the
-seventh 'by the sting' — before the two-star sting itself. Past the stinger
-the catalogue notes one more thing: a star 'and it is nebulous' — the
-cluster now called M7, caught glittering just beyond the weapon."""
+counted joint by joint — seven segments before the two-star sting.
+Past the stinger the catalogue notes one more star, 'and it is nebulous' —
+the line that gave M7 the name Ptolemy's Cluster, though the entry itself
+resolves to a single star, two degrees short of it."""
 
 [[constellation.stroke]]
 name = "brow"
@@ -1451,8 +1497,8 @@ description = """
 Forequarters of a goat, tail of a fish: the old amphibious sign, said to be
 Pan mid-dive into the Nile, changing as he hit the water. The goat end has
 two horns — a trio in the following horn, a lone tip star in the preceding
-one — a three-star muzzle, an eye, a neck, and one folded, 'bent' knee the
-catalogue singles out. Behind the shoulder the animal dissolves: belly,
+one — a three-star muzzle, an eye, a neck, and one folded, 'bent' knee
+singled out by the catalogue. Behind the shoulder the animal dissolves: belly,
 mid-body, back and southern spine run in quiet pairs and trios to the tail,
 which flares into a four-star fin. The whole figure swims in faint stars —
 a boundary creature, half graze and half current."""
@@ -1545,7 +1591,7 @@ stars = [2, 3]
 
 [[constellation.stroke]]
 name = "drapery"
-comment = "From the left shoulder through its companion, then the garment's three west to east."
+comment = "From the left shoulder through its companion, then the garment's three east to west."
 stars = [4, 5, 6, 7, 8]
 
 [[constellation.stroke]]
@@ -1702,7 +1748,7 @@ stars = [16, 17]
 
 [[constellation.stroke]]
 name = "flukes"
-comment = "The two tail-end tips, north and south."
+comment = "The two tail-end tips, north and south, hung from the tail's following side."
 stars = [21, 17, 18, 22]
 
 [[constellation]]
@@ -1715,14 +1761,13 @@ description = """
 The great hunter at full stride, and the catalogue's richest single figure:
 a nebulous head between two named shoulders — the reddish Brilliant One
 (Betelgeuse) and its partner (Bellatrix) — a club raised in the right hand
-above a four-star fist, and over the left arm a pelt or shield of NINE
+above a four-star fist, and over the left arm a pelt or shield of nine
 stars, counted off with bureaucratic patience: 'second from the
 northernmost, third from the northernmost…' down to the ninth. Across the
 waist, the three-star belt; hanging from it the sword, with a hilt, a
 three-star tip 'joined together', and two more below. The left foot is the
 brilliant Rigel, 'shared with the water' — the river Eridanus rises right
-beside it. Thirty-eight stars, no unformed: like Draco, Orion wasted
-nothing."""
+beside it. Thirty-eight stars with none unformed."""
 
 [[constellation.stroke]]
 name = "head"
@@ -1863,10 +1908,9 @@ stars_figure = 12
 stars_unformed = 0
 description = """
 The hare crouched at Orion's feet, forever bolting from the great dog
-behind it. Its ears get the best geometry — a full quadrangular figure of
-four stars for two ears — with chin, forefoot, body, belly, loins, hind
-feet, and a tail-tip filling out the crouch in single stars. Small, quick,
-and complete: the whole animal in twelve."""
+behind it. Its ears get a full quadrangle of four stars; chin, forefoot,
+body, belly, loins, hind feet and tail-tip fill out the squat with eight
+more."""
 
 [[constellation.stroke]]
 name = "ears"
@@ -1905,13 +1949,15 @@ name_english = "The Great Dog"
 stars_figure = 18
 stars_unformed = 11
 description = """
-The dog opens with the best star in the sky: 'the most brilliant one in
+The dog opens with the brightest star in the sky: 'the most brilliant one in
 the mouth, called Sirius — and it is reddish.' (That last word has kept
 historians of astronomy arguing for two thousand years: Sirius is
 blue-white.) Behind the blaze, a complete hound — ears, head, neck, chest,
 four legs with knees and named tips, a tail — trotting at Orion's heel.
-Eleven unformed stars run below and west of the hind feet in straight
-lines and bright pairs, an escort of strays."""
+Ten unformed stars run below and west of the hind feet in straight
+lines and bright pairs, an escort of strays; an eleventh sits alone
+north of the Dog's head. Nine of those ten became Columba, still in
+the IAU 88."""
 
 [[constellation.stroke]]
 name = "muzzle"
@@ -1960,8 +2006,9 @@ name_english = "The Little Dog"
 stars_figure = 2
 stars_unformed = 0
 description = """
-Two stars. That is the whole dog: one in the neck, and 'the bright one in
-the hindquarters, called Procyon' — the name means 'before the dog',
+Two stars: one in the neck, and
+'the bright one in the hindquarters,
+called Procyon' — the name means 'before the dog',
 because it rises just ahead of Sirius and warns that the big one is
 coming. The smallest constellation in the catalogue by star count, and
 still one of the twenty brightest things in the night. One stroke, and
@@ -1969,7 +2016,7 @@ the little dog is drawn."""
 
 [[constellation.stroke]]
 name = "the-whole-dog"
-comment = "Neck to Procyon. There is nothing else, and nothing else is needed."
+comment = "Neck to hindquarters (Procyon). This is it!"
 stars = [1, 2]
 
 [[constellation]]
@@ -1980,15 +2027,15 @@ stars_figure = 45
 stars_unformed = 0
 description = """
 The largest constellation in the catalogue: Jason's ship, sailing the
-far southern sky stern-first — and only half a ship, like the half-horse
+far southern sky, stern-first. Only half a ship, like the half-horse
 and half-bull; the prow is lost in fog or below the horizon, depending on
 who you ask. The parts are real ship's parts: stern-post and little
 shields, a goose-head ornament (the cheniskos, 'or the little goose'),
 keel, decks, a mast with foot, middle and tip, a cut-off where the hull
 ends, and two steering-oars — in the southern one, 'the preceding of the
 two remaining, and it is called Canopus', the second-brightest star in
-the sky, steering the whole vessel. Eighteen centuries later the ship was
-broken up into Carina, Puppis and Vela; here it still sails whole."""
+the sky, steering the whole vessel. Sixteen centuries later Lacaille broke the ship up into Carina, Puppis and
+Vela; here it sails whole."""
 
 [[constellation.stroke]]
 name = "stern-post"
@@ -2067,14 +2114,14 @@ name_english = "The Water-Snake"
 stars_figure = 25
 stars_unformed = 2
 description = """
-The longest constellation there is: a water-snake stretched across a
+The longest constellation here: a water-snake stretched across a
 quarter of the sky, head under Cancer, tail-tip below the Claws. Five
 stars cluster in the head — nostrils, eye, skull, gape, chin — then the
 neck bends, a bright-and-dim pair marks the throat, and the body simply
 keeps going: trio after trio, 'almost in a straight line', past the base
 of the Cup, almost in a triangle, past the Crow, to the tip of the tail.
-Two constellations stand on its back and share its stars — the sky's
-longest pedestal."""
+Two constellations stand on its back, and three of their stars are
+declared shared with it."""
 
 [[constellation.stroke]]
 name = "head"
@@ -2175,7 +2222,7 @@ stars = [3, 5, 6]
 
 [[constellation.stroke]]
 name = "foot"
-comment = "The foot, shared with the Snake — the perch made literal."
+comment = "The foot, shared with the Snake — the perch."
 stars = [3, 7]
 
 [[constellation]]
@@ -2191,9 +2238,8 @@ door) by its hind foot. The catalogue marks the miracle point explicitly:
 'the brilliant one at the join of the human body' — the seam where man
 becomes horse, given its own bright star. The human half holds a
 four-star head, shoulders, a right arm reaching to a hand; the equine
-half runs through back, loins, thigh and four named legs. Among these
-stars are the closest of all our stellar neighbours; the catalogue could
-not know that, and lists them as ankles."""
+half runs through back, loins, thigh and four named legs. Among these stars is the closest of all our stellar neighbours; the
+catalogue could not know that, and lists it as the tip of a front foot."""
 
 [[constellation.stroke]]
 name = "head"
@@ -2279,11 +2325,11 @@ stars_unformed = 0
 description = """
 Not yet a wolf: in this catalogue it is simply the Beast — the wild
 animal the Centaur grips by the hind foot, carrying it toward the Altar
-as an offering. Its first star is exactly that grip: 'at the tip of the
-hind foot, at the hand of the Centaur.' From the captured leg the body
-runs through shoulder, flank and thigh to a three-star tail-tip, with
-neck, muzzle and front feet straining away at the far end — an animal
-drawn mid-struggle, which is the whole story."""
+as an offering. Its first star is that grip: 'at the tip of the hind foot,
+at the hand of the Centaur.' From the captured leg the body runs through
+shoulder, flank and thigh to a three-star tail-tip, with
+neck, muzzle and front feet straining away at the far end —
+an animal drawn mid-struggle."""
 
 [[constellation.stroke]]
 name = "the-grip"
@@ -2381,13 +2427,13 @@ stars_figure = 12
 stars_unformed = 6
 description = """
 The lone fish of the deep south, floating on its back below the
-Water-Pourer with its mouth open — drinking the stream. Its mouth star
+Water-Pourer with its mouth open, drinking the stream. Its mouth star
 is the catalogue's third and final shared star: 'the same as the
 beginning of the water', the point where Aquarius' pour ends and the
 fish begins; we call it Fomalhaut, the only first-magnitude star in
 these empty waters. Behind the mouth: a curved head, gills, fins north
 and south, a belly pair, and the tail's tip. Six unformed stars swim
-ahead of it, an escort into darker sky."""
+ahead, into darker sky."""
 
 [[constellation.stroke]]
 name = "head"

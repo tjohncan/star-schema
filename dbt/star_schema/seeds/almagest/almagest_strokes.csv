@@ -11,10 +11,10 @@ UMa,7,body,"The figura quadrilatera — the Dipper's bowl (Dubhe, Merak, Phecda,
 UMa,8,left-hindleg,Thigh to hock to hind-foot pair.
 UMa,9,right-hindleg,"The right hind-foot pair, hung from the flank; the far legs pass behind."
 UMa,10,tail,'The three placed in the tail' — the Dipper's handle.
-Dra,1,head,"The tongue leads to the mouth; jaw, crown and eye close the head's lozenge."
+Dra,1,head,"The tongue leads to the mouth; jaw, crown, and eye close the head's lozenge."
 Dra,2,neck,"Crown into the straight-line trio at the first bend (N, mid, S), then the eastward follower."
 Dra,3,first-coil,"The quadrilateral at the following bend; entered from the neck, exited south."
-Dra,4,second-coil-triangles,Two triangles back-to-back; the following (eastern) then the preceding (western).
+Dra,4,second-coil-triangles,"The following (eastern) of the two back-to-back triangles, entered from the coil."
 Dra,5,western-triangle,"The preceding triangle, entered at its near corner and drawn round."
 Dra,6,small-pair,"The two small stars at the western part of the triangle, nearer one first."
 Dra,7,tail,"Straight-line trio, westward pair, the tail's bend, the far-standing pair, then tip. One unwinding stroke."
@@ -33,7 +33,7 @@ Boo,7,torso-and-belt,The belt pair with the leg star beside it; the head-to-belt
 Boo,8,right-leg,Belt-side leg star down to the right heel.
 Boo,9,left-leg,"The left-shin trio, north to south; our line hangs it from the belt pair."
 CrB,1,diadem,"The whole arc from its northern end: down through the leader and the jewel, then follower after follower to the last."
-CrB,2,northern-gem,"Star 4 rides north of the band, following 3."
+CrB,2,northern-gem,"The small companion riding north of the band, hung from the arc's northern end."
 Her,1,head-and-shoulders,The head set between the two shoulders.
 Her,2,right-arm,"Shoulder, arm, elbow."
 Her,3,left-arm,"Shoulder, arm, elbow, into the hand."
@@ -70,7 +70,7 @@ Per,9,left-leg,"Thigh, knee, shin, heel, foot-tip; our line hangs the leg from M
 Aur,1,head,"The head star and the one above it, set between the shoulders."
 Aur,2,frame,"Our hoop: shoulders to ankles, the pentagon-like frame of the figure."
 Aur,3,right-arm,"Shoulder, elbow, palm — the rein hand."
-Aur,4,kids,"Left elbow, then the two Kids in the palm."
+Aur,4,kids,"From Capella to the left elbow, then the two Kids in the palm."
 Aur,5,foot-line,"From the shared horn-star northward: foot-tip, then the joint."
 Aur,6,left-foot-spur,The small star above the left foot.
 Oph,1,head-and-shoulders,The head set between the inner shoulder stars; each shoulder a pair.
@@ -141,7 +141,7 @@ Gem,5,following-twin-body,"Pollux's head, following shoulder, left side, armpit,
 Gem,6,following-twin-feet,"Knee-hollow star, then left and right foot-tips."
 Gem,7,castor-shoulder,"The right-shoulder star of the preceding Twin, from his head."
 Cnc,1,body,"The quadrilateral around the nebula — preceding pair, then the Asses."
-Cnc,2,manger,"The Manger itself, held inside the body; our line ties it to the northern Ass."
+Cnc,2,manger,"The Manger, held inside the body; our line ties it to the northern Ass."
 Cnc,3,northern-claw,Claw from the northern following corner.
 Cnc,4,southern-claw,Claw from the southern following corner.
 Cnc,5,northern-foot,Hind foot from the northern preceding corner.
@@ -209,7 +209,7 @@ Cap,11,tail,The pair at the tail.
 Cap,12,tail-fin,"The four in the northern part of the tail, fanned."
 Aqr,1,head-and-shoulders,"Right shoulder, head, left shoulder."
 Aqr,2,shoulder-companion,The dimmer star below the right shoulder.
-Aqr,3,drapery,"From the left shoulder through its companion, then the garment's three west to east."
+Aqr,3,drapery,"From the left shoulder through its companion, then the garment's three east to west."
 Aqr,4,right-arm,"Elbow, then the three at the tip of the right hand — the pouring arm."
 Aqr,5,torso,"Hip pair, right buttock — one falling line of ours."
 Aqr,6,left-hip,The pair in the left buttock.
@@ -234,7 +234,7 @@ Cet,5,body,"The three in the body — southern, middle, northern — slung from 
 Cet,6,before-tail,The pair by the tail.
 Cet,7,tail,The quadrilateral figure in the tail.
 Cet,8,tail-join,Our line: the near-tail pair joined to the tail quadrilateral.
-Cet,9,flukes,"The two tail-end tips, north and south."
+Cet,9,flukes,"The two tail-end tips, north and south, hung from the tail's following side."
 Ori,1,head,The nebulous head set between the two shoulders.
 Ori,2,shoulder-drop,The star following below the left shoulder.
 Ori,3,right-arm,"Shoulder, elbow, arm, into the four-star fist."
@@ -272,7 +272,7 @@ CMa,5,shoulder,"The left-shoulder pair, behind the neck."
 CMa,6,body,Shoulder to leg-root to the star between the legs.
 CMa,7,hind-leg,"Leg-root, right-foot hollow, right-foot tip."
 CMa,8,tail,"The tail, from the leg-root."
-CMi,1,the-whole-dog,"Neck to Procyon. There is nothing else, and nothing else is needed."
+CMi,1,the-whole-dog,Neck to hindquarters (Procyon). This is it!
 Arg,1,stern-post,"The pair at the ship's end, with the goose-head ornament above."
 Arg,2,stern-shield,"The close pair above the little shield, their preceder, and the brilliant shield-boss."
 Arg,3,under-shield,The three below the little shield.
@@ -301,7 +301,7 @@ Crt,4,north-handle,"The northern handle, off the rim."
 Crv,1,head,"Beak (shared with the Snake), neck, breast."
 Crv,2,right-wing,"The preceding, right wing."
 Crv,3,left-wing,The pair of the following wing.
-Crv,4,foot,"The foot, shared with the Snake — the perch made literal."
+Crv,4,foot,"The foot, shared with the Snake — the perch."
 Cen,1,head,"The four in the head taken in a walk — north pair, then south — a face in few strokes."
 Cen,2,shoulders,"Left and right shoulders barred, the head above."
 Cen,3,neck,Our line: the head's southernmost star down to the left shoulder.
